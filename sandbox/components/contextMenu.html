@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+    <div class=app>
+    <p>Renders a JavaScript context menu associate with the component's
+    parent.  For example:</p>
+    
+    <ul>            
+    <textarea name="code" class="xml"><h:outputText id="text" value="This should have a context menu!">
+    <risb:contextMenu width="225px">
+        <risb:menuItem value="Test!" url="http://www.yahoo.com"/>
+        <risb:menuItem>
+            <h:outputLink value="http://jsf.java.net/">
+                <h:outputText value="JSF RI Homepage"/>
+            </h:outputLink>
+        </risb:menuItem>
+        <risb:menuItem>
+            <h:commandLink action="home" value="Home"/>
+        </risb:menuItem>
+    </risb:contextMenu>
+</h:outputText></textarea>
+    </ul>
+    
+    <p>will render a <code>span</code> with the text "This should have a context menu!":<br/>
+    <img style="padding-left: 5px" src="../images/contextMenu_01.png" />
+    
+    <p>When the user right clicks on the <code>span</code>, the context menu defined
+    in via the <code><risb:contextMenu/></code> will be displayed:</p>
+    
+    <img style="padding-left: 5px" src="../images/contextMenu_02.png" />
+    
+    <p>If you find the default styling unappealing, the colors, borders, etc are all 
+    configurable via CSS.  Documentation on how to do that is on the YUI
+    <a target="_blank" href="http://developer.yahoo.com/yui/menu/#cssref">site</a>.</p>
+    </div>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

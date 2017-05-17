@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+    <p>The <code>download</code> component offers a way to download or embed an 
+    arbitrary binary object, whether it's a dynamically generated image you would 
+    like to display on your web page, or a PDF-based report you'd like to download
+    to your user.  There are a number of ways to achieve this, from Servlets to 
+    custom PhaseListeners.  The problem with the Servlet approach is that it lives
+    outside the JSF lifecycle, so there's a fair amount of work for the Servlet to
+    do to force itself in.  The PhaseListener approach, however, does live inside
+    the JSF lifecycle, so it has immediate access to all that it needs.  In fact,
+    that's the approach <code>download</code> takes.  The downside to the 
+    PhaseListener is the complexity involved in configuring the PhaseListener, 
+    managing the URI that triggers its code, and acquiring the resource requested.</p>
+    
+    <p>The <code>download</code> component, however, hides all of the from the page
+    author.  Take, for example, the use case in which you would like to load an
+    image from the Classpath (or generate it on the fly), and display that to the user.
+    You're code might look something like this:
+    
+    <textarea name="code" class="xml">public byte[] getImage() {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    try {
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream("/sample.png");
+        
+        int count = 0;
+        byte[] buffer = new byte[4096];
+        while ((count = is.read(buffer)) != -1) {
+            if (count > 0) {
+                baos.write(buffer, 0, count);
+            }
+        }
+    } catch (IOException e) {
+        System.err.println(e.getMessage());
+    }
+    
+    return baos.toByteArray();
+}</textarea>
+        
+    To make use of that method from your web page, you would need something like this:
+    
+    <textarea name="code" class="xml"><risb:download mimeType="image/png" fileName="sample.png" data="#{testBean.image}">
+    <h:graphicImage url="#{downloadUrl}" width="250px" />
+</risb:download></textarea>
+    
+    Note that the display of the image is actually done via the <code><h:graphicImage></code>
+    component.  The <code>download</code> defines, for any child components, an EL value which
+    they can use to get the URL associated with the given resource.  The default variable name,
+    <code>downloadUrl</code>, can be changed if that happens to conflict with an variable already
+    defined, as might happen inside a <code><h:dataTable></code>.  To do so, simply
+    provide the <code>urlVar</code> attribute:
+    
+    <textarea name="code" class="xml"><risb:download mimeType="image/png" fileName="sample.png" data="#{testBean.image}" urlVar="foo">
+    <h:graphicImage url="#{foo}" width="250px" />
+</risb:download></textarea>
+    
+    <p>If you would like to download the object to the user, you might try something 
+    like this:</p>
+    
+    <textarea name="code" class="xml"><risb:download method="download" mimeType="application/pdf" fileName="sample.pdf" data="#{testBean.pdf}">
+    <h:graphicImage alt="Download" url="/download.jpg"/>
+</risb:download></textarea>
+
+    <p>Note the <code>method</code>.  Here we specify that we want to download the object.  
+    We then specify the mime type and filename to use for the download.  Note, also, the
+    nested <code><h:graphicImage></code> component.  This will be rendered as an
+    anchor for the user to click to initiate the download.  When clicked, the user 
+    will be asked to save the PDF names sample.pdf.  It's as simple as that!</p>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

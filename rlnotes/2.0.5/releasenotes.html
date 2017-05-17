@@ -1,0 +1,229 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>Mojarra 2.0.5 Release Notes -- Release Notes</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <BODY>
+    <h1>
+      <banner>Mojarra 2.0.5 Release Notes</banner>
+      <br>  Release Notes
+    </h1>
+    <center>
+      <b>Specification Version:</b>  2.0 
+      <br>
+      <b>Implementation Version:</b>  2.0.5
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         Mojarra 2.0
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+          <a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="whatsnew.html">
+            <span>What&#8217;s new</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="releasenotes.html">
+            <span class="active">Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="issuesresolved.html">
+            <span>Issues Resolved</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span>Known Issues</span>
+          </a>
+        </li>
+          <li>
+          <a href="migration.html">
+            <span>Migration Guide</span>
+          </a>
+        </li>
+          <!--
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        -->
+      </ul>
+    </div> 
+    <p>This document contains information that should help you use this software library more effectively. See the
+      <a href="http://wikis.oracle.com/display/GlassFish/JavaServerFacesRI">JSF FAQ</a> for additional information.
+     
+    <h2>Java
+      <sup>
+        <font size="-2">TM</font>
+      </sup> 2 Platform, Standard Edition (J2SE
+      <sup>
+        <font size="-2">TM</font>
+      </sup>) Requirements
+    </h2> 
+    <p>This release of JSF requires
+      <a href="http://java.sun.com/javase/downloads/index.jsp">J2SE 5.0</a> or higher.
+     
+    <h2>Webtier Specification Requirements</h2> 
+    <p>This release of JSF requires:
+      <ul>
+        <li>
+          <a href="http://www.oracle.com/technetwork/java/javaee/servlet/">Java Servlet 2.5</a>
+        </li> 
+        <li>
+          <a href="http://www.oracle.com/technetwork/java/javaee/jsp/">JavaServer
+            <sup>
+              <font size="-2">TM</font>
+            </sup> Pages 2.1
+          </a>
+        </li> 
+        <li>
+          <a href="http://www.oracle.com/technetwork/java/javaee/jsp/jstl/">JavaServer
+            <sup>
+              <font size="-2">TM</font>
+            </sup> Pages Standard Tag Library 1.2
+          </a> 
+        </li> 
+      </ul> 
+    <h2>General Comments on the Mojarra 2.0.5  Release</h2>
+    <p>
+        This release should be considered feature complete with the
+        JavaServer Faces 2.0 specification.
+    </p>
+    <h2>Identifying the JAR Files</h2> 
+    <table style="border:1px solid; border-width:1px;border-collapse:collapse;" cellpadding="5px" cellspacing="1">
+      <tr bgcolor="silver" style="border:1px solid;">
+        <th width="30%">JAR File</th> 
+        <th width="70%">Description</th> 
+      </tr> 
+      <tr>
+        <td>jsf-api.jar</td> 
+        <td>This JAR contains all of the public APIs as described by the specification.</td> 
+      </tr> 
+      <tr>
+        <td>jsf-impl.jar</td> 
+        <td>This JAR contains the runtime implementation per the specification.</td> 
+      </tr> 
+    </table>
+    <h2>Installing Mojarra 2.0.5  on GlassFish v2</h2>
+    <ul>
+        <li>download the Mojarra 2.0.5  binary bundle from the project page</li>
+        <li>backup your existing jsf-impl.jar found in GF_HOME/lib</li>
+        <li>copy the new jsf-api and jsf-impl JARs to GF_HOME/lib</li>
+        <li>edit your GF_HOME/domains/&lt;domain-name&gt;/config/domain.xml
+            and add (or update the existing classpath-prefix)
+            'classpath-prefix="${com.sun.aas.installRoot}/lib/jsf-api.jar"
+            to the java-config element
+        </li>
+        <li>restart your server</li>
+    </ul>
+    <h2>Installing Mojarra 2.0.5  on GlassFish v3 (including GlassFish Prelude)</h2>
+    <ul>
+        <li>download the Mojarra 2.0.5 binary bundle from the project page</li>
+        <li>backup your existing jsf-impl.jar found in GF_HOME/modules</li>
+        <li>copy the new jsf-api and jsf-impl JARs to GF_HOME/modules</li>
+        <li>restart your server</li>
+    </ul>
+    <h2>Uninstalling Mojarra 2.0.5  on GlassFish v3 (including GlassFish Prelude)</h2>
+    <p>It is <b>critical</b> when uninstalling Mojarra 2.0.5, that you also reinstall the 1.2 version of JSF.  The admin console of glassfish requires JSF to function correctly.
+    <h2>Configuring your web application to use Mojarra 2.0.5</h2>
+    <p>
+        <em>NOTE:</em> JSP-based JSF 1.2 applications should deploy and run
+        without issue using Mojarra 2.0.5, however, the bulk of the new
+        features defined will only work with Facelets (specifically the Facelets
+        implementation included in jsf-impl.jar).  If you decided to test your
+        existing Facelets-based JSF 1.2 application, <em>make sure you do not
+        include the jsf-facelets.jar with your application.</em>
+    </p>
+    <p>
+        With JSF 2.0, there is now a set of rules that are followed to determine whe
+        the Facelets included with Mojarra 2.0.5  will be disabled.  See the following list:
+    </p>
+    <ul>
+        <li>
+            if /WEB-INF/faces-config.xml is versioned at 1.2 or older, JSF 2.0
+            Facelets will not be used.  Make sure the version and web-facesconfig.xml
+            schema reference are versioned at 2.0
+        </li>
+        <li>
+            If any of the faces-config.xml files reference the com.sun.facelets.FaceletViewHandler,
+            JSF 2.0 Facelets will not be used.  This allows for easy migration compatibility
+            for those applications that have direct dependencies on Facelet classes.
+        </li>
+    </ul>
+
+    <p>
+        With the release of JSF 2.0, it is possible to use both JSP and Facelets in the same
+        application using *both* prefix and extension mapping for the FacesServlet.
+        See the updated documentation for ViewHandler.DEFAULT_SUFFIX_PARAM for details
+        on how the new algorithm works.
+    </p>
+    <!--
+    <p>
+        While the requirments still state Servlet 2.5/JSP 2.1, if you're developing a new
+        application using Mojarra 2.0.0 EDR1 using the included Facelets implementation,
+        it is possible to develop your application using a Servlet 2.4 container.  If this
+        option is taken, a JSP 2.1 Unified EL implementation must be included with your
+        application.
+        The Sun implementation of the Unified EL can be found <a href="http://download.java.net/maven/1/el-impl/jars/">here</a>.
+    </p>
+    -->
+    <h2>Change Log</h2>
+    <ul>
+      <li>
+          <a href="whatsnew.html">Mojarra 2.0.5  - What's New</a>
+      </li>
+      <li>
+          <a href="issuesresolved.html">Mojarra 2.0.5  - Resolved Issues</a>
+      </li>
+    </ul> 
+    <h2>Known Issues</h2>
+    <ul>
+        <li>
+            <a href="issues.html">Mojarra 2.0.5  - Known Issues</a>
+        </li>
+    </ul>
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.2 $
+        <br> $Date: 2010-10-15 16:56:53 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

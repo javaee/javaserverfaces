@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+	<h2>&lt;risb:tree&gt; - A YUI TreeView Wrapper</h2>
+    <p>The tree component is a wrapper for the YUI JavaScript <a targer="_blank" 
+    href="http://developer.yahoo.com/yui/treeview/">TreeView component</a>.  Here is 
+    a sample usage:
+    
+    <!-- <pre class="code"> -->
+	<textarea name="code" class="xml">
+	<risb:tree id="foo">
+	    <risb:treeNode>
+	        <f:facet name="label"><h:outputText value="Test 1"/></f:facet>
+	        <risb:treeNode>
+	            <f:facet name="label"><h:outputText value="Test 1-1"/></f:facet>
+	            <risb:treeNode>
+	                <f:facet name="label"><h:outputText value="Test 1-1-1"/></f:facet>
+	            </risb:treeNode>
+	            <risb:treeNode>
+	                <f:facet name="label"><h:outputText value="Test 1-1-2"/></f:facet>
+	            </risb:treeNode>
+	            <risb:treeNode>
+	                <f:facet name="label"><h:outputText value="A test with one of these: '"/></f:facet>
+	            </risb:treeNode>
+	        </risb:treeNode>
+	    </risb:treeNode>
+	    <risb:treeNode>
+	        <f:facet name="label"><h:outputText value="Test 2"/></f:facet>
+	        <risb:treeNode>
+	            <f:facet name="label">
+	                <h:outputLink value="http://blogs.steeplesoft.com">
+	                    <h:graphicImage id="image" url="/download.jpg" />
+	                </h:outputLink>
+	            </f:facet>
+	        </risb:treeNode>
+	    </risb:treeNode>
+	</risb:tree>
+	</textarea>
+    The code snippet above will render a tree that looks like this:<br />
+    <img style="padding-left: 5px" src="../images/tree_01.png" alt="Render YUI Tree"/>
+    <br />
+    The tree usage is pretty simple.  A <code>tree</code> component has
+    0 or more nested <code>treeNode</code> components.  Each <code>treeNode</code> requires
+    a label facet, which is what is rendered for that particular node, regardless of 
+    whether its a leaf or not.  Each <code>treeNode</code> can also have 0 or more
+    nested <code>treeNode</code> components.  
+    
+    Using component binding, the tree might look something like this:
+    <textarea name="code" class="xml"><risb:tree binding="#{testBean.tree}"/></textarea>
+    with a backing bean method like:
+    <textarea name="code" class="java">
+	public YuiTree getTree() {
+		FacesContext fc = FacesContext.getCurrentInstance();
+	    Application app = fc.getApplication();
+		
+	    tree = (YuiTree)app.createComponent(YuiTree.COMPONENT_TYPE);
+		
+	    YuiTreeNode node1 = (YuiTreeNode)app.createComponent(YuiTreeNode.COMPONENT_TYPE);
+	    YuiTreeNode node2 = (YuiTreeNode)app.createComponent(YuiTreeNode.COMPONENT_TYPE);
+	    YuiTreeNode node3 = (YuiTreeNode)app.createComponent(YuiTreeNode.COMPONENT_TYPE);
+	    
+	    HtmlOutputText text1 = (HtmlOutputText)app.createComponent(HtmlOutputText.COMPONENT_TYPE); 
+	    HtmlOutputText text2 = (HtmlOutputText)app.createComponent(HtmlOutputText.COMPONENT_TYPE);
+	    HtmlOutputText text3 = (HtmlOutputText)app.createComponent(HtmlOutputText.COMPONENT_TYPE);
+
+		text1.setValue("Text 1");
+		text2.setValue("Text 2");
+		text3.setValue("Text 3");
+	    
+	    node1.getFacets().put("label", text1);
+	    node1.getChildren().add(node3);
+	    node2.getFacets().put("label", text3);
+	    node3.getFacets().put("label", text2);
+	    
+	    tree.getChildren().add(node1);
+	    tree.getChildren().add(node2);
+	    
+	    return tree;
+	}</textarea>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

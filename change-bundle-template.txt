@@ -1,0 +1,17 @@
+[Text describing the high level impact of this checkin goes here.]
+
+SECTION: Changes
+
+[put the "cvs -n update -d -P" output here, with text describing the
+ changes to each file after its entry in the list.]
+
+SECTION: Diffs
+
+[put the output of a top level "cvs diff -u" here.]
+
+SECTION: New Files
+
+[if there is a small number of new files, just put them here, separated
+ by some delimiter.  Otherwise, attach a tar.gz of the new files that
+ you can unpack in the top level directory and the files will appear in
+ the right place.]

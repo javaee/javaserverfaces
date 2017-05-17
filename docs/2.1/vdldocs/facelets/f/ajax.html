@@ -1,0 +1,152 @@
+<html xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ajax
+          (JSF 2.1 View Declaration Language: Facelets Variant)
+        </title>
+<meta name="keywords" content="$title">
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+</head>
+<script>
+            function asd()
+            {
+            parent.document.title="ajax (JSF 2.1 View Declaration Language: Facelets Variant)";
+            }
+          </script>
+<body bgcolor="white" onload="asd();">
+<a name="navbar_top"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td COLSPAN="3" BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><a NAME="navbar_top_firstrow"></a>
+<table BORDER="0" CELLPADDING="0" CELLSPACING="3">
+<tr ALIGN="center" VALIGN="top">
+<td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a href="../overview-summary.html"><font CLASS="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td><td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a href="tld-summary.html"><font CLASS="NavBarFont1"><b>Library</b></font></a>&nbsp;</td><td BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<font CLASS="NavBarFont1Rev">&nbsp;Tag&nbsp;</font>&nbsp;</td><td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a HREF="../help-doc.html"><font CLASS="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+</tr>
+</table>
+</td><td ALIGN="right" VALIGN="top" ROWSPAN="3"><em></em></td>
+</tr>
+<tr>
+<td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2"></font></td><td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2">
+                &nbsp;<a HREF="../index.html" TARGET="_top"><b>FRAMES</b></a>&nbsp;
+                &nbsp;<a href="ajax.html" target="_top"><b>NO FRAMES</b></a>&nbsp;
+                <script></script>
+<noscript>
+<a HREF="../alltags-noframe.html" TARGET=""><b>All Tags</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<hr>
+<h2>
+<font size="-1">f</font>
+<br>
+            Tag ajax</h2>
+<hr><p class="changed_added_2_0"><span class="changed_modified_2_0_rev_a">Register</span> an AjaxBehavior instance on one or more UIComponents implementing the ClientBehaviorHolder interface. This tag may be nested witin a single component (enabling Ajax for a single component), or it may be "wrapped" around multiple components (enabling Ajax for many components).</p> <p class="changed_added_2_0">The String value for ids specified for execute and render may be specified as a search expression as outlined in the JavaDocs for <code>UIComponent.findComponent()</code>. The implementation must resolve these ids as specified for <code>UIComponent.findComponent()</code>. For example, consider the following Facelets code.</p> <div class="xml" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;h:form</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;form_1&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;h:panelGrid</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;panel_1&quot;</span> <span style="color: #000066;">rows</span>=<span style="color: #ff0000;">&quot;2&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">&lt;!-- content irrelevant --&gt;</span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/h:panelGrid<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/h:form<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;h:form</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;form_2&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;h:commandButton</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;button&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;f:ajax</span> <span style="color: #000066;">render</span>=<span style="color: #ff0000;">&quot;:form1:panel_1 panel_2&quot;</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/h:commandButton<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;h:panelGrid</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;panel_2&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">&lt;!-- content irrelevant --&gt;</span></div></li> <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/h:panelGrid<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li> <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/h:form<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li> </ol></div> <p class="changed_added_2_0">When the button is pressed, panel_1, in form_1 will be re-rendered, along with panel_2 in form_2.</p><br>
+<p></p>
+<hr>
+<table border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+<td colspan="2"><font size="+2"><b>Tag Information</b></font></td>
+</tr>
+<tr>
+<td>Tag Class</td><td><i>None</i></td>
+</tr>
+<tr>
+<td>TagExtraInfo Class</td><td><i>None</i></td>
+</tr>
+<tr>
+<td>Body Content</td><td>empty</td>
+</tr>
+<tr>
+<td>Display Name</td><td><i>None</i></td>
+</tr>
+</table>
+<br>
+<p></p>
+<table border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+<td colspan="5"><font size="+2"><b>Attributes</b></font></td>
+</tr>
+<tr>
+<td><b>Name</b></td><td><b>Required</b></td><td><b>Request-time</b></td><td><b>Type</b></td><td><b>Description</b></td>
+</tr>
+<tr valign="top">
+<td>disabled</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
+                    </td><td><p class="changed_added_2_0">A value of "true" indicates the AjaxBehavior should not be rendered. A value of "false" indicates the AjaxBehavior should be rendered. "false" is the default.</p></td>
+</tr>
+<tr valign="top">
+<td>event</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.String</code>)
+                    </td><td><p class="changed_added_2_0">A String identifying the type of event the Ajax action will apply to. If specified, it must be one of the events supported by the component the Ajax behavior is being applied to. For HTML components this would be the set of supported DOM events for the component, plus "action" for Faces ActionSource components and "valueChange" for Faces EditableValueHolder components. If not specified, the default event is determined for the component. The DOM event name is the actual DOM event name (for example: "click") as opposed to (for example: "onclick").</p></td>
+</tr>
+<tr valign="top">
+<td>execute</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.util.Collection</code>)
+                    </td><td><p class="changed_added_2_0"><span class="changed_modified_2_0_rev_a">Evaluates</span> to Collection&lt;String&gt;. This is a space separated list of client ids of components that will participate in the "execute" portion of the Request Processing Lifecycle. If a literal is specified the ids must be space delimited. Any of the keywords "@this", "@form", "@all", "@none" may be specified in the id list. <span class="changed_modified_2_0_rev_a">If not specified, the default value of "@this" is assumed. For example, <code>@this clientIdOne clientIdTwo</code>.</span></p></td>
+</tr>
+<tr valign="top">
+<td>immediate</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
+                    </td><td><p class="changed_added_2_0">If "true" behavior events generated from this behavior are broadcast during Apply Request Values phase. Otherwise, the events will be broadcast during Invoke Aplications phase</p></td>
+</tr>
+<tr valign="top">
+<td>listener</td><td>false</td><td>false</td><td><code>javax.el.MethodExpression</code>
+<br>(<i>signature must match </i><code>public void processAjaxBehavior(javax.faces.event.AjaxBehaviorEvent event) throws javax.faces.event.AbortProcessingException</code>)
+                    </td><td><p class="changed_added_2_0">Method expression referencing a method that will be called when an AjaxBehaviorEvent has been broadcast for the listener.</p></td>
+</tr>
+<tr valign="top">
+<td>onevent</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.String</code>)
+                    </td><td><p class="changed_added_2_0">The name of the JavaScript function that will handle UI events.</p></td>
+</tr>
+<tr valign="top">
+<td>onerror</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.String</code>)
+                    </td><td><p class="changed_added_2_0">The name of the JavaScript function that will handle errors.</p></td>
+</tr>
+<tr valign="top">
+<td>render</td><td>false</td><td>false</td><td><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.util.Collection</code>)
+                    </td><td><p class="changed_added_2_0"><span class="changed_modified_2_0_rev_a">Evaluates</span> to Collection&lt;String&gt;. The clientIds of components that will participate in the "render" portion of the Request Processing Lifecycle. If a literal is specified the identifiers must be space delimited. Any of the keywords "@this", "@form", "@all", "@none" may be specified in the identifier list. <span class="changed_modified_2_0_rev_a">If not specified, the default value of "@none" is assumed. For example, <code>@this clientIdOne clientIdTwo</code>.</span></p></td>
+</tr>
+</table>
+<br>
+<p></p>
+<table border="1" cellpadding="3" cellspacing="0" width="100%">
+<tr bgcolor="#CCCCFF" class="TableHeadingColor">
+<td colspan="5"><font size="+2"><b>Variables</b></font></td>
+</tr>
+<td colspan="2"><i>No Variables Defined.</i></td>
+</table>
+<br>
+<p></p>
+<a name="navbar_bottom"></a>
+<table border="0" width="100%" cellpadding="1" cellspacing="0">
+<tr>
+<td COLSPAN="3" BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><a NAME="navbar_bottom_firstrow"></a>
+<table BORDER="0" CELLPADDING="0" CELLSPACING="3">
+<tr ALIGN="center" VALIGN="top">
+<td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a href="../overview-summary.html"><font CLASS="NavBarFont1"><b>Overview</b></font></a>&nbsp;</td><td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a href="tld-summary.html"><font CLASS="NavBarFont1"><b>Library</b></font></a>&nbsp;</td><td BGCOLOR="#FFFFFF" CLASS="NavBarCell1Rev"> &nbsp;<font CLASS="NavBarFont1Rev">&nbsp;Tag&nbsp;</font>&nbsp;</td><td BGCOLOR="#EEEEFF" CLASS="NavBarCell1">    &nbsp;<a HREF="../help-doc.html"><font CLASS="NavBarFont1"><b>Help</b></font></a>&nbsp;</td>
+</tr>
+</table>
+</td><td ALIGN="right" VALIGN="top" ROWSPAN="3"><em></em></td>
+</tr>
+<tr>
+<td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2"></font></td><td BGCOLOR="white" CLASS="NavBarCell2"><font SIZE="-2">
+                &nbsp;<a HREF="../index.html" TARGET="_top"><b>FRAMES</b></a>&nbsp;
+                &nbsp;<a href="ajax.html" target="_top"><b>NO FRAMES</b></a>&nbsp;
+                <script></script>
+<noscript>
+<a HREF="../alltags-noframe.html" TARGET=""><b>All Tags</b></a>
+</noscript>
+</font></td>
+</tr>
+</table>
+<hr>
+<small><i>
+            Output Generated by 
+            <a href="http://taglibrarydoc.dev.java.net/" target="_blank">Tag Library Documentation Generator</a>.
+            </i></small>
+</body>
+</html>

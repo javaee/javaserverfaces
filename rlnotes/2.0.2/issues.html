@@ -1,0 +1,171 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>Mojarra 2.0.2 Release Notes -- Known Issues</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <BODY>
+    <h1>
+      <banner>Mojarra 2.0.2 Release Notes</banner>
+      <br>  Known Issues
+    </h1>
+    <center>
+      <b>Specification Version:</b>  2.0
+      <br>
+      <b>Implementation Version:</b>  2.0.2
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         Mojarra 2.0
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+          <a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="whatsnew.html">
+            <span>What&#8217;s new</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="issuesresolved.html">
+            <span>Issues Resolved</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span class="active">Known Issues</span>
+          </a>
+        </li>
+          <li>
+          <a href="migration.html">
+            <span>Migration Guide</span>
+          </a>
+        </li>
+          <!--
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        -->
+      </ul>
+    </div> 
+    <h3>Known issues with the 2.0.2  release</h3>
+    <ul>      
+      <li>
+        Please see this <a href="http://jsf.java.net/issues/buglist.cgi?target_milestone=2.0.next&issue_status=UNCONFIRMED&issue_status=NEW&issue_status=STARTED&issue_status=REOPENED">list of issues</a>
+        that will be reviewed for the next patch release.
+      </li>
+    </ul>
+    <br />
+    <h3>Differences between the implementation and the specification</h3>
+    <p>
+        The following JSF 2.0 MR items represent bugs that will be resolved in
+        the next revision of the JSF specification series, however, they were
+        deemed important enough to include in the 2.0.0 implementation.
+    </p>
+    <p>
+        See the official <a href="http://wiki.java.net/bin/view/Projects/Jsf2MR1ChangeLog">changelog</a>
+        for the complete list of items targeted for the next revision of the specification.
+    </p>
+    <ul>
+        <li>
+            The renderkit documentation for the new OutcomeTarget renderers is incorrect.
+            The correct documentation can be found <a href="http://wiki.java.net/bin/view/Projects/Jsf2MR1ChangeLog#ChangeC006">here</a>.
+        </li>
+        <li>
+            The javadocs for UIViewRoot.setBeforePhaseLister() in 2.0 is incorrect.  Please refer to the 1.2
+            version of the documentation for the correct behavior.
+        </li>
+        <li>
+            The documentation for h:outputStylesheet current states that the renderer
+            will always render the media attribute with a value of 'screen'.  The implementation
+            will not render any media attribute.  For the next release, a media attribute
+            will be exposed to give page authors control of this value.
+        </li>
+        <li>
+            The documentation for ui:insert does not include the 'name' attribute.
+            This attribute works as per Facelets 1.1.x.
+        </li>
+        <li>
+            The documentation for f:valueChangeListener does not include a reference
+            to the for attribute necessary to attach ValueChangeListeners to composite
+            components.  Even though it's not documented, the attribute is supported.
+        </li>
+        <li>
+            The documentation for composite:attribute incorrectly lists the 'targets' attribute
+            as required.
+        </li>
+        <li>
+            Section 2.6.1.3 of the JSF 2.0 specification states that versioning of resources
+            included on the classpath must be supported.  Due to differences in how application
+            servers expose classpath URLs, this feature could not be portably implemented.  As
+            such, these feature is no longer supported.  Resource versioning for resources included
+            in /resource of the application's docroot, will, however, continue to work as specified.
+        </li>
+        <li>
+            Section 5.6.2.1 states that the 'cc' implicit object returns the result of
+            UIComponent.getCurrentCompositeComponent().  The implementation does not do this
+            as it causes problems when nesting composite components.  Instead, the composite component
+            will resolve to the composite component relative to the composite component markup page in
+            which the expression appears.
+        </li>
+        <li>
+            The specification was mistakenly silent on a feature that required the evaluation of
+            EL expressions within css resources served by the ResourceHandler.  
+        </li>
+        <li> 
+            The specification does not require that &lt;script&gt; tags be evaluated when returned as part of a Ajax update response.  This was an oversight - Mojarra will evaluate these scripts as part of the update, and the specification will add this in the MR.
+        </li>
+        <li>
+            If an f:ajax reference nested within the component refers to a parent UIData component in either its
+            render or execute targets, the rendered client ID for the UIData instance includes the current row ID.
+            Instead of refering to the UIData from within the children rows, wrap the UIData in a container component
+            and reference that container component's ID as the render and/or execute target. See <a href="http://jsf.java.net/issues/show_bug.cgi?id=1480">issue 1480</a>
+            for details.
+        </li>
+    </ul>
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.3 $
+        <br> $Date: 2010-10-15 16:56:51 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

@@ -1,0 +1,163 @@
+<html>
+<HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>JavaServer(TM) Faces Release Notes 1.2_01(b04) FCS FCS-- Known
+        Issues</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+</HEAD>
+<BODY>
+<h1>
+    <banner> JavaServer
+        <sup>
+            <font size="-2">TM</font>
+        </sup> Faces Release Notes
+    </banner>
+    <br> Known Issues
+</h1>
+<center>
+    <b>Specification Version:</b> 1.2
+    <br>
+    <b>Implementation Version:</b> 1.2_01(b04) FCS
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="changelog.html">
+                <span>Change Log</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span class="active">Known Issues</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<p>Known issues with the 1.2_01 release.
+<ul>
+    <li>
+        <p>There is an inconsistency in the javadocs for
+            <code>javax.faces.model.SelectItem</code> where null values should
+            be allowed, but the docs still state NullPointerExceptions should be
+            thrown in this case. This issue will be addressed in the upcoming
+            maintenance release (see issue
+            <a href="http://jsf.java.net/issues/show_bug.cgi?id=345">345</a>).
+
+    </li>
+    <li>
+        <p>The default renderer for
+            <code>h:dataTable</code> doesn't produce accessible markup -
+            specifically no
+            <code>scope</code> attribute is rendered on table rows (see issue
+            <a href="http://jsf.java.net/issues/show_bug.cgi?id=341">341</a>).
+
+    </li>
+    <li>
+        <p>Under specific conditions, h:commandLink will not submit a form.
+           If the <code>h:commandLink</code> is nested within a <code>h:form</code>
+           with <code>prependId=false</code> and another element within said
+           form has an ID of <code>submit</code> a javascript error will occur
+           when clicking the link.  
+            
+           Workaround: Change the component ID of <code>submit</code> to
+                       another value, or don't use prependId on the form.
+            
+           See Issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=365">365</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            An NPE can be thrown from the default NavigationHandler implementation
+            is invoked in the <code>beforePhase</code> method of a <code>PhaseListener</code>
+            
+            Workaround: Invoke the NavigationHandler in the <code>afterPhase</code>
+                        method of the <code>PhaseListener</code>
+            
+            See issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=368">368</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            The FactoryFinder may not work in certain EE environments where 
+            an application has multiple web applications and the application server
+            uses the same classloader for both web applications.
+            
+            See issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=359">359</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            If using <code>c:forEach</code> to render a portion of a view
+            and <code>h:message</code> is nested within, <code>h:message</code>
+            will not display any messages.
+            
+            See issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=355">355</a>
+        </p>
+    </li>
+    <li>
+        <p>
+            Under certain conditions where the back button is involved,
+            incorrect parameter values could potentially be submitted
+            during post-back.
+            
+            See issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=364">364</a>
+        </p>
+    </li>
+    <li>
+          <p>
+              When upgrading from 1.2 to 1.2_01, 1.2_02, or 1.2_03 on Tomcat 5.x
+              with Facelets, the user may receive a ClassNotFoundException
+              for com.sun.faces.config.GlassFishConfigureListenener.  In order
+              to resolve this, delete the tld cache references under
+              <code>TOMCAT_HOME/work</code> and restart the server.
+          </p>
+      </li>
+</ul>
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.8 $
+        <br> $Date: 2010-10-14 02:34:34 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</BODY>
+</html>

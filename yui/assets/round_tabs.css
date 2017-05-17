@@ -1,0 +1,112 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ * 
+ * Copyright 1997-2007 Oracle America, Inc. All rights reserved.
+ * 
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License. You can obtain
+ * a copy of the License at https://glassfish.dev.java.net/public/CDDL+GPL.html
+ * or glassfish/bootstrap/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ * 
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at glassfish/bootstrap/legal/LICENSE.txt.
+ * Sun designates this particular file as subject to the "Classpath" exception
+ * as provided by Sun in the GPL Version 2 section of the License file that
+ * accompanied this code.  If applicable, add the following below the License
+ * Header, with the fields enclosed by brackets [] replaced by your own
+ * identifying information: "Portions Copyrighted [year]
+ * [name of copyright owner]"
+ * 
+ * Contributor(s):
+ * 
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
+ */
+
+.yui-navset .yui-content {
+    border:1px solid #ccc;
+}
+.yui-navset .yui-nav .selected a, .yui-navset .yui-nav a:hover {
+    background-color:#fff;
+}
+
+.yui-navset .yui-nav li a {
+    background:#e5e5e5 url(../img/round_4px_trans_gray.gif) no-repeat;
+}
+.yui-navset .yui-nav li a em {
+    background:transparent url(../img/round_4px_trans_gray.gif) no-repeat top right;
+    padding:0.5em;
+}
+
+/* top oriented */
+
+.yui-navset-top .yui-nav { margin-bottom:-1px; } /* for overlap, based on content border-width */
+.yui-navset-top .yui-nav li a {
+    border-bottom:1px solid #ccc;
+}
+
+.yui-navset-top .yui-nav .selected a { border-bottom:0; }
+.yui-navset-top .yui-nav .selected a em { padding-bottom:0.6em; } /* adjust height */
+
+/* top & bottom oriented */
+.yui-navset-top .yui-nav li a em, .yui-navset-bottom .yui-nav li a em {
+    margin-left:4px; /* based on border-radius */
+    padding-right:8px; /* based on border-radius (2x left to balance margin) */
+    padding-left:4px;
+}
+
+/* bottom oriented */
+
+.yui-navset-bottom .yui-nav { margin-top:-1px; } /* for overlap, based on content border-width */
+.yui-navset-bottom .yui-nav li a { border-top:1px solid #ccc; }
+
+.yui-navset-bottom .yui-nav .selected a { border-top:0; }
+.yui-navset-bottom .yui-nav .selected a em { padding-top:0.6em; } /* adjust height */
+
+.yui-navset-bottom .yui-nav li a { background-position:bottom left; }
+.yui-navset-bottom .yui-nav li a em { background-position:bottom right; }
+
+/* left oriented */
+
+.yui-navset-left .yui-content { margin-left:-1px; } /* for overlap, based on content border-width */
+
+.yui-navset-left .yui-nav li a {
+    border-right:1px solid #ccc;
+    padding-bottom:4px;
+}
+
+.yui-navset-left .yui-nav li a em, .yui-navset-right .yui-nav li a em {
+    padding-top:8px; /* based on border-radius (2x left to balance margin) */
+}
+
+.yui-navset-left .yui-nav .selected a { border-right:0; }
+.yui-navset-left .yui-nav .selected a em { padding-left:0.6em; } /* adjust width */
+
+.yui-navset-left .yui-nav li a { background-position:bottom left; }
+.yui-navset-left .yui-nav li a em { background-position:top left; }
+
+/* right oriented */
+
+.yui-navset-right .yui-content { margin-right:-1px; } /* for overlap, based on content border-width */
+
+.yui-navset-right .yui-nav li a {
+    border-left:1px solid #ccc;
+    padding-bottom:4px;
+}
+
+.yui-navset-right .yui-nav .selected a { border-left:0; }
+.yui-navset-right .yui-nav .selected a em { padding-left:0.6em; } /* adjust width */
+
+.yui-navset-right .yui-nav li a { background-position:bottom right; }
+.yui-navset-right .yui-nav li a em { background-position:top right; }

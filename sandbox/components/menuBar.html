@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+    <p>Renders a JavaScript an application-style menu bar:</p>
+    
+    <textarea name="code" class="xml"><risb:menuBar width="473px">
+    <risb:menuItem id="jsfsites" value="JSF Sites">
+        <risb:menuItem value="JSF RI Homepage" url="https://javaserverfaces.dev.java.net" />
+        <risb:menuItem value="Glassfish" url="https://glassfish.dev.java.net" />
+        <risb:menuItem id="subprojects" value="Sub Projects">
+            <risb:menuItem value="JSFTemplating" url="https://jsftemplating.dev.java.net" />
+            <risb:menuItem value="Facelets" url="https://facelets.dev.java.net" />
+        </risb:menuItem>
+    </risb:menuItem>
+    <risb:menuItem id="devblogs" value="Developer Blogs">
+        <risb:menuItem value="Ed Burns' Blog" url="http://weblogs.java.net/blog/edburns/" />
+        <risb:menuItem value="Roger Kitain's Blog" url="http://weblogs.java.net/blog/rogerk/" />
+        <risb:menuItem value="Ryan Lubke's Blog" url="http://blogs.sun.com/rlubke/" />
+        <risb:menuItem value="Jacob Hookom's Blog #1" url="http://weblogs.java.net/blog/jhook/" />
+        <risb:menuItem value="Jacob Hookom's Blog #2" url="http://hookom.blogspot.com" />
+        <risb:menuItem value="Jason Lee's Blog" url="http://blogs.steeplesoft.com/javaserver-faces" />
+    </risb:menuItem>
+</risb:menuBar></textarea>
+    <img style="padding-left: 5px" src="../images/menuBar_01.png" />
+    <p>will render a menu that looks like this:<br/>
+    <p style="font-style: italic">(The menu bar should be the height of the purple highlight, but is not due to a
+    yet be tracked down bug.)</p>
+    
+    <p>If you find the default styling unappealing, the colors, borders, etc are all 
+    configurable via CSS.  Documentation on how to do that is on the YUI
+    <a target="_blank" href="http://developer.yahoo.com/yui/menu/#cssref">site</a>.</p>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

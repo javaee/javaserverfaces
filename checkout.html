@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css"
+          href="/yui/reset-fonts-grids-min.css1"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <title>Obtain the source code</title>
+</head>
+<body>
+<p>
+    Mojarra currently has two different version control repositories available.
+    You'll need to use the correct repository dependending on which version
+    of JSF you're interested in working with.
+</p>
+<p>
+    It should be noted that in order to commit changes, you must have developer
+    access.  Please see this <a href="http://wikis.oracle.com/display/GlassFish/JavaServerFacesRI#JavaServerFacesRI-HowcanIcontribute%3F">FAQ entry</a> detailing the steps necessary
+    to obtain such access.
+</p>
+<p>
+    It's also possible to check out the sources from either repository anonymously.
+</p>
+
+<p>
+    JSF 2.X development uses Subversion for source control.
+    See these <a href="#svn">instructions</a> for checking out the source using
+    svn.
+</p>
+
+<p>
+    JSF 1.2/1.1 development uses CVS for source control.
+    See these <a href="#cvs">instructions</a> for checking out the source using
+    cvs.  </p>
+
+<p>For the latest version control tags and branches, please see <a href="http://wikis.oracle.com/display/GlassFish/JavaServerFacesRI#JavaServerFacesRI-WhatarethetagsforthecurrentreleasesofMojarra%3F">this FAQ entry</a>.</p>
+
+<hr/>
+<a name="svn"/>
+
+<div id="projectsourcesvn" class="application">
+
+    <div class="h2" id="tortoisesvn">
+
+        <h2>TortoiseSVN client</h2>
+
+        <p>TortoiseSVN is a Windows Explorer shell extension, generally accessed
+            via
+            the right-click context menu on Explorer windows (including your
+            Desktop).</p>
+
+        <ol>
+            <li><p>If this is your first Subversion checkout, create a folder in
+                Windows Explorer to hold all of your Subversion project folders.
+                Then create a subfolder for this project.</p></li>
+            <li><p>Use Windows Explorer to navigate to the folder created to
+                hold
+                this project.</p></li>
+            <li><p>Select <strong>File - SVN Checkout...</strong>. The SVN
+                Checkout
+                dialog box will appear. (You may also access this dialog by
+                selecting <strong>SVN Checkout...</strong> from the context menu
+                presented when you right-click on your Explorer window's
+                background.)</p></li>
+
+            <li><p>Enter the URL of the repository:</p>
+
+                <p><code>https://svn.java.net/svn/mojarra~svn/trunk</code>
+                </p>
+
+                <p>Click OK. Enter password.</p>
+            </li>
+            <li><p>If you are prompted for authentication information, you must
+                provide your username (<code>rlubke</code>) and password.</p>
+
+                <p>Toggle the "save authentication" option to govern whether or
+                    not
+                    your username and password will be stored on your system. If
+                    left unselected, future invocations of TortoiseSVN will
+                    prompt
+                    you again for this information.</p>
+
+                <p>Click OK. Enter password.</p>
+            </li>
+            <li><p>You will see list of files scrolling by as the project data
+                is
+                checked out into your folder.</p></li>
+            <li><p>Repeat the project checkout process for each additional
+                Subversion project you wish to check out.</p></li>
+        </ol>
+
+    </div>
+
+    <div class="h2" id="cmdlinesvn">
+
+        <h2>Subversion command-line client</h2>
+
+        <p>The Subversion command-line client (<code>svn</code>) is used at a
+            command shell, such as in a Command Prompt window on the Windows&reg;
+            platform, or any number of available shells on a flavor of Unix.</p>
+
+        <ol>
+            <li><p>Use <code>svn checkout</code> to checkout this project's main
+                (<code>trunk/</code>) development branch:</p>
+
+                <p><code>svn checkout
+                    https://svn.java.net/svn/mojarra~svn/trunk</code></p>
+
+            </li>
+            <li><p>You will see list of files scrolling by as the project data
+                is
+                checked out into your folder.</p></li>
+            <li><p>Repeat the project checkout process for each additional
+                Subversion project you wish to check out.</p></li>
+
+	  <li><p>When you check out the code in this way, it is checked
+	  out anonymously.  When you try to write to the repository,
+	  your are prompted for your java.net id and password.  Only if
+	  your credentials are correct and you have the permission to
+	  write to the repository can you successfully do so.</p>
+
+
+          <p>You can supply --username and --password arguments to the
+          checkout command if you have the proper permissions.</p></li>
+
+
+        </ol>
+
+    </div>
+</div>
+
+<hr/>
+<a name="cvs"/>
+
+<div id="projectsourcecvs" class="application">
+
+    <div class="h2" id="wincvs">
+
+<p>In all cases with CVS and java.net you must use CVS+SSH.  Follow the
+instructions on <a
+href="http://java.net/projects/help/pages/GeneratingAnSSHKey">generating
+an SSH key</a>, including the all-important step of installing the key
+to your java.net profile.  Once you've done that, you must configure
+your CVS client to use SSH. There are many resources on the web for
+doing so, and this one was tested and known to work: &lt;<a
+href="http://help.github.com/mac-key-setup/">http://help.github.com/mac-key-setup/</a>&gt;.
+There are similar instructions for other operating systems. Generally,
+you have to set the CVS_RSH environment variable to point to your ssh
+binary.  After your client is configured, you have to install the ssh key into java.net by following <a href="http://java.net/projects/help/pages/ProfileSettings#SSH_Keys">the instructions about profile settings</a>.</p>
+
+<p>Follow the instructions for the CVS client specific to your operating
+system for setting up CVS+SSH and note that the CVSROOT value is <br />
+<code>:ext:&lt;USERNAME&gt;@java.net/cvs/javaserverfaces-sources~cvs-repository</code><br /> 
+
+where <code>&lt;USERNAME&gt;</code> is your java.net user name.  A value
+of "guest" (without quotes) may work, but this hasn't been verified.
+Thus to checkout the sources for the latest development version of JSF
+1.2 you would do:</p>
+
+<code><pre>cvs -d $CVSROOT checkout -r JSF_1_2X_ROLLING .</pre></code>
+
+<p>The trailing "." is very significant.  Likewise for JSF 1.1 you would
+do:</p>
+
+<code><pre>cvs -d $CVSROOT checkout -r JSF_1_1_ROLLING .</pre></code>
+
+        <p>
+            If you wish to contribute to the project's CVS repository, you must
+            have "write" permissions as a project member.
+
+            <strong>Note: If your site requires an SSH tunnel for security
+                purposes, you will need to set one up before you can
+                <em>commit</em> modified files into the project
+                repository.</strong>
+        </p>
+
+        <p><a href="https://www.dev.java.net/scdocs/ddSSHGuide"
+              onclick="return launch(this.href, 1)"
+              title="Note: link may open in new window" class="helplink">
+
+            More about SSH tunneling</a>
+        </p>
+
+        <p><a href="https://www.dev.java.net/scdocs/ddUsingCVS_command-line"
+              onclick="return launch(this.href, 1)"
+              title="Note: link may open in new window" class="helplink">
+
+            CVS how-to guide for this site</a>
+
+        </p>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

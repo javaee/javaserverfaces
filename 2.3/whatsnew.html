@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Mojarra 2.3 - What&#8217;s New</title>
+        <link rel="stylesheet" href="../css/oracle.css" type="text/css"> 
+    </head> 
+    <body>
+        <h1>
+            Mojarra 2.3<br/>
+            What&#8217;s New
+        </h1>
+        <table class="navbar" cellspacing="0">
+            <tr>
+                <td class="active">
+                    <a href="index.html">
+                        <div class="roundedcornr_box_574790">
+                            <div class="roundedcornr_top_574790"><div></div></div>
+                            <div class="roundedcornr_content_574790">
+                                Mojarra 2.3
+                            </div>
+                        </div>
+                    </a>
+                </td>
+                <td class="inactive">
+                    <a href="http://javaserverfaces.java.net">
+                        <div class="roundedcornr_box_855753">
+                            <div class="roundedcornr_top_855753"><div></div></div>
+                            <div class="roundedcornr_content_855753">
+                                JSF Community
+                            </div>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="subnavbar">
+            <ul>
+                <li class="first">
+                    <a href="index.html">
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="whatsnew.html">
+                        <span class="active">What&#8217;s new</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="releasenotes.html">
+                        <span>Release Notes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="knownissues.html">
+                        <span>Known Issues</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="download.html">
+                        <span>Download</span>
+                    </a>
+                </li>
+            </ul>
+        </div> 
+        <h3>New Features</h3>
+        <h4>CDI injection</h4>
+        <p>
+            Various JSF artifacts are now @Inject-able. See the list below for
+            which ones are. Note at the moment this is enabled by creating a
+            faces-config.xml in your web application with version 2.3.
+        </p>
+        <ul>
+            <li>applicationMap</li>
+            <li>externalContext</li>
+            <li>facesContext</li>
+            <li>session (delegating that responsibility back to default CDI runtime)</li>
+            <li>sessionMap</li>
+            <li>view</li>
+            <li>viewMap</li>
+        </ul>
+        <hr>
+        <div class="footer">
+            <div style="float:right; height: 24px"></div>
+            <div style="clear:both"></div>
+        </div>
+    </body>
+</html>

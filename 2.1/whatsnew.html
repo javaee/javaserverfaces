@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Mojarra 2.1 - What&#8217;s New</title>
+        <link rel="stylesheet" href="../css/oracle.css" type="text/css"> 
+    </head> 
+    <body>
+        <h1>
+            Mojarra 2.1<br/>
+            What&#8217;s New
+        </h1>
+        <table class="navbar" cellspacing="0">
+            <tr>
+                <td class="active">
+                    <a href="index.html">
+                        <div class="roundedcornr_box_574790">
+                            <div class="roundedcornr_top_574790"><div></div></div>
+                            <div class="roundedcornr_content_574790">
+                                Mojarra 2.1
+                            </div>
+                        </div>
+                    </a>
+                </td>
+                <td class="inactive">
+                    <a href="http://javaserverfaces.java.net">
+                        <div class="roundedcornr_box_855753">
+                            <div class="roundedcornr_top_855753"><div></div></div>
+                            <div class="roundedcornr_content_855753">
+                                JSF Community
+                            </div>
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="subnavbar">
+            <ul>
+                <li class="first">
+                    <a href="index.html">
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="whatsnew.html">
+                        <span class="active">What&#8217;s new</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="releasenotes.html">
+                        <span>Release Notes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="knownissues.html">
+                        <span>Known Issues</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="migrationguide.html">
+                        <span>Migration Guide</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="download.html">
+                        <span>Download</span>
+                    </a>
+                </li>
+            </ul>
+        </div> 
+        <h3>Big Ticket New Features</h3>
+        <p>
+            Because 2.1 is a maintenance release of the JSF specification, 
+            there are few big ticket new features.
+        </p>
+        <dl>
+            <dt><b>Enable JSF views to be written in pure XML</b></dt>
+            <dd>
+                <p>This feature enables files written in the JSP Document Syntax
+                    (.jspx files) to be treated as if they were Facelets files.  This
+                    approach, in concert with migrating your JSP custom tag libraries to
+                    Facelet tag libraries, will ease transition from JSF 1.2 to the latest
+                    version of the specification.
+                </p>
+            </dd>
+            <dt><b>Pluggable Facelet cache mechanism</b></dt>
+            <dd>
+                <p>
+                    This API allows the in-memory cache of Facelet instances to be
+                    served from a cache that can be overridden with a custom
+                    implementation.
+                </p>
+            </dd>
+            <dt><b>Specify use of ServletContainerInitializer</b></dt>
+            <dd>
+                <p>
+                    Both Mojarra 2.0 and MyFaces 2.0 implemented this feature but it
+                    is not specified until version 2.1.  This feature leverages some new API
+                    in Servlet 3.0 to declare default mappings for the FacesServlet.  As a
+                    result, the web.xml feature is no longer necessary if you are satisfied
+                    with the default mappings declared in the specification.
+                </p>
+            </dd>
+        </dl>
+        <hr>
+        <div class="footer">
+            <div style="float:right; height: 24px"></div>
+            <div style="clear:both"></div>
+        </div>
+    </body>
+</html>

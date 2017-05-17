@@ -1,0 +1,282 @@
+<html>
+<HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>JavaServer(TM) Faces Release Notes 1.2_10 -- Change Log</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+</HEAD>
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>
+<BODY>
+<h1>
+    <banner> JavaServer
+        <sup>
+            <font size="-2">TM</font>
+        </sup> Faces Release Notes
+    </banner>
+    <br> Change Log
+</h1>
+<center>
+    <b>Specification Version:</b> 1.2MR2
+    <br>
+    <b>Implementation Version:</b> 1.2_10
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="changelog.html">
+                <span class="active">Change Log</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span>Known Issues</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<h2>Issues Resolved In This Release</h2>
+<table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+<tr style="background-color:silver">
+    <th>ID</th>
+
+    <th>Summary</th>
+</tr>
+<! -- START ISSUES -->
+
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=761">761</a>
+    </td>
+    <td><span class="summaryfull">Mixed EL expression ending in literal fails to parse as a managed bean property value</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=770">770</a>
+    </td>
+    <td><span class="summaryfull">LifecycleImpl / RestoreViewPhase forced responseComplete() status for an existing view.</span>
+    </td>
+</tr>
+
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=774">774</a>
+    </td>
+    <td><span class="summaryfull">&lt;f:datatable&gt; overrides the "var" value set by component binding</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=775">775</a>
+    </td>
+    <td><span class="summaryfull">BindingValidator throws ConverterException instead of ValidatorException</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=779">779</a>
+
+    </td>
+    <td><span class="summaryfull">BeanBuilder hides the cause of PostConstruct exception</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=781">781</a>
+    </td>
+    <td><span
+          class="summaryfull">faces config initialized twice for same file</span>
+
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=789">789</a>
+    </td>
+    <td><span class="summaryfull">com.sun.faces.renderkit.ApplicationObjectInputStream cannot handle primitives</span>
+    </td>
+</tr>
+
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=791">791</a>
+    </td>
+    <td><span class="summaryfull">com.sun.faces.renderkit.html_basic.OutputLinkRenderer doesn't encode parameters</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=792">792</a>
+    </td>
+    <td><span class="summaryfull">com.sun.faces.renderkit.html_basic.BaseTableRenderer does not handle empty columnClasses</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=795">795</a>
+
+    </td>
+    <td><span class="summaryfull">com.sun.faces.renderkit.html_basic.MenuRenderer does not properly support Object primitives</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=797">797</a>
+    </td>
+    <td><span class="summaryfull">com.sun.faces.lifecycle.RestoreViewPhase does a 'premature RenderResponse'</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=798">798</a>
+    </td>
+    <td><span class="summaryfull">HtmlInputText.handleAttribute crashes on UIComponents of classes with null packages</span>
+    </td>
+</tr>
+
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=801">801</a>
+    </td>
+    <td><span class="summaryfull">UIComponentBase does not allow to iterate children in reverse order using list iterator</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=802">802</a>
+    </td>
+    <td><span class="summaryfull">faces-config renderer-kits processed out of order</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=806">806</a>
+
+    </td>
+    <td><span
+          class="summaryfull">Use of Class.getPackage() impacts scalability</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=807">807</a>
+    </td>
+    <td><span class="summaryfull">java.lang.ArrayIndexOutOfBoundsException caoused by accept: text/;q=0.5, header</span>
+    </td>
+</tr>
+
+
+<!-- END ISSUES -->
+</table>
+
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.2 $
+        <br> $Date: 2010-10-15 16:16:01 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</BODY>
+</html>

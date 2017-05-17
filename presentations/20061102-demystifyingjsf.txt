@@ -1,0 +1,106 @@
+I. Foundations
+
+  A. Web Framework Classification
+
+    1. Action
+
+      a. Examples
+
+        - Struts, Struts 2
+
+        - Rails
+
+      b. Definition
+
+    2. UI Component
+
+     a. Examples
+
+       - JSF
+
+       - Wicket
+
+     b. Definition
+
+    3. Hybrid
+
+     a. Examples
+
+       - Tapestry
+
+     b. Definition
+
+  B. The Four Pillars of JSF
+
+    1. View
+
+    2. Model Interaction
+
+      a. The EL
+
+      b. Managed Beans
+
+    3. Lifecycle
+
+    4. Navigation model
+
+  C. Design Patterns used in JSF
+
+    1. Decorator
+
+      a. JSF 1.1
+
+      b. JSF 1.2
+
+    2. Singleton
+
+      a. FacesServlet
+
+      b. Lifecycle
+
+      c. ViewHandler
+
+      d. RenderKit
+
+      e. Application
+
+      f. StateManager
+
+    3. Strategy
+
+      a. delegated Rendering 
+
+    4. Template Method
+
+      Phase Listeners
+
+    5. Observer
+
+      java.util.Event style events and listeners
+
+II. Getting Stuff Done
+
+  A. Getting Started
+
+    1. Config Files
+
+      a. web.xml
+
+      b. faces-config.xml
+
+  B. Master-Detail
+
+  C. Tables
+
+  D. Persistence
+
+  E. Security
+
+III. Extending JSF
+
+  A. Custom UI Components
+
+  B. Custom non-UI components
+
+  C. Dynamic Faces
+

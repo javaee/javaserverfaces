@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+<div class=app>
+    <p>UISelectItems is meant to be a drop-in replacement for <f:selectItems>
+    with the additional capability of passing in lists of POJOs to the componenet
+    instead of being limited to only a SelectItem[]. Three additional optional
+    attributes are introduced: itemValue, itemLabel, and itemVar.
+    </p>
+    <p>
+    The default behavior is to convert the POJO to a SelectItem using the result
+    of toString() for both the value and the label.
+    </p>
+    
+    <textarea name="code" class="xml"><risb:selectItems value="#{bean.listOfIntegers}" /></textarea>
+    
+    <p>
+    The value or label of the SelectItem can be controlled using EL in the
+    itemValue or itemLabel. The default variable mapping of "item" is used to
+    represent the individual POJO.
+    </p>
+    
+    <textarea name="code" class="xml"><risb:selectItems value="#{bean.personList}"
+    itemValue="#{item.id}"
+    itemLabel="#{item.lastName}, #{item.firstName}" /></textarea>
+    
+    <p>
+    If there is a naming conflict with "item", then the variable used can be
+    controlled using the "itemVar" attribute. Note that this is only necessary if
+    you intend to use the external "item" variable within the selectItem EL.
+    UISelectItems will not stomp on your defined beans.
+    </p>
+    
+    <textarea name="code" class="xml"><risb:selectItems value="#{bean.personList}"
+    itemVar="person"
+    itemValue="#{person.id}"
+    itemLabel="Foo #{item.foo} for #{person.lastName}" /></textarea>
+    </div>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

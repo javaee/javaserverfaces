@@ -1,0 +1,1057 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>JavaServer(TM) Faces Release Notes 1.2_03-b07 FCS -- Change Log</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style> 
+  <BODY>
+    <h1>
+      <banner> JavaServer
+        <sup>
+          <font size="-2">TM</font>
+        </sup> Faces Release Notes 
+      </banner>
+      <br>  Change Log
+    </h1>
+    <center>
+      <b>Specification Version:</b>  1.2MR1
+      <br>
+      <b>Implementation Version:</b>  1.2_03-b07 FCS
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="changelog.html">
+            <span class="active">Change Log</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span>Known Issues</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <h2>New Features Added In This Release</h2>
+
+    <p>We've added two new context initialization parameter since the release of
+        1.2_02
+        <table style="border: 1px solid ; font-size: small;" cellpadding="5"
+               width="100%">
+
+            <tbody>
+                <tr style="background-color: silver;">
+                    <th>Paramter Name</th>
+                    <th>Description</th>
+                    <th>Default Value</th>
+                </tr>
+                <tr class="rb">
+                    <td>com.sun.faces.externalizeJavaScript</td>
+                    <td>If <code>true</code>, then the JavaScript that is
+                        normally inlined by <code>h:commandLink</code> will
+                        instead be rendered as an external reference.  This
+                        will reduce the number of bytes written to the client
+                        and allow the browser to cache the JavaScript.
+                    </td>
+                    <td>false</td>
+                </tr>
+                <tr class="ra">
+                    <td>com.sun.faces.enableJSStyleHiding</td>
+                    <td>If <code>true</code>, inlined JavaScript rendered
+                        by the HTML ResponseWriter implementation will be
+                        rendered so that the script is hidden from older
+                        browser implementations.  
+                    </td>
+                    <td>false</td>
+                </tr>
+            </tbody>
+        </table>
+    </p>
+
+    <h2>Issues Resolved In This Release</h2>
+    <table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+      <tr style="background-color:silver">
+        <th>ID</th> 
+        <th>Type</th> 
+        <th>Pri</th> 
+        <th>Plat</th> 
+        <th>Owner</th> 
+        <th>State</th> 
+        <th>Resolution</th> 
+        <th>Summary</th> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=401">401</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P4</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">youngm</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">buff argument in HtmlUnits.writeURL() is never used</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=402">402</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">Back button problems between components that submit a form</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=405">405</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">edburns</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">The testConverterPropertyEditor test case is failing</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=406">406</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">tony_robertson</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">ConverterPropertyEditor.getValue fails with h:selectOneMenu</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=410">410</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">Sun</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">HtmlBasicRenderer.augmentIdReference augments when it shouldn't.</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=411">411</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P2</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">Questionable escaping behavior</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=413">413</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P2</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">SessionID lost when navigation performs a redirect.</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=414">414</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P2</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">renderView() method in com.sun.faces.application.ViewHandlerImpl should not only expect getWriter() is always valid</span>
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=415">415</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">ConverterPropertyEditorFactory.generateClassNameFor doesn't work for array classes</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=417">417</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">&lt;f:view locale="#{pageContext.request.locale}" &gt; StackOverFlow</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=418">418</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">leaving itemLabel blank on f:selectItem throws NPE</span> 
+        </td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=423">423</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P2</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">*Style attributes on h:message are not rendered</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=428">428</a> 
+        </td> 
+        <td class="red">
+          <span class="issue_type">DEFECT</span> 
+        </td> 
+        <td class="red">
+          <span class="priority">P2</span> 
+        </td> 
+        <td class="red">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="red">
+          <span class="owner">rlubke</span> 
+        </td> 
+        <td class="red">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="red">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="red">
+          <span class="summary">NPE for injected bean if managed property defined in faces-config accesses injected resource</span>
+        </td> 
+      </tr>
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=419">419</a>
+        </td>
+        <td class="red">
+          <span class="issue_type">DEFECT</span>
+        </td>
+        <td class="red">
+          <span class="priority">P3</span>
+        </td>
+        <td class="red">
+          <span class="platform">All</span>
+        </td>
+        <td class="red">
+          <span class="owner">rogerk</span>
+        </td>
+        <td class="red">
+          <span class="status">RESOLVED</span>
+        </td>
+        <td class="red">
+          <span class="resolution">FIXED</span>
+        </td>
+        <td class="red">
+          <span class="summary">HtmlResponseWriter should handle 'escaping' of script and style elements</span>
+        </td>
+      </tr>
+
+      <tr class="rb">
+          <td><a
+               href="http://jsf.java.net/issues/show_bug.cgi?id=431">431</a>
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">Other</span>
+          </td>
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">Cross browser JS-issue for CommandLink</span>
+          </td>
+      </tr>
+      <tr class="ra">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=437">437</a>
+
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">Macintos</span>
+          </td>
+
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">UIComponentClassicTagBase incorrectly handles comment content</span>
+
+          </td>
+      </tr>
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=438">438</a>
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P3</span>
+
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">&lt;h:outputLink&gt; is outputting wrong stuff when disabled</span>
+          </td>
+      </tr>
+      <tr class="ra">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=443">443</a>
+
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P2</span>
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">FacesContextImpl.getMaximumSeverity returns wrong variable</span>
+
+          </td>
+      </tr>
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=446">446</a>
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P2</span>
+
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">Align ViewHandlerImpl with MR specification</span>
+          </td>
+      </tr>
+      <tr class="ra">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=447">447</a>
+
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P2</span>
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">HtmlResponseWriter changes in conjunction with a4j:log results in duplicate CDATA within inlined scripts.</span>
+
+          </td>
+      </tr>
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=448">448</a>
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P1</span>
+
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span
+               class="summary">Script Accomodations Invalid</span>
+          </td>
+      </tr>
+      <tr class="ra"><td><a href="http://jsf.java.net/issues/show_bug.cgi?id=442">442</a>
+      </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">SelectMenu's don't work with mixed type selectItems</span>
+          </td>
+      </tr>
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=450">450</a>
+
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">SelectOneMenu returning "" for some null values if no converter used</span>
+
+          </td>
+      </tr>
+      <tr class="ra">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=452">452</a>
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">Sun</span>
+          </td>
+
+          <td class="red"><span class="owner">rlubke</span>
+          </td>
+          <td class="red"><span class="status">RESOLVED</span>
+          </td>
+          <td class="red"><span class="resolution">FIXED</span>
+          </td>
+          <td class="red"><span class="summary">AssertionError in deploying a JSF war file with -ea in AS</span>
+          </td>
+      </tr>
+
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=457">457</a>
+
+          </td>
+          <td class="red"><span class="issue_type">DEFECT</span>
+          </td>
+          <td class="red"><span class="priority">P3</span>
+          </td>
+          <td class="red"><span class="platform">All</span>
+          </td>
+
+          <td class="red"><span class="owner">edburns</span>
+          </td>
+          <td class="blue"><span class="status">RESOLVED</span>
+          </td>
+          <td class="blue"><span class="resolution">FIXED</span>
+          </td>
+          <td class="blue"><span class="summary">ADF Faces 10.3.0.4 Doesn't run on JSF 1.2_03</span>
+          </td>
+      </tr>
+
+      <tr class="ra">
+      <td><a
+           href="http://jsf.java.net/issues/show_bug.cgi?id=460">460</a>
+      </td>
+      <td class="red"><span class="issue_type">DEFECT</span>
+
+      </td>
+      <td class="red"><span class="priority">P2</span>
+      </td>
+      <td class="red"><span class="platform">All</span>
+      </td>
+      <td class="red"><span class="owner">rlubke</span>
+      </td>
+
+      <td class="red"><span class="status">RESOLVED</span>
+      </td>
+      <td class="red"><span class="resolution">FIXED</span>
+      </td>
+      <td class="red"><span class="summary">VariableResolverChainWrapper REENTRANT_GUARD is faulty</span>
+      </td>
+      </tr>
+
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=257">257</a> 
+        </td> 
+        <td class="purple">
+          <span class="issue_type">ENHANCEMENT</span> 
+        </td> 
+        <td class="purple">
+          <span class="priority">P4</span> 
+        </td> 
+        <td class="purple">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="purple">
+          <span class="owner">jdlee</span> 
+        </td> 
+        <td class="purple">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="purple">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="purple">
+          <span class="summary">Create ant macro for build.exploded.war</span> 
+        </td> 
+      </tr>
+
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=345">345</a> 
+        </td> 
+        <td class="purple">
+          <span class="issue_type">ENHANCEMENT</span> 
+        </td> 
+        <td class="purple">
+          <span class="priority">P3</span> 
+        </td> 
+        <td class="purple">
+          <span class="platform">All</span> 
+        </td> 
+        <td class="purple">
+          <span class="owner">rogerk</span> 
+        </td> 
+        <td class="purple">
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td class="purple">
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td class="purple">
+          <span class="summary">NPE and performance improvements for SelectItem</span> 
+        </td> 
+      </tr>
+
+      <tr class="rb">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=440">440</a>
+
+          </td>
+          <td class="blue"><span class="issue_type">FEATURE</span>
+          </td>
+          <td class="blue"><span class="priority">P3</span>
+          </td>
+          <td class="blue"><span class="platform">All</span>
+          </td>
+
+          <td class="blue"><span class="owner">rlubke</span>
+          </td>
+          <td class="blue"><span class="status">RESOLVED</span>
+          </td>
+          <td class="blue"><span class="resolution">FIXED</span>
+          </td>
+          <td class="blue"><span class="summary">Remove string reference to java.lang.Enum from the source co</span>
+          </td>
+      </tr>
+
+
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=393">393</a> 
+        </td> 
+        <td>
+          <span class="issue_type">TASK</span> 
+        </td> 
+        <td>
+          <span class="priority">P4</span> 
+        </td> 
+        <td>
+          <span class="platform">All</span> 
+        </td> 
+        <td>
+          <span class="owner">tony_robertson</span> 
+        </td> 
+        <td>
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td>
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td>
+          <span class="summary">Cleanup use of generic types</span> 
+        </td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=408">408</a> 
+        </td> 
+        <td>
+          <span class="issue_type">TASK</span> 
+        </td> 
+        <td>
+          <span class="priority">P3</span> 
+        </td> 
+        <td>
+          <span class="platform">All</span> 
+        </td> 
+        <td>
+          <span class="owner">jdlee</span> 
+        </td> 
+        <td>
+          <span class="status">RESOLVED</span> 
+        </td> 
+        <td>
+          <span class="resolution">FIXED</span> 
+        </td> 
+        <td>
+          <span class="summary">Use code generation to create a bootstrapper class for defau</span> 
+        </td> 
+      </tr>
+      <tr class="ra">
+          <td>
+              <a href="http://jsf.java.net/issues/show_bug.cgi?id=451">451</a>
+          </td>
+          <td><span class="issue_type">TASK</span>
+          </td>
+          <td><span class="priority">P2</span>
+
+          </td>
+          <td><span class="platform">All</span>
+          </td>
+          <td><span class="owner">rlubke</span>
+          </td>
+          <td><span class="status">RESOLVED</span>
+          </td>
+
+          <td><span class="resolution">FIXED</span>
+          </td>
+          <td><span class="summary">Review all sycnronization in code</span>
+          </td>
+      </tr>
+    </table> 
+    <h2>Updated Service Provider Interfaces (SPIs)</h2> 
+    <p>We've updated the
+      <code>InjectionProvider</code> interface in order to separate the
+      <code>@PostConstruct</code> invocation call from the injection call. This change is related to issue 428.
+     
+    <table width="100%" style="font-size:small;border:1px solid; border-width:1px;">
+      <tr style="background-color:silver">
+        <th>InjectionProvider.java</th> 
+      </tr> 
+      <tr>
+        <td>
+          <pre style="font-size:medium;">
+<a name="l1"><span class="ln">1    </span></a><span class="s0">/*
+<a name="l2"><span class="ln">2    </span></a> * The contents of this file are subject to the terms
+<a name="l3"><span class="ln">3    </span></a> * of the Common Development and Distribution License
+<a name="l4"><span class="ln">4    </span></a> * (the License). You may not use this file except in
+<a name="l5"><span class="ln">5    </span></a> * compliance with the License.
+<a name="l6"><span class="ln">6    </span></a> *
+<a name="l7"><span class="ln">7    </span></a> * You can obtain a copy of the License at
+<a name="l8"><span class="ln">8    </span></a> * http://jsf.java.net/CDDL.html or
+<a name="l9"><span class="ln">9    </span></a> * legal/CDDLv1.0.txt.
+<a name="l10"><span class="ln">10   </span></a> * See the License for the specific language governing
+<a name="l11"><span class="ln">11   </span></a> * permission and limitations under the License.
+<a name="l12"><span class="ln">12   </span></a> *
+<a name="l13"><span class="ln">13   </span></a> * When distributing Covered Code, include this CDDL
+<a name="l14"><span class="ln">14   </span></a> * Header Notice in each file and include the License file
+<a name="l15"><span class="ln">15   </span></a> * at legal/CDDLv1.0.txt.
+<a name="l16"><span class="ln">16   </span></a> * If applicable, add the following below the CDDL Header,
+<a name="l17"><span class="ln">17   </span></a> * with the fields enclosed by brackets [] replaced by
+<a name="l18"><span class="ln">18   </span></a> * your own identifying information:
+<a name="l19"><span class="ln">19   </span></a> * "Portions Copyrighted [year] [name of copyright owner]"
+<a name="l20"><span class="ln">20   </span></a> *
+<a name="l21"><span class="ln">21   </span></a> * [Name of File] [ver.__] [Date]
+<a name="l22"><span class="ln">22   </span></a> *
+<a name="l23"><span class="ln">23   </span></a> * Copyright 2006 Oracle America Inc. All Rights Reserved
+<a name="l24"><span class="ln">24   </span></a> */</span><span class="s1">
+<a name="l25"><span class="ln">25   </span></a>
+<a name="l26"><span class="ln">26   </span></a></span><span class="s2">package </span><span class="s1">com.sun.faces.spi;
+<a name="l27"><span class="ln">27   </span></a>
+<a name="l28"><span class="ln">28   </span></a></span><span class="s0">/**
+<a name="l29"><span class="ln">29   </span></a> * </span><span class="s3">&lt;p&gt;</span><span class="s0">This interface defines an integration point for Java EE vendors.
+<a name="l30"><span class="ln">30   </span></a> * Each vendor will need to provide an implementation of this interface
+<a name="l31"><span class="ln">31   </span></a> * which will provide the JSF implementation the necessary hooks to
+<a name="l32"><span class="ln">32   </span></a> * perform resource injection.</span><span class="s3">&lt;/p&gt;  </span><span class="s0">
+<a name="l33"><span class="ln">33   </span></a> *
+<a name="l34"><span class="ln">34   </span></a> * </span><span class="s3">&lt;p&gt;</span><span class="s0">The implementation of this interface *must* be thread-safe and must
+<a name="l35"><span class="ln">35   </span></a> * have a no-arg constructor.</span><span class="s3">&lt;/p&gt;</span><span class="s0">
+<a name="l36"><span class="ln">36   </span></a> */</span><span class="s1">
+<a name="l37"><span class="ln">37   </span></a></span><span class="s2">public interface </span><span class="s1">InjectionProvider {
+<a name="l38"><span class="ln">38   </span></a>
+<a name="l39"><span class="ln">39   </span></a>    </span><span class="s0">/**
+<a name="l40"><span class="ln">40   </span></a>     * </span><span class="s3">&lt;p&gt;</span><span class="s0">The implementation of this method must perform the following
+<a name="l41"><span class="ln">41   </span></a>     * steps:
+<a name="l42"><span class="ln">42   </span></a>     *    </span><span class="s3">&lt;ul&gt;</span><span class="s0">
+<a name="l43"><span class="ln">43   </span></a>     *        </span><span class="s3">&lt;li&gt;</span><span class="s0">Inject the supported resources per the Servlet 2.5
+<a name="l44"><span class="ln">44   </span></a>     *           specification into the provided object</span><span class="s3">&lt;/li&gt;        </span><span class="s0">
+<a name="l45"><span class="ln">45   </span></a>     *    </span><span class="s3">&lt;/ul&gt;</span><span class="s0">
+<a name="l46"><span class="ln">46   </span></a>     * </span><span class="s3">&lt;/p&gt;</span><span class="s0">
+<a name="l47"><span class="ln">47   </span></a>     * </span><span class="s3">&lt;p&gt;</span><span class="s0">This method </span><span class="s3">&lt;em&gt;</span><span class="s0">must not</span><span class="s3">&lt;/em&gt; </span><span class="s0">invoke any methods
+<a name="l48"><span class="ln">48   </span></a>     * annotated with </span><span class="s3">&lt;code&gt;</span><span class="s0">@PostConstruct</span><span class="s3">&lt;/code&gt;</span><span class="s0">
+<a name="l49"><span class="ln">49   </span></a>     * </span><span class="s4">@param </span><span class="s0">managedBean the target managed bean
+<a name="l50"><span class="ln">50   </span></a>     * </span><span class="s4">@throws </span><span class="s0">InjectionProviderException if an error occurs during
+<a name="l51"><span class="ln">51   </span></a>     *  resource injection
+<a name="l52"><span class="ln">52   </span></a>     */</span><span class="s1">
+<a name="l53"><span class="ln">53   </span></a>    </span><span class="s2">public void </span><span class="s1">inject(Object managedBean) </span><span class="s2">throws </span><span class="s1">InjectionProviderException;
+<a name="l54"><span class="ln">54   </span></a>
+<a name="l55"><span class="ln">55   </span></a>
+<a name="l56"><span class="ln">56   </span></a>    </span><span class="s0">/**
+<a name="l57"><span class="ln">57   </span></a>     * </span><span class="s3">&lt;p&gt;</span><span class="s0">The implemenation of this method must invoke any
+<a name="l58"><span class="ln">58   </span></a>     * method marked with the </span><span class="s3">&lt;code&gt;</span><span class="s0">@PreDestroy</span><span class="s3">&lt;/code&gt; </span><span class="s0">annotation
+<a name="l59"><span class="ln">59   </span></a>     * (per the Common Annotations Specification).
+<a name="l60"><span class="ln">60   </span></a>     * </span><span class="s4">@param </span><span class="s0">managedBean the target managed bean
+<a name="l61"><span class="ln">61   </span></a>     * </span><span class="s4">@throws </span><span class="s0">InjectionProviderException if an error occurs when invoking
+<a name="l62"><span class="ln">62   </span></a>     *  the method annotated by the </span><span class="s3">&lt;code&gt;</span><span class="s0">@PreDestroy</span><span class="s3">&lt;/code&gt; </span><span class="s0">annotation
+<a name="l63"><span class="ln">63   </span></a>     */</span><span class="s1">
+<a name="l64"><span class="ln">64   </span></a>    </span><span class="s2">public void </span><span class="s1">invokePreDestroy(Object managedBean)
+<a name="l65"><span class="ln">65   </span></a>    </span><span class="s2">throws </span><span class="s1">InjectionProviderException;
+<a name="l66"><span class="ln">66   </span></a>
+<a name="l67"><span class="ln">67   </span></a>
+<a name="l68"><span class="ln">68   </span></a>    </span><span class="s0">/**
+<a name="l69"><span class="ln">69   </span></a>     * </span><span class="s3">&lt;p&gt;</span><span class="s0">The implemenation of this method must invoke any
+<a name="l70"><span class="ln">70   </span></a>     * method marked with the </span><span class="s3">&lt;code&gt;</span><span class="s0">@PostConstruct</span><span class="s3">&lt;/code&gt; </span><span class="s0">annotation
+<a name="l71"><span class="ln">71   </span></a>     * (per the Common Annotations Specification).
+<a name="l72"><span class="ln">72   </span></a>     * </span><span class="s4">@param </span><span class="s0">managedBean the target managed bean
+<a name="l73"><span class="ln">73   </span></a>     * </span><span class="s4">@throws </span><span class="s0">InjectionProviderException if an error occurs when invoking
+<a name="l74"><span class="ln">74   </span></a>     *  the method annotated by the </span><span class="s3">&lt;code&gt;</span><span class="s0">@PostConstruct</span><span class="s3">&lt;/code&gt; </span><span class="s0">annotation
+<a name="l75"><span class="ln">75   </span></a>     */</span><span class="s1">
+<a name="l76"><span class="ln">76   </span></a>    </span><span class="s2">public void </span><span class="s1">invokePostConstruct(Object managedBean)
+<a name="l77"><span class="ln">77   </span></a>    </span><span class="s2">throws </span><span class="s1">InjectionProviderException;
+<a name="l78"><span class="ln">78   </span></a>}
+<a name="l79"><span class="ln">79   </span></a></span>
+</pre> 
+        </td> 
+      </tr> 
+    </table> 
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.9 $
+        <br> $Date: 2010-10-15 16:15:55 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

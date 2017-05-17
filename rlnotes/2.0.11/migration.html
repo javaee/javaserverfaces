@@ -1,0 +1,524 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>Mojarra 2.0.11 Release Notes -- Known Issues</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+    <style type="text/css">
+        pre {
+            white-space: pre-wrap;
+            border:1px solid black;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            background: #faf8f0;
+        }
+
+        #content #pre-stylish code {
+            display: block;
+            padding: 0.5em 1em;
+            border: 1px solid #bebab0;
+        }
+    </style>
+    <style type="text/css">
+        .ln {
+            color: rgb(0, 0, 0);
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .s0 {
+            font-style: italic;
+        }
+
+        .s1 {
+            color: rgb(0, 0, 255);
+            font-weight: bold;
+        }
+
+        .s2 {
+        }
+
+        .s3 {
+            color: rgb(0, 128, 0);
+            font-weight: bold;
+        }
+
+        .s4 {
+        }
+
+        .s5 {
+            color: rgb(128, 128, 128);
+            font-style: italic;
+        }
+
+        .s6 {
+            color: rgb(0, 0, 128);
+            font-weight: bold;
+        }
+
+        .s7 {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    <banner>Mojarra 2.0.11 Release Notes</banner>
+    <br> Migration Guide
+</h1>
+<center>
+    <b>Specification Version:</b>  2.0
+    <br>
+    <b>Implementation Version:</b> 2.0.11
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         Mojarra 2.0
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+          <a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="whatsnew.html">
+                <span>What&#8217;s new</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="issuesresolved.html">
+                <span>Issues Resolved</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span class="active">Known Issues</span>
+            </a>
+        </li>
+        <!--
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        -->
+    </ul>
+</div>
+
+<!-- BEGIN Migration content -->
+
+<h3>
+    Migration from JSP to JSF 2.0 Facelets
+</h3>
+<p>
+    First and foremost, a lot of new features in JSF 2.0 are <em>only</em> available
+    when using Facelets, so we <em>highly</em> recommend that JSP/JSF applications
+    are migrated.  At a high level, the migration steps will look something like this:
+</p>
+<ul>
+    <li>Convert custom JSF/JSP tag libraries to Facelet taglibraries</li>
+    <li>Convert JSP/JSF pages to the Facelet syntax</li>
+</ul>
+<p>
+    Conversion of JSP tag libraries to Facelet tag libraries should be a relatively
+    straight forward process.  In cases where the JSP tag handler has more logic
+    than what a standard component tag would typical have, more work will be involved.
+</p>
+<p>
+    To begin the conversion of a JSP tag library to a Facelets tag library, create
+    the base document:
+</p>
+<pre>
+<a><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;UTF-8&quot; </span><span class="s1">standalone=</span><span class="s3">&quot;no&quot;</span><span class="s0">?&gt;</span><span class="s4">
+<a><span class="ln">2    </span></a></span><span class="s5">&lt;!--
+<a><span class="ln">3    </span></a>   COPYRIGHT
+<a><span class="ln">4    </span></a>--&gt;</span><span class="s4">
+<a><span class="ln">5    </span></a>
+<a><span class="ln">6    </span></a></span><span class="s2">&lt;</span><span class="s6">facelet-taglib </span><span class="s1">xmlns=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="s2">
+<a><span class="ln">7    </span></a>                </span><span class="s1">xmlns:xsi=</span><span class="s3">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="s2">
+<a><span class="ln">8    </span></a>                </span><span class="s1">xsi:schemaLocation=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd&quot;</span><span class="s2">
+<a><span class="ln">9    </span></a>                </span><span class="s1">version=</span><span class="s3">&quot;2.0&quot;</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">10   </span></a>
+<a><span class="ln">11   </span></a></span><span class="s2">&lt;/</span><span class="s6">facelet-taglib</span><span class="s2">&gt;</span><span class="s4"></span>
+</pre>
+<p>
+    Next, using the content of the <code>&lt;uri&gt;</code> element within the JSP tag library descriptor,
+    insert a <code>&lt;namespace&gt;</code> element in the document we started in the step above:
+</p>
+<pre>
+<a><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;UTF-8&quot; </span><span class="s1">standalone=</span><span class="s3">&quot;no&quot;</span><span class="s0">?&gt;</span><span class="s4">
+<a><span class="ln">2    </span></a></span><span class="s5">&lt;!--
+<a><span class="ln">3    </span></a>   COPYRIGHT
+<a><span class="ln">4    </span></a>--&gt;</span><span class="s4">
+<a><span class="ln">5    </span></a>
+<a><span class="ln">6    </span></a></span><span class="s2">&lt;</span><span class="s6">facelet-taglib </span><span class="s1">xmlns=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="s2">
+<a><span class="ln">7    </span></a>                </span><span class="s1">xmlns:xsi=</span><span class="s3">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="s2">
+<a><span class="ln">8    </span></a>                </span><span class="s1">xsi:schemaLocation=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd&quot;</span><span class="s2">
+<a><span class="ln">9    </span></a>                </span><span class="s1">version=</span><span class="s3">&quot;2.0&quot;</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">10   </span></a>
+<a><span class="ln">11   </span></a>    </span><span class="s2">&lt;</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s7">[namespace value from 'uri' element in JSP descriptor]</span><span class="s2">&lt;/</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">12   </span></a>
+<a><span class="ln">13   </span></a></span><span class="s2">&lt;/</span><span class="s6">facelet-taglib</span><span class="s2">&gt;</span><span class="s4"></span>
+</pre>
+<p>
+    Now the tag definitions from the JSP tag library can be added.  For the sake of this example,
+    let's assume that the JSP tag library provided one custom component, one custom converter, and
+    one custom validator.  Staring with the custom component:
+</p>
+<pre>
+<a><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;UTF-8&quot; </span><span class="s1">standalone=</span><span class="s3">&quot;no&quot;</span><span class="s0">?&gt;</span><span class="s4">
+<a><span class="ln">2    </span></a></span><span class="s5">&lt;!--
+<a><span class="ln">3    </span></a>   COPYRIGHT
+<a><span class="ln">4    </span></a>--&gt;</span><span class="s4">
+<a><span class="ln">5    </span></a>
+<a><span class="ln">6    </span></a></span><span class="s2">&lt;</span><span class="s6">facelet-taglib </span><span class="s1">xmlns=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="s2">
+<a><span class="ln">7    </span></a>                </span><span class="s1">xmlns:xsi=</span><span class="s3">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="s2">
+<a><span class="ln">8    </span></a>                </span><span class="s1">xsi:schemaLocation=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd&quot;</span><span class="s2">
+<a><span class="ln">9    </span></a>                </span><span class="s1">version=</span><span class="s3">&quot;2.0&quot;</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">10   </span></a>
+<a><span class="ln">11   </span></a>    </span><span class="s2">&lt;</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s7">[namespace value from 'uri' element in JSP descriptor]</span><span class="s2">&lt;/</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">12   </span></a>
+<a><span class="ln">13   </span></a>    </span><span class="s5">&lt;!-- Components --&gt;</span><span class="s4">
+<a><span class="ln">14   </span></a>
+<a><span class="ln">15   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">16   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">17   </span></a>        </span><span class="s2">&lt;</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">18   </span></a>            </span><span class="s2">&lt;</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s7">[the component type]</span><span class="s2">&lt;/</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">19   </span></a>            </span><span class="s2">&lt;</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s7">[the renderer type of the component (if any)]</span><span class="s2">&lt;/</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">21   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">22   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">23   </span></a>
+<a><span class="ln">24   </span></a></span><span class="s2">&lt;/</span><span class="s6">facelet-taglib</span><span class="s2">&gt;</span><span class="s4"></span>
+</pre>
+<p>
+    That's all that needs to be done!  No custom tag handler needs to be written, nor
+    do any of the attributes that tag exposes need to be listed.   The schema for this document
+    type does allow the description of the tag attributes for documentation purposes, but the
+    lack or presence of these attributes has no impact on the runtime.
+</p>
+<p>
+    Now, add the custom converter:
+</p>
+<pre>
+<a><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;UTF-8&quot; </span><span class="s1">standalone=</span><span class="s3">&quot;no&quot;</span><span class="s0">?&gt;</span><span class="s4">
+<a><span class="ln">2    </span></a></span><span class="s5">&lt;!--
+<a><span class="ln">3    </span></a>   COPYRIGHT
+<a><span class="ln">4    </span></a>--&gt;</span><span class="s4">
+<a><span class="ln">5    </span></a>
+<a><span class="ln">6    </span></a></span><span class="s2">&lt;</span><span class="s6">facelet-taglib </span><span class="s1">xmlns=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="s2">
+<a><span class="ln">7    </span></a>                </span><span class="s1">xmlns:xsi=</span><span class="s3">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="s2">
+<a><span class="ln">8    </span></a>                </span><span class="s1">xsi:schemaLocation=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd&quot;</span><span class="s2">
+<a><span class="ln">9    </span></a>                </span><span class="s1">version=</span><span class="s3">&quot;2.0&quot;</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">10   </span></a>
+<a><span class="ln">11   </span></a>    </span><span class="s2">&lt;</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s7">[namespace value from 'uri' element in JSP descriptor]</span><span class="s2">&lt;/</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">12   </span></a>
+<a><span class="ln">13   </span></a>    </span><span class="s5">&lt;!-- Components --&gt;</span><span class="s4">
+<a><span class="ln">14   </span></a>
+<a><span class="ln">15   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">16   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">17   </span></a>        </span><span class="s2">&lt;</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">18   </span></a>            </span><span class="s2">&lt;</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s7">[the component type as defined in the faces-config.xml or @FacesComponent annotation]</span><span class="s2">&lt;/</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">21   </span></a>            </span><span class="s2">&lt;</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s7">[the renderer type of the component (if any)]</span><span class="s2">&lt;/</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">23   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">24   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">25   </span></a>
+<a><span class="ln">26   </span></a>    </span><span class="s5">&lt;!-- Converters --&gt;</span><span class="s4">
+<a><span class="ln">27   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">28   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">29   </span></a>        </span><span class="s2">&lt;</span><span class="s6">converter</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">30   </span></a>            </span><span class="s2">&lt;</span><span class="s6">converter-id</span><span class="s2">&gt;</span><span class="s7">[the ID of the converter as defined in the faces-config.xml or @FacesConverter annotation]</span><span class="s2">&lt;/</span><span class="s6">converter-id</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">33   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">converter</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">34   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a><span class="ln">35   </span></a>
+<a><span class="ln">36   </span></a></span><span class="s2">&lt;/</span><span class="s6">facelet-taglib</span><span class="s2">&gt;</span><span class="s4"></span>
+</pre>
+<p>
+    And finally, the validator:
+</p>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">&lt;?</span><span class="s1">xml version=</span><span class="s3">&quot;1.0&quot; </span><span class="s1">encoding=</span><span class="s3">&quot;UTF-8&quot; </span><span class="s1">standalone=</span><span class="s3">&quot;no&quot;</span><span class="s0">?&gt;</span><span class="s4">
+<a name="l2"><span class="ln">2    </span></a>    </span><span class="s5">&lt;!--
+<a name="l3"><span class="ln">3    </span></a>       COPYRIGHT
+<a name="l4"><span class="ln">4    </span></a>    --&gt;</span><span class="s4">
+<a name="l5"><span class="ln">5    </span></a>
+<a name="l6"><span class="ln">6    </span></a></span><span class="s2">&lt;</span><span class="s6">facelet-taglib </span><span class="s1">xmlns=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="s2">
+<a name="l7"><span class="ln">7    </span></a>                </span><span class="s1">xmlns:xsi=</span><span class="s3">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="s2">
+<a name="l8"><span class="ln">8    </span></a>                </span><span class="s1">xsi:schemaLocation=</span><span class="s3">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd&quot;</span><span class="s2">
+<a name="l9"><span class="ln">9    </span></a>                </span><span class="s1">version=</span><span class="s3">&quot;2.0&quot;</span><span class="s2">&gt;</span><span class="s4">
+<a name="l10"><span class="ln">10   </span></a>
+<a name="l11"><span class="ln">11   </span></a>    </span><span class="s2">&lt;</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s7">[namespace value from 'uri' element in JSP descriptor]</span><span class="s4">
+<a name="l12"><span class="ln">12   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">namespace</span><span class="s2">&gt;</span><span class="s4">
+<a name="l13"><span class="ln">13   </span></a>
+<a name="l14"><span class="ln">14   </span></a>    </span><span class="s5">&lt;!-- Components --&gt;</span><span class="s4">
+<a name="l15"><span class="ln">15   </span></a>
+<a name="l16"><span class="ln">16   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l17"><span class="ln">17   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a name="l18"><span class="ln">18   </span></a>        </span><span class="s2">&lt;</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a name="l19"><span class="ln">19   </span></a>            </span><span class="s2">&lt;</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s7">[the component type as defined in the faces-config.xml or @FacesComponent annotation]</span><span class="s2">&lt;/</span><span class="s6">component-type</span><span class="s2">&gt;</span><span class="s4">
+<a name="l20"><span class="ln">20   </span></a>            </span><span class="s2">&lt;</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s7">[the renderer type of the component (if any)]</span><span class="s2">&lt;/</span><span class="s6">renderer-type</span><span class="s2">&gt;</span><span class="s4">
+<a name="l21"><span class="ln">21   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">component</span><span class="s2">&gt;</span><span class="s4">
+<a name="l22"><span class="ln">22   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l23"><span class="ln">23   </span></a>
+<a name="l24"><span class="ln">24   </span></a>    </span><span class="s5">&lt;!-- Converters --&gt;</span><span class="s4">
+<a name="l25"><span class="ln">25   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l26"><span class="ln">26   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag</span><span class="s4">
+<a name="l27"><span class="ln">27   </span></a>            </span><span class="s7">in the JSP tag library]</span><span class="s4">
+<a name="l28"><span class="ln">28   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a name="l29"><span class="ln">29   </span></a>        </span><span class="s2">&lt;</span><span class="s6">converter</span><span class="s2">&gt;</span><span class="s4">
+<a name="l30"><span class="ln">30   </span></a>            </span><span class="s2">&lt;</span><span class="s6">converter-id</span><span class="s2">&gt;</span><span class="s7">[the ID of the converter as defined in the faces-config.xml or @FacesConverter annotation]</span><span class="s2">&lt;/</span><span class="s6">converter-id</span><span class="s2">&gt;</span><span class="s4">
+<a name="l31"><span class="ln">31   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">converter</span><span class="s2">&gt;</span><span class="s4">
+<a name="l32"><span class="ln">32   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l33"><span class="ln">33   </span></a>
+<a name="l34"><span class="ln">34   </span></a>    </span><span class="s5">&lt;!-- Validators --&gt;</span><span class="s4">
+<a name="l35"><span class="ln">35   </span></a>    </span><span class="s2">&lt;</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l36"><span class="ln">36   </span></a>        </span><span class="s2">&lt;</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s2">&lt;/</span><span class="s6">tag-name</span><span class="s2">&gt;</span><span class="s4">
+<a name="l37"><span class="ln">37   </span></a>        </span><span class="s2">&lt;</span><span class="s6">validator</span><span class="s2">&gt;</span><span class="s4">
+<a name="l38"><span class="ln">38   </span></a>            </span><span class="s2">&lt;</span><span class="s6">validator-id</span><span class="s2">&gt;</span><span class="s7">[the ID of the validator as defined in the faces-config.xml or @FacesValidator annotation]</span><span class="s2">&lt;/</span><span class="s6">validator-id</span><span class="s2">&gt;</span><span class="s4">
+<a name="l39"><span class="ln">39   </span></a>        </span><span class="s2">&lt;/</span><span class="s6">validator</span><span class="s2">&gt;</span><span class="s4">
+<a name="l40"><span class="ln">40   </span></a>    </span><span class="s2">&lt;/</span><span class="s6">tag</span><span class="s2">&gt;</span><span class="s4">
+<a name="l41"><span class="ln">41   </span></a>
+<a name="l42"><span class="ln">42   </span></a></span><span class="s2">&lt;/</span><span class="s6">facelet-taglib</span><span class="s2">&gt;</span><span class="s4"></span>
+</pre>
+<p>
+    If custom handling is needed for a component, validator, or converter, it is possible
+    to specify a the custom TagHandler by using the <code>&lt;handler-class&gt;</code>
+    (a child element of the <code>&lt;tag&gt;</code> element).  See the javadocs
+    for <code>javax.faces.view.facelets.ComponentHandler</code>,
+    <code>javax.faces.view.facelets.ConverterHandler</code>, and
+    <code>javax.faces.view.facelets.ValidatorHandler</code> for details on what
+    functionality these base classes provide.
+</p>
+<p>
+    If you have a JSP tag handler that doesn't represent a component, converter,
+    or validator, then create a new class extending from
+    <code>javax.faces.view.facelets.TagHandler</code>, implement the appropriate
+    logic based on the API and the needs of the handler, and then register it
+    like so:
+</p>
+<pre>
+<a name="al1"><span class="ln">1    </span></a><span class="s0">&lt;</span><span class="s6">tag</span><span class="s0">&gt;</span><span class="s2">
+<a name="al2"><span class="ln">2    </span></a>    </span><span class="s0">&lt;</span><span class="s6">tag-name</span><span class="s0">&gt;</span><span class="s7">[name of the tag as defined by the 'name' element of the tag in the JSP tag library]</span><span class="s0">&lt;/</span><span class="s6">tag-name</span><span class="s0">&gt;</span><span class="s2">
+<a name="al3"><span class="ln">3    </span></a>    </span><span class="s0">&lt;</span><span class="s6">handler-class</span><span class="s0">&gt;</span><span class="s7">[fully qualified class name of the custom TagHandler implementation]</span><span class="s0">&lt;/</span><span class="s6">handler-class</span><span class="s0">&gt;</span><span class="s2">
+<a name="al4"><span class="ln">4    </span></a></span><span class="s0">&lt;/</span><span class="s6">tag</span><span class="s0">&gt;</span><span class="s2"></span>
+</pre>
+<p>
+    Like JSP tag library descriptors, Facelet tag library descriptors, to be
+    found, must be put in META-INF directory of your component library JAR.
+    And like JSP, there is a naming scheme.  The Facelet tag library descriptor
+    must end with .taglib.xml (e.g., acmelibrary.taglib.xml).  If you don't wish
+    to include your taglib.xml within a JAR file, then the taglib.xml files must
+    be included in your application and referenced via the context init parameter
+    <code>javax.faces.FACELETS_LIBRARIES</code>.  The value of this context init
+    parameter is a semi-colon list of taglib.xml files relative to the docroot
+    of the web application.
+</p>
+<p>
+    After the tag library has been converted, the next step will be migration
+    from JSP pages to Facelet templates. As far as the tags references themselves
+    are concerned, there is little to no difference in the usage between the two.
+    There are some important differences between JSP and Facelets that should be
+    called out.
+</p>
+<ul>
+    <li>
+        Facelets has no concept of page directives.  These should not be included
+        in the Facelet template.
+    </li>
+    <li>
+        Facelets has no concept of scriptlets.  These should not be included in the
+        Facelet template.
+    </li>
+    <li>
+        Like JSP, Facelets has the ability to perform dynamic includes.  Replace
+        jsp:include references with ui:include (see the <a href="http://www.oracle.com/us/products/tools/javaserverfaces-139869.html2.0/docs/pdldocs/facelets/index.html">Facelets ui library documentation</a>
+        for details)
+    </li>
+</ul>
+<p>
+    A simple Facelet will look something like:
+</p>
+<pre>
+<a name="bl1"><span class="ln">1    </span></a><span class="s0">&lt;!DOCTYPE </span><span class="s2">html </span><span class="s0">PUBLIC </span><span class="s3">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span><span class="s4">&gt;</span><span class="s5">
+<a name="bl2"><span class="ln">2    </span></a></span><span class="s1">&lt;</span><span class="s0">html </span><span class="s2">xmlns=</span><span class="s3">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="s1">
+<a name="bl3"><span class="ln">3    </span></a>      </span><span class="s2">xmlns:ui=</span><span class="s3">&quot;http://java.sun.com/jsf/facelets&quot;</span><span class="s1">
+<a name="bl4"><span class="ln">4    </span></a>      </span><span class="s2">xmlns:h=</span><span class="s3">&quot;http://java.sun.com/jsf/html&quot;</span><span class="s1">&gt;</span><span class="s5">
+<a name="bl5"><span class="ln">5    </span></a>
+<a name="bl6"><span class="ln">6    </span></a>    </span><span class="s1">&lt;</span><span class="s0">body </span><span class="s2">bgcolor=</span><span class="s3">&quot;white&quot;</span><span class="s1">&gt;</span><span class="s5">
+<a name="bl7"><span class="ln">7    </span></a>        </span><span class="s1">&lt;</span><span class="s0">h2</span><span class="s1">&gt;</span><span class="s6">My name is Duke.  What is yours?</span><span class="s1">&lt;/</span><span class="s0">h2</span><span class="s1">&gt;</span><span class="s5">
+<a name="bl8"><span class="ln">8    </span></a>        </span><span class="s1">&lt;</span><span class="s0">h:form </span><span class="s2">id=</span><span class="s3">&quot;helloForm&quot; </span><span class="s1">&gt;</span><span class="s5">
+<a name="bl9"><span class="ln">9    </span></a>            </span><span class="s1">&lt;</span><span class="s0">h:graphicImage </span><span class="s2">id=</span><span class="s3">&quot;waveImg&quot; </span><span class="s2">url=</span><span class="s3">&quot;/wave.med.gif&quot; </span><span class="s1">/&gt;</span><span class="s5">
+<a name="bl10"><span class="ln">10   </span></a>            </span><span class="s1">&lt;</span><span class="s0">h:inputText </span><span class="s2">id=</span><span class="s3">&quot;username&quot;</span><span class="s1">
+<a name="bl11"><span class="ln">11   </span></a>                    </span><span class="s2">value=</span><span class="s3">&quot;#{HelloBean.name}&quot;</span><span class="s1">/&gt;</span><span class="s5">
+<a name="bl12"><span class="ln">12   </span></a>            </span><span class="s1">&lt;</span><span class="s0">h:commandButton </span><span class="s2">id=</span><span class="s3">&quot;submit&quot; </span><span class="s2">action=</span><span class="s3">&quot;success&quot; </span><span class="s2">value=</span><span class="s3">&quot;Submit&quot;</span><span class="s1">
+<a name="bl13"><span class="ln">13   </span></a>                        </span><span class="s2">type=</span><span class="s3">&quot;submit&quot; </span><span class="s1">/&gt;</span><span class="s5">
+<a name="bl14"><span class="ln">14   </span></a>        </span><span class="s1">&lt;/</span><span class="s0">h:form</span><span class="s1">&gt;</span><span class="s5">
+<a name="bl15"><span class="ln">15   </span></a>    </span><span class="s1">&lt;/</span><span class="s0">body</span><span class="s1">&gt;</span><span class="s5">
+<a name="bl16"><span class="ln">16   </span></a></span><span class="s1">&lt;/</span><span class="s0">html</span><span class="s1">&gt;</span>
+</pre>
+<p>
+    Lines 8-14 represent JSF tags, while the rest of the page is template text.
+    It's important to note that Facelet templates <em>must</em> be, at a minimum,
+    valid XML.
+</p>
+
+
+
+<h3>
+    Migration from Facelets 1.1.x to JSF 2.0 Facelets
+</h3>
+<p>
+    In general Facelet 1.1.x applications should deploy and run as is in a JSF 2.0
+    runtime.  There are some application configurations that do effect the behavior
+    of the JSF 2.0 runtime.
+</p>
+<ul>
+    <li>
+        If the /WEB-INF/faces-config.xml is present and versioned at 1.2 or older,
+        the JSF 2.0 Facelets implementation will be disabled.
+    </li>
+    <li>
+        If the application defines the Facelets 1.1.x ViewHandler,
+        <code>com.sun.facelets.FaceletViewHandler</code>, the JSF 2.0 Facelets
+        implementation will be disabled.
+    </li>
+</ul>
+<p>
+    If you use Facelets 1.1.x application extend or implement any com.sun.facelets
+    classes, you will need to migrate to the standard API before removing the
+    Facelets 1.1.x library.  You cannot use the Facelets 1.1.x-based
+    classes with the 2.0 Facelet implementation.
+</p>
+
+
+
+<h3>
+    Differences in state saving that may impact Facelets-based
+    applications (affected versions: Facelets 1.1.x and JSF 2.0 Facelets)
+</h3>
+<p>
+    JSF 2.0, by default, will use a new state saving feature called
+    <code>Partial State Saving</code>.  Partial state saving reduces the amount
+    of state that is saved for each view.  Partial state saving, at a high level,
+    works as follows:
+</p>
+<ul>
+    <li>
+        GET request occurs.  Facelet template is executed.  After each component
+        is added to the view during template execution, it's initial state is
+        marked.  Any changes <em>after</em> the inital state has been marked
+        will be considered <em>delta state</em>.  This delta state is what
+        will be saved.
+    </li>
+    <li>
+        When a post-back occurs, the Facelet template is executing during
+        restore view phase.  The delta state from the previous GET request
+        will be applied to the re-constructed view.
+    </li>
+</ul>
+<p>
+    In initial testing with client-side state saving, this new feature reduced
+    view state from a sample view from 10K down to 2k.  However, there are some
+    use cases where using partial state saving may cause unexpected behavior:
+</p>
+<ul>
+    <li>
+        If the same view is being re-displayed during a post-back, and the view
+        includes dynamic ui:include, that is, a ui:include where the src attribute
+        uses a ValueExpression to dynamic resolve the include, whose value changes
+        during invoke application such that a different include should occur, the
+        rendered view won't reflect the change.  This is because the the Facelet
+        template has already been executed during restore view, and will not
+        be re-executing during render response.
+    </li>
+    <li>
+        Using c:forEach within a view where a different number of rows are processed
+        between the initial GET and post-back.
+    </li>
+</ul>
+<p>
+    In general, the rule of thumb for partial state saving is that the same view
+    should be created on post-back as was what was created on the initial GET.
+    If this can't be guaranteed, there are two options available to the developer:
+</p>
+<ul>
+    <li>
+        Disable partial state saving for the application by specifying a context
+        initialization parameter called <code>javax.faces.PARTIAL_STATE_SAVING</code>
+        with a value of <code>false</code>.
+    </li>
+    <li>
+        Disable partial state saving for one or more views by specifying a
+        context initialization parameters called <code>javax.faces.FULL_STATE_SAVING_VIEW_IDS</code>.
+        The value of this parameter is a comma separated list of views that should
+        not use partial state saving (e.g., /dynamicView.xhmtl,/dynamicView2.xhtml).
+    </li>
+</ul>
+
+
+<h3>Application configurations that impact annotation scanning</h3>
+<ul>
+    <li>
+        JSF annotations will not be scanned if the WEB-INF/faces-config.xml is present and is version
+        1.2 or older.
+    </li>
+    <li>
+        Classes within JAR files will not be scanned unless META-INF/faces-config.xml is present.
+        NOTE: the faces-config.xml can be empty (i.e., an opening and closing faces-config.xml element and
+        is versioned 2.0 or later).
+    </li>
+    <li>
+        Annotation scanning can be disabled for the entire application by adding the metadata-complete
+        attribute with a value of &quot;true&quot; to the opening faces-config element (version 2.0 or
+        later only - 1.2 is implied metadata-complete per the first bullet item).
+    </li>
+    <li>
+        Annotation scanning can be bypassed for a particular JAR by including the metadata-complete
+        attribute with a value of &quot;true&quot; in the META-INF/faces-config.xml (version 2.0 or later
+        only - 1.2 is implied metadata-complete per the first bullet item).
+    </li>
+</ul>
+
+<!-- END Migration content -->
+
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.2 $
+        <br> $Date: 2010-10-15 16:56:53 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</body>
+</html>

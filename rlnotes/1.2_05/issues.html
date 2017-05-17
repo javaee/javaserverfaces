@@ -1,0 +1,168 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>JavaServer(TM) Faces Release Notes 1.2_05 FCS -- Known Issues</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <BODY>
+    <h1>
+      <banner> JavaServer
+        <sup>
+          <font size="-2">TM</font>
+        </sup> Faces Release Notes 
+      </banner>
+      <br>  Known Issues
+    </h1>
+    <center>
+      <b>Specification Version:</b>  1.2MR1
+      <br>
+      <b>Implementation Version:</b>  1.2_05 FCS
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span class="active">Known Issues</span>
+          </a>
+        </li>
+      </ul>
+    </div> 
+    <p>Known issues with the 1.2_05 FCS release.
+    <ul>      
+      <li>
+        <p>The default renderer for
+          <code>h:dataTable</code> doesn't produce accessible markup - specifically no
+          <code>scope</code> attribute is rendered on table rows (see issue
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=341">341</a>).
+        </p>
+      </li>    
+      <li>
+          <p>
+              If rendering multiple forms in the same view, and attempting to validate
+              via the W3C validator, there will be warnings regarding duplicate
+              IDs (javax.faces.ViewState).  The spec currently requires that for
+              each Form we output the state info with the ID and Name of
+              <code>javax.faces.ViewState</code>.
+          </p>
+      </li>
+      <li>
+          <p>
+              When upgrading from 1.2 to 1.2_01, 1.2_02, or 1.2_03, 1.2_04, on Tomcat 5.x
+              with Facelets, the user may receive a ClassNotFoundException
+              for com.sun.faces.config.GlassFishConfigureListenener.  In order
+              to resolve this, delete the tld cache references under
+              <code>TOMCAT_HOME/work</code> and restart the server.
+          </p>
+      </li>
+      <li>
+          <p>
+              When upgrading to 1.2_05 while running on a Servlet 2.4 container
+              the following error may be encountered:
+          </p>
+          <pre>
+              com.sun.faces.config.ConfigurationException: CONFIGURATION FAILED!Unable to parse document 'file:/C:/develop/Java/Tomcat
+-5.5.25/work/Catalina/localhost/server/loader/com/sun/faces/jsf-ri-runtime.xml': This parser does not support specificat
+ion "null" version "null"
+          </pre>
+          <p>
+              This error indicates the version of JAXP being used with the container
+              is not compliant with JAXP 1.3 or later.  Refer to the container's documentation
+              for details on how to upgrade JAXP.
+          </p>
+      </li>
+        <li>
+            <p>
+                In the JSF-RI 1.1 series it was possible to use jsp:include with nested
+                jsp:params.  This is no longer possible with JSF-RI 1.2.  This is
+                not a true backwards compatibility issue.  The fact that it worked in 1.1
+                was due to a side-effect of a workaround for a Tomcat 4 bug.  Had this
+                workaround be removed, usage of jsp:param would have failed.  We've evaluated
+                potential ways to enable this functionality in 1.2, but have decided
+                that this issue will not be resolved.
+            </p>
+        </li>
+        <li>
+            <p><b>ADDED 10/22/2007</b></p>
+
+            <p>
+                There is an apparent problem with the 1.2_05 GlassFish updater
+                where the classpath-prefix of the domain isn't properly updated and no error
+                condition is reported.  Due to this issue, we recommend that you do not
+                use the updater if you already have downloaded it locally.
+            </p>
+            <p>
+                The following steps detail the manual upgrade process:
+            </p>
+            <ul>
+                <li>download the 1.2_05 binary bundle from the project page</li>
+                <li>backup your existing jsf-impl.jar found in GF_HOME/lib</li>
+                <li>copy the new jsf-api and jsf-impl JARs to GF_HOME/lib</li>
+                <li>edit your GF_HOME/domains/&lt;domain-name&gt;/config/domain.xml
+                    and add
+                    'classpath-prefix="${com.sun.aas.installRoot}/lib/jsf-api.jar"
+                    to the java-config element
+                </li>
+                <li>restart your server</li>
+            </ul>
+        </li>
+        <li>
+            <p><b>ADDED 11/12/2007</b></p>
+            <p>
+                A regression was introduced in the renderer for h:outputLink where
+                the target attribute is no longer rendered.  This will be addressed
+                in the next release (the fix is already available in the nightly builds).
+            </p>
+        </li>
+    </ul>
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.8 $
+        <br> $Date: 2010-10-15 16:15:57 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

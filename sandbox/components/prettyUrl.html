@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community - PrettyUrlPhaseListener</title>
+</head>
+<body>
+One of the most common requests from JSF users is "How do I use GET requests?" or
+"How do I make pretty URLs?"  The answer usually boiled down to <a target="_blank"
+href="http://blogs.steeplesoft.com/2006/08/17/jsf-phaselisteners-and-get-requests-redux">implementing</a> 
+a custom <code>PhaseListener</code> to handle the URI-to-managed-bean data transfer,
+but these solutions were almost always very specific to the application.  The RI
+sandbox, however, now has a general use <code>PrettyUrlPhaseListener</code> to
+handle this painlessly.
+
+<p>Configuring the <code>PhaseListener</code> is quite simple.  First, the <code>PhaseListener</code>
+must be registered with JSF:
+
+<textarea name="code" class="xml"><lifecycle>
+    <phase-listener>com.sun.faces.sandbox.util.PrettyUrlPhaseListener</phase-listener>
+</lifecycle>
+</textarea>
+
+Second, the <code>PhaseListener</code> must be configured in <code>web.xml</code>:
+
+<textarea name="code" class="xml"><context-param>
+    <param-name>com.sun.faces.sandbox.urlPatterns</param-name>
+    <param-value>
+        viewOrderList.jsp=/orderList/#{testBean.customernumber}/#{testBean.pageNumber}
+        viewOrder.jsp=/viewOrder/#{testBean.orderNumber}
+    </param-value>
+</context-param>
+</textarea>
+
+The value of this <code>context-param</code> lists a key/value pair of actual
+template files and URL patterns.  When the <code>PhaseListener</code> processes
+each request, it uses a regular expression created from each URL pattern to determine
+if the current request URL is one which it should process.  If it is, the value from
+the request URL that corresponds to each EL expression in the pattern is extracted, 
+URL-decoded, then set on the <code>ValueBinding</code> created from the EL.  Once
+all the values have been processed, JSF is instructed to display the actual template
+file, specified by the key in the pair.
+
+<p>One more step must be performed, however.  If you're pretty URLs do not match any 
+existing <code>servlet-mapping</code> entries, then entries must be added until 
+all of the URLs configured are covered.  This will send the request to the 
+<code>FacesServlet</code> so that the <code>PhaseListener</code> can process the 
+request.  The <code>servlet-mapping</code>s for the URLs above might look like this:
+
+<textarea name="code" class="xml"><servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/orderList/*</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/viewOrder/*</url-pattern>
+</servlet-mapping>
+</textarea>
+
+<p>With these config changes in place, the user can now request
+http://localhost:8080/MyApp/orderList/123456/15, and the <code>PhaseListener</code>
+will call <code>testBean.setCustomerNumber("123456")</code> and 
+<code>testBean.setPageNumber("15")</code>, then cause JSF to display 
+<code>viewOrderList.jsp</code>.
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

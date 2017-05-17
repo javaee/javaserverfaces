@@ -1,0 +1,150 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>JavaServer(TM) Faces Release Notes 1.2_11 -- Known Issues</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <BODY>
+    <h1>
+      <banner> JavaServer
+        <sup>
+          <font size="-2">TM</font>
+        </sup> Faces Release Notes 
+      </banner>
+      <br>  Known Issues
+    </h1>
+    <center>
+      <b>Specification Version:</b>  1.2MR2
+      <br>
+      <b>Implementation Version:</b>  1.2_11
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span class="active">Known Issues</span>
+          </a>
+        </li>
+      </ul>
+    </div> 
+    <p>Known issues with the 1.2_11  release.
+    <ul>      
+      <li>
+        <p>The default renderer for
+          <code>h:dataTable</code> doesn't produce accessible markup - specifically no
+          <code>scope</code> attribute is rendered on table rows (see issue
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=341">341</a>).
+        </p>
+      </li>
+      <li>
+          <p>
+              When upgrading from 1.2 to a later 1.2_0x release on Tomcat 5.x
+              with Facelets, the user may receive a ClassNotFoundException
+              for com.sun.faces.config.GlassFishConfigureListenener.  In order
+              to resolve this, delete the tld cache references under
+              <code>TOMCAT_HOME/work</code> and restart the server.
+          </p>
+      </li>
+      <li>
+          <p>
+              When upgrading to 1.2_05 or later while running on a Servlet 2.4 container
+              the following error may be encountered:
+          </p>
+          <pre>
+              com.sun.faces.config.ConfigurationException: CONFIGURATION FAILED!Unable to parse document 'file:/C:/develop/Java/Tomcat
+-5.5.25/work/Catalina/localhost/server/loader/com/sun/faces/jsf-ri-runtime.xml': This parser does not support specificat
+ion "null" version "null"
+          </pre>
+          <p>
+              This error indicates the version of JAXP being used with the container
+              is not compliant with JAXP 1.3 or later.  Refer to the container's documentation
+              for details on how to upgrade JAXP.
+          </p>
+      </li>
+        <li>
+            <p>
+                In the JSF-RI 1.1 series it was possible to use jsp:include with nested
+                jsp:params.  This is no longer possible with JSF-RI 1.2.  This is
+                not a true backwards compatibility issue.  The fact that it worked in 1.1
+                was due to a side-effect of a workaround for a Tomcat 4 bug.  Had this
+                workaround be removed, usage of jsp:param would have failed.  We've evaluated
+                potential ways to enable this functionality in 1.2, but have decided
+                that this issue will not be resolved.
+            </p>
+        </li>
+        <li>
+            <p>
+                Groovy support fails in recent builds of GlassFish V3 (which includes 1.2_11)
+                when installing groovy-1.5.5-all.jar (or later) as an OSGi bundle in the
+                v3 modules directory (currently, this is the only way to make Groovy available
+                to JSF).
+            </p>
+            <p>
+                When attempting to resolve a Groovy resource, the following error may occur:
+            </p>
+            <pre>
+                BUG! exception in phase 'semantic analysis' in source unit ...
+            </pre>
+            <p>
+                The problem is due to groovy-1.5.5-all.jar not exporting all of the packages
+                necessary to resolve the classes needed to compile a groovy source file at
+                runtime.
+            </p>
+            <p>
+                We've logged <a href="http://jira.codehaus.org/browse/GROOVY-3001">GROOVY-3001</a> to
+                UPDATE:  Use the latest Groovy 1.6 BETA to resolve the issue.
+            </p>
+        </li>
+    </ul>
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.2 $
+        <br> $Date: 2010-10-15 16:16:02 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

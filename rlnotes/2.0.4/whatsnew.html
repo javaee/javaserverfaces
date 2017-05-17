@@ -1,0 +1,357 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>Mojarra 2.0.4 Release Notes -- What&#8217;s New</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>  </HEAD> 
+  <BODY>
+    <h1>
+      <banner>Mojarra 2.0.4 Release Notes</banner>
+      <br>  What&#8217;s New
+    </h1>
+    <center>
+      <b>Specification Version:</b>  2.0 
+      <br>
+      <b>Implementation Version:</b>  2.0.4
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         Mojarra 2.0
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+          <a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="whatsnew.html">
+            <span class="active">What&#8217;s new</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="issuesresolved.html">
+            <span>Issues Resolved</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span>Known Issues</span>
+          </a>
+        </li>
+          <li>
+          <a href="migration.html">
+            <span>Migration Guide</span>
+          </a>
+        </li>
+          <!--
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        -->
+      </ul>
+    </div> 
+
+
+<p>
+    For the majority of the changes in JavaServer Faces 2.0, please see the preface of the
+    <a href="http://jcp.org/aboutJava/communityprocess/edr/jsr314/index.html">JavaServer Faces 2.0 specification</a>.
+    Any differences between the specification and the Mojarra 2.0.0  implementation are outlined below.  
+</p>
+
+<p>The following table describes the new initialization parameters introduced in this release.</p>
+
+
+<table style="border: 1px solid ; font-size: small;" cellpadding="5"
+       width="100%">
+
+    <tbody>
+        <tr style="background-color: silver;">
+            <th>Paramter Name</th>
+            <th>Description</th>
+            <th>Default Value</th>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.enableAgressiveSessionDirtying</td>
+            <td>
+                If true, makes it so every session attribute is touched
+                in for every request through the lifecycle.  This makes
+                it much harder to make mistakes that cause session
+                replication to fail.
+            </td>
+            <td>false</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<p>
+    The following table describes the rem remainder initialization parameters supported in this release.
+
+</p>
+
+<table style="border: 1px solid ; font-size: small;" cellpadding="5"
+       width="100%">
+
+    <tbody>
+        <tr style="background-color: silver;">
+            <th>Paramter Name</th>
+            <th>Description</th>
+            <th>Default Value</th>
+        </tr>
+        <tr class="ra">
+            <td>javax.faces.ProjectStage</td>
+            <td>
+                Configures the runtime behavior of this application.  Valid values
+                are Prodction, UnitTest, SystemTest, and Development.
+                See the specification or this <a href="http://blogs.sun.com/rlubke/entry/jsf_2_0_new_feature2">blog entry</a>
+                for further details.
+            </td>
+            <td>Production</td>
+        </tr>
+        <tr class="rb">
+            <td>javax.faces.RESOURCE_EXCLUDES</td>
+            <td>
+                A space separated list of resource extensions for types that
+                shouldn't be served by the ResourceHandler implementation.
+                See the specification for further details.
+            </td>
+            <td>
+                .class .jsp .jspx .properties .xhtml
+            </td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.defaultResourceMaxAge</td>
+            <td>
+                This affects the value of the Expires response header that will
+                be sent for a resource.  The logic is basically Date.getTime()
+                + valueOf(defaultResourceManxAge).  Increase this value to
+                increase the amount of time that a Resource is valid.
+            </td>
+            <td>604800</td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.resourceUpdateCheckPeriod</td>
+            <td>
+                When javax.faces.PROJECT_STATE is Production, UnitTest, or SystemTest
+                resource paths will be cached to reduce the overhead of resource
+                path compuation.  By default, updates (i.e. new files, new directories,
+                new versions, etc.) will be checked for every 5 minutes.  If a
+                change is detected, the cache will be cleared and rebuilt.  If the
+                value of this option is -1, the cache will never be cleared and new
+                resources will not be picked up.
+            </td>
+            <td>5</td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.compressableMimeTypes</td>
+            <td>
+                Specify mime types that should be gzip compressed.  Mime types
+                can be specified by their exact name (i.e. text/css) or a wildcard
+                can be used after the slash (i.e. text/*).  The resource will not be
+                compressed on each request, instead when building the cache, the resource
+                will be compressed to a temporary directory and those bytes will be
+                served instead.
+            </td>
+            <td>NONE</td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.enableThreading</td>
+            <td><p>
+                When enabled, the runtime initialization and default ResourceHandler
+                implementation will use threads to perform their functions.  Set this
+                value to false if threads aren't desired (as in the case of running within
+                the Google Application Engine).
+                </p>
+                <p>
+                Note that when this option is disabled, the ResourceHandler will not
+                pick up new versions of resources when ProjectStage is development.
+                </p>
+            </td>
+            <td>true</td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.allowTextChildren</td>
+            <td>
+                <p>
+                As of 2.0.0, children of UIInput and UIOutput components
+                will not be rendered by the default renderer implementations.
+                Set this option to true if this behavior is required, but note
+                that doing so may cause issues when using Ajax.  See
+                <a href="http://jsf.java.net/issues/show_bug.cgi?id=1154">Issue 1154</a>
+                for details.
+                </p>
+            </td>
+            <td>false</td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.annotationScanPackages</td>
+            <td>
+                <p>
+                The value of this context init parameter is a whitespace separated list
+                of values that control which class packages are scanned for annotations.
+                </p>
+                <p>
+                To restrict which classes are scanned in WEB-INF/classes, simple add
+                the package names to the list.
+                </p>
+                <p>
+                To restrict which jars/packages are scanned, use the following entry
+                format:  jar:&lt;jar name&gt;:&lt;comma separated list of packages&gt;
+                So an example would be:  jar:a.jar:com.acme.package1,com.acme.package2
+                </p>
+                <p>
+                Note that anything not explicitly listed when using this option means it won't
+                be scanned.  For instance, if a single package is listed to be scanned in
+                WEB-INF/classes, no jar files in WEB-INF/lib will be scanned.  However, values
+                do support wildcards.  For example:
+                </p>
+                <pre>
+                    &lt;context-param&gt;
+                        &lt;param-name&gt;
+                            com.sun.faces.annotationScanPackages
+                        &lt;/param-name&gt;
+                        &lt;param-value&gt;
+                            *
+                            jar:a.jar:test2
+                        &lt;/param-value&gt;
+                    &lt;context-param&gt;
+                </pre>
+                <p>
+                In this case, the wildcard, '*', is specified for packages in WEB-INF/classes.  This means all packages there will be scanned.
+                </p>
+                <p>
+                The wildcard works for the jar specification as well.  For example:
+                   - jar:*:*  -> all jars and packages contained within will be scanned
+                   - jar:a.jar:* -> all packages in a.jar will be scaned
+                </p>
+            </td>
+            <td></td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.faceletFactory</td>
+            <td>
+                <p>
+                The value of this option is a fully qualfified class that extends
+                the com.sun.faces.facelets.FaceletFactory abstract class.  This option
+                allows developers to customize the behavior or completely replace
+                the default com.sun.faces.facelets.FaceletFactory implementation.
+                </p>
+                <p>
+                Some rules about what is expected of custom implementations.If the custom
+                implementation has a public single argument constructor where the argument
+                type is com.sun.faces.facelets.FaceletFactory, the default FaceletFactory
+                implementation will be passed to the constructor.  If the single argument
+                constructor is not present, the custom implementation will be constructed
+                by invoking a public no-argument constructor.
+                </p>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Additional Information</h2>
+<p>Mojarra Implementation team <a href="http://blogs.oracle.com/planetrss/">blogs</a></p>
+
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.2 $
+        <br> $Date: 2010-10-15 16:56:53 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

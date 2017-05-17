@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+<title>JavaServer Faces 2.0 One Pager</title>
+<link href="style/screen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="style/prototype.js"></script>
+<script type="text/javascript" src="style/effects.js"></script>
+<script type="text/javascript" src="style/dragdrop.js"></script>
+<script type="text/javascript" src="style/controls.js"></script> 
+</head>
+
+<body>
+
+<div id="nav">
+	<ul class="menubar">
+	</ul>
+</div>
+
+<div id="page">
+<div class="wrapper">
+
+<div id="logo"><img src="style/java_get_powered.png" /> <h1>JSF 2.0 One Pager</h1></div>
+
+
+<div id="content">
+
+<!-- SECTION TOP: START -->
+<h3>I. How We Listened</h3>
+
+<p>Any product, and especially any developer product, requires careful
+attenton to user feedback.  Here are the concrete steps we took to
+collect feedback about what should be in JSF 2.0.</p>
+
+<div class="source"><a href="#" onclick="if (Element.visible('src0')) { new Effect.SlideUp('src0'); $('src0_btn').src = 'style/page_white_code.gif'; } else { new Effect.SlideDown('src0'); $('src0_btn').src = 'style/page_white_code_red.gif'; } return false;">Details <img id="src0_btn" src="style/page_white_code.gif" /></a>
+<div id="src0" class="code" style="display: none; "><pre><code>
+  A. Discover the requirements
+    1. Web Research
+      a. Stay abreast of web development trends
+new trends in the world since JSF 1.2
+  ajax
+  intolerance of high deployment times
+  scripting 
+      b. Find and list all JSF 2.0 Requirements Data Sources
+      <a href="#" onclick="if (Element.visible('RequirementsDataSources')) { new Effect.SlideUp('RequirementsDataSources'); $('RequirementsDataSources_btn').src = 'style/page_white_code.gif'; } else { new Effect.SlideDown('RequirementsDataSources'); $('RequirementsDataSources_btn').src = 'style/page_white_code_red.gif'; } return false;">Details <img id="RequirementsDataSources_btn" src="style/page_white_code.gif" /></a><div id="RequirementsDataSources" class="code" style="display: none; "><pre><code>
+List of Data Sources
+
+2004 JavaOne EG Meeting Notes   (DONE)            http://archives.java.sun.com/cgi-bin/wa?A2=ind0407&L=jsr-127-eg&O=D&X=347A156778E77EA8B2&Y=ed.burns@sun.com&P=694
+2005 JavaOne EG Meeting Notes   (DONE)          https://javaserverfaces-spec-eg.dev.java.net/files/documents/2091/28727/20050630-web-tier-eg.txt
+2006 JavaOne EG Meeting Notes  (DONE)            http://wikihome.sfbay.sun.com/webtier/Wiki.jsp?page=WebTier2006EGMeeting
+
+JSR-127 EG List                    (DONE)                     http://archives.java.sun.com/jsr-127-eg.html
+JSR-252 EG List       (DONE)                                  http://archives.java.sun.com/jsr-252-eg.html
+webtier-alignment java.net list    (DONE)              https://webtier-alignment.dev.java.net/servlets/SummarizeList?listName=users
+javaserverfaces-spec-public java.net list  (DONE) https://javaserverfaces-spec-public.dev.java.net/issues/query.cgi   (use 2.0 for version in query)
+javaserverfaces java.net list    (Ed)                 http://jsf.java.net/issues/query.cgi (use 2.0 in query)
+myfaces dev list from September 2006  (DONE)  http://www.mail-archive.com/dev@myfaces.apache.org/msg17730.html
+
+Kito Mann's yahoo list      (DONE)                         http://tech.groups.yahoo.com/group/java_web_alignment/?yguid=241530548
+JSF Days Munich list     (Ed)                            http://wiki.java.net/bin/view/Projects/JSFDaysMunich2006
+Gavin King's list    (Ed)                                     https://javaserverfaces-spec-eg.dev.java.net/servlets/ProjectDocumentList?folderID=4772
+Jacob Hookom's list (DONE)                           http://hookom.blogspot.com/2006/10/jsf-20-ideas.html
+Facelets Dev List (DONE) https://facelets.dev.java.net/servlets/SummarizeList?listName=dev
+</code></pre></div>
+      c. Mine all of them for stories, pain points and requirements
+      d. Produce draft requirements document
+    2. People Research
+      Fold requirements doc into JSR.  Share it:
+      a. Sun Internal
+      b. Sun External (via blog)
+
+  B. Prioritized the requirements
+   1. EG Meeting: "Buy a Feature"
+   2. "Top Three Issues" question to EG members 
+</code></pre></div>
+</div>
+
+<!-- SECTION TOP: END -->
+
+<!-- SECTION TOP: START -->
+<h3>II. What We Heard</h3>
+
+<p>After taking the steps to listen to what should be in JSF 2.0, here's
+what we heard and how we prioritized it.</p>
+
+<div class="source"><a href="#" onclick="if (Element.visible('src1')) { new Effect.SlideUp('src1'); $('src1_btn').src = 'style/page_white_code.gif'; } else { new Effect.SlideDown('src1'); $('src1_btn').src = 'style/page_white_code_red.gif'; } return false;">Details <img id="src1_btn" src="style/page_white_code.gif" /></a>
+<div id="src1" class="code" style="display: none; "><pre><code>
+  A. Top Five Goals for Early Draft Review
+     1. Make custom components much easier to develop (EZComp)
+     2. Ajax support
+     3. Page description language (PDL)
+     4. Reduce the configuration burden
+     5. Provide for better compatability between JSF component libraries
+        from different vendors
+
+   B. Other really important things
+     1. State management rewrite
+     2. Bookmarkable URLs
+     3. Zero deployment time
+     4. Tree traversal
+     5. Scopes
+     6. Extension prioritization scheme
+     7. Better error reporting
+</code></pre></div>
+</div>
+
+<!-- SECTION TOP: END -->
+
+<!-- SECTION TOP: START -->
+<h3>III. What We Are Doing About It</h3>
+
+<p>After prioritizing the requirements, we started satisfying them.</p>
+
+<div class="source"><a href="#" onclick="if (Element.visible('src2')) { new Effect.SlideUp('src2'); $('src2_btn').src = 'style/page_white_code.gif'; } else { new Effect.SlideDown('src2'); $('src2_btn').src = 'style/page_white_code_red.gif'; } return false;">Details <img id="src2_btn" src="style/page_white_code.gif" /></a>
+<div id="src2" class="code" style="display: none; "><pre><code>
+  A. History
+    1. Started formally gathering requirements in October 2006
+    2. First draft of JSF 2.0 JSR ready to file in January 2007
+    3. Ed Publishes Draft JSR on Blog
+    4. Apache Open Letter regarding "Field of Use" issue April 2007
+    5. May 2007 JSR filed with JCP
+    6. Java One Expert Group meeting: buy a feature
+    7. July 2007 EG mailing list starts working
+
+  B. Present: Working toward EDR 1.
+    1. Work style: two spec leads, two threads of development
+      a. Ed: EZComp, PDL, Annotations
+      b. Roger: Ajax, Component Compat
+    2. Completed issues: 
+      a. Resource Loading
+      b. Development Lifecycle Awareness
+
+  C. Future: Working toward EDR 2 and beyond
+    Bookmarkable URLs
+    Zero Deployment Time
+    Scopes
+    Error reporting
+</code></pre></div>
+</div>
+
+<!-- SECTION TOP: END -->
+
+
+
+
+</div>
+
+
+</div>
+</div>
+
+<div id="footer">
+<div class="wrapper">
+</div>
+</div>
+
+<div style="float: left; width: 100%; height: 20px; ">&nbsp;</div>
+
+</body>
+</html>

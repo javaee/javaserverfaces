@@ -1,0 +1,1051 @@
+<html>
+<HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>JavaServer(TM) Faces Release Notes 1.2_09 -- Change Log</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+</HEAD>
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>
+<BODY>
+<h1>
+    <banner> JavaServer
+        <sup>
+            <font size="-2">TM</font>
+        </sup> Faces Release Notes
+    </banner>
+    <br> Change Log
+</h1>
+<center>
+    <b>Specification Version:</b> 1.2MR2
+    <br>
+    <b>Implementation Version:</b> 1.2_09
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="changelog.html">
+                <span class="active">Change Log</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span>Known Issues</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<p>
+    This release sees the introduction of <a href="http://groovy.codehaus.org/">Groovy</a> support within
+    Mojarra!
+</p>
+
+<p>
+    Groovy (and this is taken from the Groovy homepage....)
+</p>
+<ul>
+    <li>is an agile and <b>dynamic language</b> for the <b>Java Virtual
+        Machine</b>
+    </li>
+    <li>builds upon the strengths of Java but has <b>additional power
+        features</b>
+        inspired by languages like Python, Ruby and Smalltalk
+    </li>
+    <li>makes <b>modern programming features</b> available to Java developers
+        with
+        <b>almost-zero learning curve</b></li>
+    <li>supports <b>Domain-Specific Languages</b> and other compact syntax so
+        your
+        code becomes <b>easy to read and maintain</b></li>
+    <li>makes writing shell and build scripts easy with its <b>powerful
+        processing
+        primitives</b>, OO abilities and an Ant DSL
+    </li>
+    <li>increases developer productivity by <b>reducing scaffolding code</b>
+        when
+        developing web, GUI, database or console applications
+    </li>
+    <li><b>simplifies testing</b> by supporting unit testing and mocking
+        out-of-the-box
+    </li>
+    <li>seamlessly <b>integrates with all existing Java objects and
+        libraries</b>
+    </li>
+    <li>compiles straight to Java bytecode so you can use it anywhere you can
+        use
+        Java
+    </li>
+</ul>
+
+<p>
+    When using Groovy within Mojarra, you can quickly prototype your managed beans, converters,
+    validators, well, pretty much any JSF artifact without having to redeploy your application.
+    Please see this <a href="http://blogs.sun.com/rlubke/entry/groovy_mojarra">blog entry</a> for more details on how to configure your application to take 
+    adavantage of this new feature!
+</p>
+
+<p>
+    With this release the jsf-api and jsf-impl JAR files contain manifest information
+    to expose the JARs as OSGi bundles.  We've only tested with GlassFish V3 (which
+    uses Felix for the OSGi runtime), so if you discover any issues in other OSGi
+    runtimes, please let us know.
+</p>
+
+<p>
+    We've added three new initialization parameters since the release of 1.2_08.
+</p>
+<table style="border: 1px solid ; font-size: small;" cellpadding="5"
+       width="100%">
+
+    <tbody>
+        <tr style="background-color: silver;">
+            <th>Paramter Name</th>
+            <th>Description</th>
+            <th>Default Value</th>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.registerConverterPropertyEditors</td>
+            <td>
+                <p>
+                    In versions prior to 1.2_09, Mojarra would attempt to create a PropertyEditor for each
+                    by type converter registered with the application.  This PropertyEditory would allow
+                    JSF converters to be used in EL coercion when the default rules weren't able to be applied.
+                    However, due to how PropertyEditors are registered, this could cause an applications to
+                    overwrite each others defined PropertyEditors and potentially introduce a memory leak.
+                </p>
+                <p>
+                    Given the above, we've now disabled this feature by default.  If this feature is needed,
+                    it will need to be explicitly enabled (keeping the information above in mind).
+                </p>
+                <p>
+                    We've logged an issue against the EL specification for this issue and hope it will
+                    be addressed in their next release.
+                </p>
+                <p>
+                    See <a href="http://jsf.java.net/issues/show_bug.cgi?id=722">Issue 722</a> for more details.
+                </p>
+            </td>
+            <td>false</td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.disableUnicodeEscaping</td>
+            <td>
+                <p>
+                    By default any characters above a certain range will be escaped as either an HTML entity
+                    or a decimal reference.  This behavior is not always desirable.  To allow more flexibility how content
+                    is rendered to a client, this option was introduced.  Valid configuration values are: <code>false</code>,
+                    <code>true</code>, and <code>auto</code> with <code>false</code> being the default.  When the option
+                    value is <code>false</code>, Mojarra will continue to escaped no matter the response encoding type.  If
+                    the configuration value is <code>true</code>, Then no escaping will occur assuming that the response encoding
+                    can properly handle all characters.  If the configuration option is <code>auto</code> then the response
+                    encoding will be checked.  If the encoding is of the UTF family of encodings no unicode or html entity
+                    encoding will occur, however, if the response stream encoding is ISO-8859-1 then the ISO characters above
+                    a certain range will be encoded as HTML entities and any characters above that range will be written
+                    as decimal references.
+                </p>
+                <p>
+                    See <a href="http://jsf.java.net/issues/show_bug.cgi?id=727">Issue 727</a> and
+                    <a href="http://jsf.java.net/issues/show_bug.cgi?id=751">Issue 751</a> for more details.
+                </p>
+            </td>
+            <td>false</td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.developmentMode</td>
+            <td>
+                <p>
+                    When set to <code>true</code>, any modifications to the faces-config.xml file
+                    in WEB-INF, or any referred to by the javax.faces.CONFIG_FILE init parameter, will
+                    cause the JSF application to reload itself.  This also has the side effect of causing
+                    class caching to be disabled so that changes to Groovy-based artifacts will be 
+                    displayed at runtime.
+                </p>
+            </td>
+            <td>false</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Issues Resolved In This Release</h2>
+<table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+<tr style="background-color:silver">
+    <th>ID</th>
+    <th>Type</th>
+    <th>Pri</th>
+    <th>Plat</th>
+    <th>Owner</th>
+    <th>State</th>
+    <th>Resolution</th>
+    <th>Summary</th>
+</tr>
+<! -- START ISSUES -->
+
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=693">693</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">PC</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">DebugUtil.printTree(...) causes IllegalArgumentException while calling from RestoreViewPhase.execute(...) with log level FINEST</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=696">696</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Locale variants not supported</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=705">705</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">Problems with HtmlResponseWriter</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=706">706</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">FacesContextImpl.getMaximumSeverity() returns INFO even if all messages are deleted out of the faces-context</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=707">707</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">removing faces-messages (silently) fails</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=708">708</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">More descriptive error message if bean class is interface</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=709">709</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">ManagedBeanBuilder chokes on property values with double-quote</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=711">711</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">NPE's without messages in inner Maps of ExternalContextImpl</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=714">714</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">duplicate Componentid exception</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=715">715</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">UIData invokeComponent() may incorrectly strip off part of a client ID</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=716">716</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Bug when using cloneWithWriter - elements are out of order</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=717">717</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Elements with long attribute contents are written with excess trailing zero symbol</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=718">718</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIData#invokeOnComponent() ignores facets</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=722">722</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">youngm</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Converter PropertyEditor not multi application safe</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=723">723</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P4</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">jdlee</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIViewRoot is repeating code</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=724">724</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Action fails if component id contains a comma</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=725">725</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">outputformat not using viewroot's locale</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=726">726</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Cardemo tests fail due to stream chain order when using encryption</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=727">727</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">youngm</span>
+    </td>
+
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span class="summary">Improve unicode handling for smaller page sizes</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=728">728</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P4</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">ListDataModel.getRowData() throws an exception with no message</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=730">730</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">Macintos</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">RenderKitUtils.canBeOptimized crashes on UIComponents of classes with null packages</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=731">731</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">AbstractConfigProcessor consumes stack trace information</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=732">732</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P4</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">Error when logging set to FINEST</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=734">734</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P1</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Do not swallow exception in UIViewRoot#notifyPhaseListeners</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=735">735</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIComponentBase#findComponent throws StringIndexOutOfBoundsException</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=736">736</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">c.s.f.taglib.ValidateLongRangeTag uses Integer.valueOf() instead of Long.valueOf()</span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="8">Issues Resolved after 1.2_09 Beta1</td>
+</tr>
+
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=738">738</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">API change in GF injection services results in a NoSuchMethodException</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=741">741</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">driscoll</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">CommandLink children doesn't get fully recursively rendered</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=742">742</a>
+    </td>
+    <td class="green"><span class="issue_type">PATCH</span>
+
+    </td>
+    <td class="green"><span class="priority">P3</span>
+    </td>
+    <td class="green"><span class="platform">All</span>
+    </td>
+    <td class="green"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="green"><span class="status">RESOLVED</span>
+    </td>
+    <td class="green"><span class="resolution">FIXED</span>
+    </td>
+    <td class="green"><span class="summary">Use ThreadLocal.remove() to prevent potential Classloader leaks</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=743">743</a>
+    </td>
+    <td class="green"><span class="issue_type">PATCH</span>
+    </td>
+    <td class="green"><span class="priority">P3</span>
+    </td>
+
+    <td class="green"><span class="platform">All</span>
+    </td>
+    <td class="green"><span class="owner">rlubke</span>
+    </td>
+    <td class="green"><span class="status">RESOLVED</span>
+    </td>
+    <td class="green"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="green"><span class="summary">Multiple META-INF/faces-config.xml for non-jars with with same directory overriden</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=744">744</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span class="summary">Enable the compression of serialized server state</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=749">749</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">SelectItemGroup: escape and disabled properties are ignored</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=751">751</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span
+          class="summary">avoid strict html entity encoding</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=752">752</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">ValueChangeEvent incorrectly fired for UISelectBoolean instances</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=755">755</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">PC</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">NumberConverter hack 4510618 fails</span></td>
+</tr>
+
+
+
+<!-- END ISSUES -->
+</table>
+
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.7 $
+        <br> $Date: 2010-10-15 16:16:00 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</BODY>
+</html>

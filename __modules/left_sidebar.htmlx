@@ -1,0 +1,60 @@
+    <script>
+        var info = {
+	title: "Oracle Mojarra JavaServer Faces",
+	logo: "https://javaserverfaces.java.net/images/glassfish_logo.gif"
+        }
+    </script>
+
+	  <div id="navcol">
+	    <dl id="projecttools" class="navgroup" style="text-align: left;">
+	      <dt id="current-zone" class="depth0">
+		<a href="https://glassfish.java.net/">GlassFish Community</a>
+	      </dt>
+	      <dd class="depth0 parent parent" id="menubar">
+<ul id="main-menubar">
+    <li>
+	<a href="https://javaserverfaces.java.net/download.html">Downloads</a>
+    <li>
+      <a href="https://java.net/projects/javaserverfaces/lists">Mailing lists</a>
+    <li>
+        <a href="https://java.net/projects/javaserverfaces/roles">Membership</a>
+    <li>
+	<a href="#">Developing Mojarra JavaServer Faces</a>
+	<ul>
+	    <li>
+		<a href="https://wikis.oracle.com/display/GlassFish/JavaServerFacesRI#JavaServerFacesRI-HowcanIcontribute%3F">How to contribute?</a>
+	    <li>
+		<a href="https://java.net/projects/javaserverfaces/sources/svn/show/" match="https://java.net/projects/javaserverfaces/sources/svn/show/.*">Subversion repository</a>
+	</ul>
+    <li>
+        <a href="https://java.net/jira/browse/JAVASERVERFACES/">IssueTracker</a>
+    <li>
+	<a href="https://javaserverfaces-spec-public.java.net">JSF Specification</a>
+</ul>
+
+<script>
+var info = {
+	title: "Oracle Mojarra JavaServer Faces",
+	logo: "https://javaserverfaces.java.net/images/glassfish_logo.gif"
+}
+</script>
+<script src="https://glassfish-theming.java.net/zone-webtier.js"></script>
+<script src="https://glassfish-theming.java.net/theme.js"></script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3160303-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- **************** -->
+

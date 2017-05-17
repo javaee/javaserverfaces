@@ -1,0 +1,617 @@
+<html>
+<HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>JavaServer(TM) Faces Release Notes 1.2_08 FCS -- Change
+        Log</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+</HEAD>
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>
+<BODY>
+<h1>
+    <banner> JavaServer
+        <sup>
+            <font size="-2">TM</font>
+        </sup> Faces Release Notes
+    </banner>
+    <br> Change Log
+</h1>
+<center>
+    <b>Specification Version:</b> 1.2MR1
+    <br>
+    <b>Implementation Version:</b> 1.2_08 FCS
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="changelog.html">
+                <span class="active">Change Log</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span>Known Issues</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<p>
+    We've added two new initialization parameters since the release of 1.2_07.
+</p>
+<table style="border: 1px solid ; font-size: small;" cellpadding="5"
+       width="100%">
+
+    <tbody>
+        <tr style="background-color: silver;">
+            <th>Paramter Name</th>
+            <th>Description</th>
+            <th>Default Value</th>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.enableViewStateIdRendering</td>
+            <td>
+                <p>
+                    If <code>true</code>, the view state hidden field will be rendered
+                    with both the id and name attributes having the value of "javax.faces.ViewState".
+                </p>
+                <p>
+                    This is what the spec requires, however, if there are multiple forms within a view
+                    and the response content-type is XHTML, the result will be XHTML that will fail
+                    validation due to multiple ID attributes with the same value: javax.faces.ViewState.
+                    Setting this parameter to false will result in the ID attribute not being rendered.
+                    Keep in mind however, that doing this may break integration with AJAX frameworks that
+                    get the state field via ID.
+                </p>
+                <p>
+                    See issue <a href="http://jsf.java.net/issues/show_bug.cgi?id=433">433</a> for details.
+                </p>
+
+            </td>
+            <td>true</td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.enableScriptsInAttributeValues</td>
+            <td>
+                <p>
+                    If <code>false</code>, attribute values with <code>javascript:</code> or <code>script:</code>
+                    will not be rendered within attribute values to prevent potential XSS attacks.
+                </p>
+            </td>
+            <td>true</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Issues Resolved In This Release</h2>
+<table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+<tr style="background-color:silver">
+    <th>ID</th>
+    <th>Type</th>
+    <th>Pri</th>
+    <th>Plat</th>
+    <th>Owner</th>
+    <th>State</th>
+    <th>Resolution</th>
+    <th>Summary</th>
+</tr>
+<! -- START ISSUES -->
+
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=433">433</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span class="summary">Invalid XHTML is outputted by h:form, there are multiple elements with id="javax.faces.ViewState" when only 1 is allowed.</span>
+    </td>
+
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=668">668</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">ViewTag.getComponentType does not throw a useful exception</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=670">670</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">WebappLifecycleListener incorrectly accesses the applicationAssociate ivar instead of through the getter.</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=672">672</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Managed properties set via expressions are having null evaluations coerced</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=673">673</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Review code to reduce the use of private request scoped attributes.</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=674">674</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span
+          class="summary">Improve efficiency of Writer usage</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=675">675</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">SWF 2.0-m2, Glassfish, JSF 1.2 yields NPE</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=676">676</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+
+    </td>
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="purple"><span class="resolution">FIXED</span>
+    </td>
+    <td class="purple"><span class="summary">Replace HtmlUtils use of String.charAt() with String.getChars() instead.</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=679">679</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">API SelectItemIterator doesn't support Collections - only Lists</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=682">682</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+
+    </td>
+    <td class="red"><span class="platform">Macintos</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">The type of the first element of a UISelectMany is taken to be the type of every element</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=683">683</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Under certain circumstances, Renderers can be registered with the incorrect RenderKit</span>
+
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="show_bug.cgi?id=684">684</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">jdlee</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Make the generated JSP tags are non-final</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=685">685</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">JSF NPE in UIComponentClassicTagBase</span></td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=689">689</a>
+    </td>
+    <td class="green"><span class="issue_type">PATCH</span>
+
+    </td>
+    <td class="green"><span class="priority">P3</span>
+    </td>
+    <td class="green"><span class="platform">All</span>
+    </td>
+    <td class="green"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="green"><span class="status">RESOLVED</span>
+    </td>
+    <td class="green"><span class="resolution">FIXED</span>
+    </td>
+    <td class="green"><span class="summary">Navigation Matching Bug</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=691">691</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">Macintos</span>
+    </td>
+    <td class="red"><span class="owner">jdlee</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">&lt;h:commandLink&gt; does not work in Safari</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=699">699</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Value of prependId not included in saved form state</span>
+    </td>
+</tr>
+<tr class="rb">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=700">700</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">InjectionProviderFactory only scans the first injectionprovider service file</span>
+    </td>
+</tr>
+
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=702">702</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">BeanManager may be null in WebappLifecycleListener.handleAttributeEvent()</span>
+    </td>
+</tr>
+
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=704">704</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Chinese Char entities Auto-escaped by h:outputText and other components</span>
+    </td>
+</tr>
+
+<!-- END ISSUES -->
+</table>
+
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.12 $
+        <br> $Date: 2010-10-15 16:15:59 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</BODY>
+</html>

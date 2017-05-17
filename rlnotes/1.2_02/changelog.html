@@ -1,0 +1,319 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>JavaServer(TM) Faces Release Notes 1.2_02-b03 FCS-- Change Log</title>
+    <link rel="alternate" href="http://jsf.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <style type="text/css">            
+    .red { color: red; }
+    .purple { color: purple; }
+    .blue { color: blue; }
+    .green { color: green; }
+    .black { color: black; }    
+    .ra { background-color: lightgray; }
+    .rb { background-color: lavender; }   
+    .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+    .s0 { color: rgb(0,0,128); font-weight: bold; }
+    .s1 { }
+    .s2 { color: rgb(128,128,128); font-style: italic; }
+    .s3 { color: rgb(128,128,128); font-style: italic; }
+    .s4 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style> 
+  <BODY>
+    <h1>
+      <banner> JavaServer
+        <sup>
+          <font size="-2">TM</font>
+        </sup> Faces Release Notes 
+      </banner>
+      <br>  Change Log
+    </h1>
+    <center>
+      <b>Specification Version:</b>  1.2
+      <br>
+      <b>Implementation Version:</b>  1.2_02-b03 FCS
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span>Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="changelog.html">
+            <span class="active">Change Log</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span>Known Issues</span>
+          </a>
+        </li>
+      </ul>
+    </div> 
+    <h2>New Features Added In This Release</h2> 
+    <p>We've added one new context initialization parameter since the release of 1.2_01 
+    <table width="100%" style="font-size:small;border:1px solid; border-width:1px;" cellpadding="5">
+      <tr style="background-color:silver">
+        <th>Paramter Name</th> 
+        <th>Description</th> 
+        <th>Default Value</th> 
+      </tr> 
+      <tr class="rb">
+        <td>com.sun.faces.compressJavaScript</td> 
+        <td>If
+          <code>true</code>, then the JavaScript rendered by
+          <code>h:commandLink</code> will be compressed to reduce the amount of whitespace transmitted in the response. If
+          <code>false</code> then the JavaScript will be rendered to the client in a well formatted manner.
+        </td> 
+        <td>true</td> 
+      </tr> 
+    </table> 
+    <h2>Issues Resolved In This Release</h2> 
+    <table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+      <tr style="background-color:silver">
+        <th>ID</th> 
+        <th>Type</th> 
+        <th>Pri</th> 
+        <th>Plat</th> 
+        <th>Owner</th> 
+        <th>State</th> 
+        <th>Resolution</th> 
+        <th>Summary</th> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=378">378</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P1</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">NPE from MethodbindingMethodExpressionAdapter.equals()</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=375">375</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P2</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">output tags getting deleted after post-base of page with verbatim</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=355">355</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">h:message not getting error message for component</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=364">364</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">Incorrect parameter values submitted after non-linear navigation</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=368">368</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">NPE when navigatine from PL before ViewRoot has been created</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=370">370</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">Presence of multiple FacesServlet mappings in same URL will</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=376">376</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">RequestDispatcher loop if FacesServlet is mapped to /*</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=381">381</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">youngm</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">XML problems with handling of &amp; in renderers</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=370">382</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">Submitting partially rendered page loses viewState</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=384">384</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P2</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">FacesContextImpl throws an NPE instead of returning null</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=385">385</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P2</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">Various expression adapters in jsf-api/template-src need a review</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=370">386</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">clicking commandLink repeatadly causes JS error / locks all</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=395">395</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">Clicking link causes page to scroll to top</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=399">399</a> 
+        </td> 
+        <td class="red">DEFECT</td> 
+        <td class="red">P3</td> 
+        <td class="red">All</td> 
+        <td class="red">rlubke</td> 
+        <td class="red">RESOLVED</td> 
+        <td class="red">FIXED</td> 
+        <td class="red">commandLinks in multiple forms fail with 1.2_02-20060818-NIGHTLY</td> 
+      </tr> 
+      <tr class="rb">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=369">369</a> 
+        </td> 
+        <td class="purple">ENHANCEMENT</td> 
+        <td class="purple">P3</td> 
+        <td class="purple">All</td> 
+        <td class="purple">rlubke</td> 
+        <td class="purple">RESOLVED</td> 
+        <td class="purple">FIXED</td> 
+        <td class="purple">Dynamically creating hidden files for action components</td> 
+      </tr> 
+      <tr class="ra">
+        <td>
+          <a href="http://jsf.java.net/issues/show_bug.cgi?id=383">383</a> 
+        </td> 
+        <td class="blue">FEATURE</td> 
+        <td class="blue">P3</td> 
+        <td class="blue">All</td> 
+        <td class="blue">rlubke</td> 
+        <td class="blue">RESOLVED</td> 
+        <td class="blue">FIXED</td> 
+        <td class="blue">Add context init param to enable compression of rendered JS</td> 
+      </tr> 
+    </table> 
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.3 $
+        <br> $Date: 2010-10-15 16:15:54 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

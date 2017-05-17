@@ -1,0 +1,178 @@
+This README documents the Sun's implementation of JSR 252,
+JavaServer (tm) Faces 1.2.
+
+Installation Notes
+==================
+
+JavaServer (tm) Faces is intended to run in a Servlet 2.5, JSP 2.1 web
+container, such as GlassFish (https://glassfish.dev.java.net).  Please
+follow the instructions for your container and have it working well in
+your environment before continuing with these installation notes.
+
+To use JavaServer (tm) Faces in your own webapp, all you need to do
+is include the 'jsf-api' and 'jsf-impl' JARs in your application.
+
+Major changes/features in this release:
+=======================================
+Here are the changes since the 1.1 release
+
+* See the JavaServer Faces 1.2 specification for major changes.
+
+
+General Spec changes
+-- There were no spec changes for this release.
+ 
+Standard HTML RenderKit changes
+-- There were no Standard HTML RenderKit changes for this release.
+
+Spec document changes
+-- There were no specification document changes for this release.
+
+Logging support and configuration steps
+=======================================
+See: http://wiki.java.net/bin/view/Projects/SunJSFImplFaq#TurnOnLogging
+
+
+
+Known Issues With This Release
+==============================
+
+* Resource Injection will only work if the implementation is 
+  used with GlassFish.  This will be addressed in the next
+  release so that other vendors can have an easier time integrating
+  the implementation.
+
+* The JavaScript decoration functionality of Command Buttons and Links
+  currently doesn't work.  This will be addressed in the next release.
+
+* The 'cols' attribute of the h:inputTextarea component is not
+  currently rendered.  This will be addressed in the next release.
+   
+
+* The 'size' attribute of the various select one/many components
+  may, in some cases, be rendered twice.  This shouldn't affect
+  how it works from an end-user's point of view.  This will be
+  addressed in the next release.
+
+* Select one/many components don't work right when using 
+  J2SE 5 Enums.  
+
+* JSF 1.1 Variable and Property resolvers that would delegate to
+  their child resolver in order to obtain a value before further
+  processing will not work.  There is no workaround for this outside
+  of obtaining a nightly build from (https://javaserverfaces.dev.java.net).
+
+* Don't use the '.' character in ResourceBundle keys for use in Faces.
+  This character is a reserved character in the EL.
+
+* The 'var' attribute of h:dataTable is incorrectly described in the TLD
+  as accepting deferred-values.  This should always be a string literal.
+  
+* Managed bean methods marked with the @PostConstruct/@PreDestroy annotations
+  will not be called by the implementation unless the methods are public.
+  Support for private, package private, and protected methods will be 
+  addressed in the next release.
+
+* If /WEB-INF/faces-config.xml is specified via the javax.faces.CONFIG_FILE
+  attribute, XML parser errors will occur.  This will be fixed in 
+  the next release to ignore this case, but there has never been a need
+  to specify /WEB-INF/faces-config.xml as this is a known location by
+  all implementations.
+
+* The TLD Docs were omitted from the 1.2 bundle.  An online version
+  can be found here:  http://java.sun.com/javaee/javaserverfaces/1.2/docs/tlddocs/index.html
+
+If any of these issues are affecting your application, feel free to try 
+our nightly builds [1].  The FAQ [2], a wiki, is constantly updated.  
+Please feel free to get involved and add any information you feel
+may be helpful to others.  
+
+We also encourage you to get involved with the ongoing development
+of JSF.  See the FAQ for information on checking out the source
+and how to contribute changes.
+
+[1] https://javaserverfaces.dev.java.net
+[2] http://wiki.java.net/bin/view/Projects/SunJSFImplFaq
+
+
+Legal Notice
+============
+
+Copyright 2004-2005 Oracle America, Inc., 4150 Network Circle, 
+Santa Clara, California 95054, U.S.A. All Rights Reserved.
+
+U.S. Government Rights - Commercial software.  Government users are subject 
+to the Oracle America, Inc. standard license agreement and applicable 
+provisions of the FAR and its supplements.  
+
+Use is subject to license terms.
+
+This distribution may include materials developed by third parties.
+
+Parts of the product may be derived from Berkeley BSD systems, licensed from 
+the University of California. UNIX is a registered trademark in the U.S. and 
+in other countries, exclusively licensed through X/Open Company, Ltd.
+
+Sun, Oracle America, the Sun logo, Java, Jini, J2EE, JavaServer Pages,
+JavaServer Faces, Enterprise JavaBeans, Java Naming and Directory
+Interface, EJB, J2SE, JSTL, JDBC, JavaMail, JAXP, SAAJ, JAXR and JAX RPC
+are trademarks or registered trademarks of Oracle America, Inc. in the
+U.S. and other countries.
+
+The OPEN LOOK and Sun(TM) Graphical User Interface was developed by Sun
+Microsystems, Inc. for its users and licensees. Sun acknowledges the pioneering
+efforts of Xerox in researching and developing the concept of visual or
+graphical user interfaces for the computer industry. Sun holds a non-exclusive 
+license from Xerox to the Xerox Graphical User Interface, which license also 
+covers Sun's licensees who implement OPEN LOOK GUIs and otherwise comply with
+Sun's written license agreements.
+
+This product is covered and controlled by U.S. Export Control laws and may 
+be subject to the export or import laws in other countries.  Nuclear, missile, 
+chemical biological weapons or nuclear maritime end uses or end users,
+whether direct or indirect, are strictly prohibited.  Export or reexport to 
+countries subject to U.S. embargo or to entities identified on U.S. export 
+exclusion lists, including, but not limited to, the denied persons and 
+specially designated nationals lists is strictly prohibited.
+
+Copyright 2004-2005 Oracle America, Inc., 4150 Network Circle,
+Santa Clara, California 95054, Etats-Unis. Tous Droits Reserves.
+
+L'utilisation est soumise aux termes du contrat de licence.
+
+Cette distribution peut comprendre des composants developpes par des 
+tierces parties.
+
+Des parties de ce produit pourront etre derivees des systemes Berkeley BSD 
+licencies par l'Universite de Californie. UNIX est une marque deposee aux 
+Etats-Unis et dans d'autres pays et licenciee exclusivement par X/Open 
+Company, Ltd.
+
+Sun, Oracle America, le logo Sun, Java, Jini, J2EE, JavaServer Pages,
+JavaServer Faces, Enterprise JavaBeans, Java Naming and Directory
+Interface, EJB, J2SE, JSTL, JDBC, JavaMail, JAXP, SAAJ, JAXR et JAX RPC
+sont des marques de fabrique ou des marques deposees de Sun
+Microsystems, Inc. aux Etats-Unis et dans d'autres pays.
+
+L'interface d'utilisation graphique OPEN LOOK et Sun(TM) a ete developpee par 
+Oracle America, Inc. pour ses utilisateurs et licencies. Sun reconnaet les 
+efforts de pionniers de Xerox pour la recherche et le developpement du concept 
+des interfaces d'utilisation   visuelle ou graphique pour l'industrie de l'infor
+matique. Sun detient une license non exclusive de Xerox sur l'interface d'utilis
+ation graphique Xerox, cette licence couvrant egalement les licencies de Sun 
+qui mettent en place l'interface d'utilisation graphique OPEN LOOK et qui, en 
+outre, se conforment aux licences ecrites de Sun.
+
+Ce produit est soumis a la legislation americaine en matiere de contrele des 
+exportations et peut etre soumis a la reglementation en vigueur dans d'autres 
+pays dans le domaine des exportations et importations. Les utilisations, ou 
+utilisateurs finaux, pour des armes nucleaires,des missiles, des armes 
+biologiques et chimiques ou du nucleaire maritime, directement ou indirectement,
+sont strictement interdites. Les exportations ou reexportations vers les pays 
+sous embargo americain, ou vers des entites figurant sur les listes d'exclusion
+d'exportation americaines, y compris, mais de maniere non exhaustive, la 
+liste de personnes qui font objet d'un ordre de ne pas participer, d'une facon
+directe ou indirecte, aux exportations des produits ou des services qui sont 
+regis  par la legislation americaine en matiere de controle des exportations
+et la liste de ressortissants specifiquement designes, sont rigoureusement 
+interdites.

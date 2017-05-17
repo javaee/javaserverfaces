@@ -1,0 +1,248 @@
+<!--</dd>-->
+<!-- hide the contents while the theme engine kicks in and does the work -->
+<script type="text/javascript">
+    document.getElementById("main").parentNode.style.display = "none";
+
+function setQueryParameterToTextFieldValue(textFieldId, anchorElementId) {
+      var textField = document.getElementById(textFieldId);
+      var anchorElement = document.getElementById(anchorElementId);
+      var anchorElementHref = anchorElement.href;
+      var queryValue = textField.value;
+      // I know there will be exactly two occurrences of "REPLACE"
+      var newQueryAnchor = anchorElementHref.replace("REPLACE", queryValue);
+      newQueryAnchor = newQueryAnchor.replace("REPLACE", queryValue);
+      anchorElement.href = newQueryAnchor;
+      return true;
+}
+
+function parameterizeAndClickHiddenLink(textFieldId, anchorElementId) {
+      setQueryParameterToTextFieldValue(textFieldId, anchorElementId);
+      var hiddenLink = document.getElementById("issuesWithSubstringAnchor");
+      fireEvent(hiddenLink, 'click');
+      return true;
+}
+
+function fireEvent(obj,evt){
+	
+	var fireOnThis = obj;
+	if( document.createEvent ) {
+	  var evObj = document.createEvent('MouseEvents');
+	  evObj.initEvent( evt, true, false );
+	  fireOnThis.dispatchEvent(evObj);
+	} else if( document.createEventObject ) {
+	  fireOnThis.fireEvent('on'+evt);
+	}
+      var foo = null;
+      return true;
+}
+
+</script>
+<!--
+  This is where your menu starts. id='menubar' is mandatory.
+  Notice that there's no closing tag for this <dd>, and there's extra </dd> at the
+  top of the file. This is how it should be, due to the place where this gets injected.
+-->
+<dd id=menubar>
+<!--
+  DD contains single UL which generates the whole menu. UL/LI can have a nested structure
+  to create submenus.
+-->
+<ul>
+<li>
+    <!--
+      This HTML is injected in all the pages within your project, so all the hyperlinks
+      must be either absolute or start with '/'.
+
+      The current page in the navigation bar is shown highlighted to let users know where
+      he/she is. This is primarily done by the exact match between "window.location.href"
+      and the link target, but the A tag can also have the optional "match" attribute,
+      whose value is regular expression that indicates what pages the link should highlight.
+
+      For example, the following match attribute says "overview" should be the current
+      page even if you are in sub.html. This is useful for grouping a large number of pages
+      under a single navigation item.
+    -->
+    <a href="/" match="/sub.html">Overview</a>
+<li>
+    <a href="/servlets/ProjectNewsList">News</a>
+</li>
+<li>
+    <a href="#">Developers</a>
+    <ul>
+        <li><a href="/devs/edburns.html">Ed Burns</a></li>
+        <li><a href="/devs/jdlee.html">Jason Lee</a>
+            <li><a href="/devs/jhook.html">Jacob Hookom</a></li>
+            <li><a href="/devs/myoungstrom.html">Mike Youngstrom</a></li>
+            <li><a href="/devs/rlubke.html">Ryan Lubke</a></li>
+            <li><a href="/devs/rogerk.html">Roger Kitain</a></li>
+            <li><a href="/devs/ssilvert.html">Stan Silvert</a></li>
+            <li><a href="/devs/trobertson.html">Tony Robertson</a></li>
+    </ul>
+</li>
+
+<li>
+    <a href="/servlets/ProjectDocumentList">Downloads</a>
+    <!--
+      If the parent LI of a submenu doesn't have a dedicated page like this,
+      just use '#' as the href. This makes this submenu expandable by clicking on it.
+    -->
+<li>
+    <a href="#">Version Control</a>
+    <ul>
+        <li>
+            <a href="http://jsf.java.net/checkout.html">
+                Check out instructions
+            </a>
+        </li>
+        <li>
+            <a href="https://mojarra.dev.java.net/source/browse/mojarra/">
+                Browse the SVN respository
+            </a>
+        </li>
+        <li>
+            <a href="http://fisheye5.cenqua.com/browse/javaserverfaces-sources">
+                Browse the CVS respository
+            </a>
+        </li>
+    </ul>
+<li>
+    <!--
+  <ul>
+    <li><a href="/a.html">doc A</a>
+    <li><a href="/b.html">doc B</a>
+    <li><a href="/c.html">doc C</a>
+    -->
+    <!--
+      When the parent LI of a submenu has a link, its children only expands when
+      the user is inside this menu.
+    -->
+    <!--
+    <li><a href="/d.html">doc D</a>
+	  <ul>
+	    <li><a href="/d1">doc D1</a>
+	    <li><a href="/d2">doc D2</a>
+	    <li><a href="/d3">doc D3</a>
+	    <li><a href="/d4">doc D4</a>
+	  </ul>
+    <li><a href="http://www.oracle.com/">oracle.com</a>
+  </ul>
+  -->
+<li><a href="#">&#8220;FindBugs&#8221; Reports</a>
+    <ul>
+        <li>
+            <a href="/jsf20-findbugs.html">JSF 2.0</a>
+        </li>
+        <li>
+            <a href="/jsf12-findbugs.html">JSF 1.2</a>
+        </li>
+        <li>
+            <a href="/jsf11-findbugs.html">JSF 1.1</a>
+        </li>
+    </ul>
+
+<li><a href="#">Issue Reporting</a>
+    <ul>
+        <li><a href="/issues/">IssueTracker</a></li>
+        <li>
+            <form name="ProjectIssuesForm"
+                  method="get"
+                  action="/issues/show_bug.cgi"
+                  style="margin-left:2em">
+                <input type="submit" value="Go to"/> #
+                <input name="id" size="3"/>
+            </form>
+        </li>
+<li>
+<form name="projectToolsForm">
+
+  <p>Open issues with substring: <input type="text" 
+onblur="parameterizeAndClickHiddenLink('issuesWithSubstringTextField','issuesWithSubstringAnchor'); return true;"
+id="issuesWithSubstringTextField" /> 
+
+<a id="issuesWithSubstringAnchor" href="http://jsf.java.net/issues/buglist.cgi?component=javaserverfaces&issue_status=NEW&issue_status=STARTED&issue_status=REOPENED&email1=&emailtype1=exact&emailassigned_to1=1&email2=&emailtype2=exact&emailreporter2=1&issueidtype=include&issue_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&short_desc=&short_desc_type=fulltext&long_desc=&long_desc_type=fulltext&issue_file_loc=&issue_file_loc_type=fulltext&status_whiteboard=&status_whiteboard_type=fulltext&field0-0-0=short_desc&type0-0-0=substring&value0-0-0=REPLACE&field0-0-1=longdesc&type0-0-1=substring&value0-0-1=REPLACE&cmdtype=doit&namedcmd=IssuesResolvedEDRtoPR&newqueryname=&order=Reuse+same+sort+as+last+time&Submit+query=Submit+query">run query</a>
+
+</p>
+
+  <p>All issues with substring: <input type="text" 
+onblur="parameterizeAndClickHiddenLink('allIssuesWithSubstringTextField','allIssuesWithSubstringAnchor'); return true;"
+id="allIssuesWithSubstringTextField" /> 
+
+<a id="allIssuesWithSubstringAnchor" href="http://jsf.java.net/issues/buglist.cgi?component=javaserverfaces&issue_status=UNCONFIRMED&issue_status=NEW&issue_status=STARTED&issue_status=REOPENED&issue_status=RESOLVED&issue_status=VERIFIED&issue_status=CLOSED&email1=&emailtype1=exact&emailassigned_to1=1&email2=&emailtype2=exact&emailreporter2=1&issueidtype=include&issue_id=&changedin=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&short_desc=&short_desc_type=fulltext&long_desc=&long_desc_type=fulltext&issue_file_loc=&issue_file_loc_type=fulltext&status_whiteboard=&status_whiteboard_type=fulltext&field0-0-0=short_desc&type0-0-0=substring&value0-0-0=REPLACE&field0-0-1=longdesc&type0-0-1=substring&value0-0-1=REPLACE&cmdtype=doit&order=Reuse+same+sort+as+last+time&Submit+query=Submit+query">run query</a>
+
+</p>
+
+
+</form>
+
+</li>
+
+    </ul>
+
+<li><a href="#">Support</a>
+    <ul>
+        <li>
+            <a href="http://jsf.java.net/mailinglists.html">
+                Mailing List
+            </a>
+        </li>
+        <li>
+            <a href="http://forums.java.net/jive/forum.jspa?forumID=138">
+                Mojarra Forum
+            </a>
+        </li>
+        <li>
+            <a href="http://www.glassfishwiki.org/gfwiki/Wiki.jsp?page=JavaServerFacesRI">
+                Wiki/FAQ
+            </a>
+        </li>
+    </ul>
+    <!--
+      Theis script determines the logo on the top-left corner of the page.
+      The title is mandatory, but the logo is optional.
+    -->
+
+    <script>
+        var info = {
+            title: "Project Mojarra",
+            logo: ""
+        }
+    </script>
+
+    <!--
+      This script includes the zone definition, which determines the
+      list of the "siblings" projects you see in the left navigation bar.
+      Your project should be listed among one of them.
+
+      This example uses the ws/xml zone, but pick up the right zone that matches your project.
+    -->
+    <script src="https://glassfish-theme.dev.java.net/zone-webtier.js"></script>
+    <!--
+      This includes the theme engine script.
+    -->
+    <script src="https://glassfish-theme.dev.java.net/theme.js"></script>
+
+    <!--
+      If your project uses a site traffic tracker like Google Analytics, this is a good place
+      to inject it.
+    -->
+    <!--
+    <script src="https://ssl.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    _uacct = "UA-1273798-1";
+    urchinTracker();
+    </script>
+    -->
+    <!-- Google Analytics -->
+    <!--
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl."
+              : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-5989055-1");
+        pageTracker._trackPageview();
+    </script>
+    -->
+   </ul>
+

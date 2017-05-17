@@ -1,0 +1,61 @@
+TABLE.axial {
+    display: none;
+}
+
+#creditfooter {
+    display: none;
+}
+
+.application .directory A {
+    text-decoration: none !important;
+}
+
+.application .directory A:link {
+    text-decoration: none !important;
+}
+
+.directory A:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.directory .title {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.directory TD {
+    vertical-align: middle;
+}
+
+.directory .description {
+    color: gray;
+}
+
+.directory .logo {
+    border: 0px;
+    width: 96px;
+    height: 96px;
+    margin-right: 1em;
+}
+
+#feeds {
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer {
+    display: none;
+}
+
+.floatbox {
+    width: 190px;
+
+/ / background : rgb ( 254, 236, 219 );
+    background: rgb( 238, 238, 238 );
+    margin-top: 1em;
+    padding: 5px;
+/ / border : 1 px solid rgb ( 252, 142, 37 );
+    border: 1px solid rgb( 170, 170, 170 );
+}

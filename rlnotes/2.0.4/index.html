@@ -1,0 +1,218 @@
+
+<html>
+  <HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css"> 
+    <title>Mojarra 2.0.4 Release Notes -- Overview</title>
+    <link rel="alternate" href="http://javaserverfaces.java.net/servlets/ProjectNewsRSS" type="application/rss+xml">
+  </HEAD> 
+  <BODY>
+    <h1>
+      <banner>Mojarra 2.0.4 Release Notes</banner>
+      <br>  Overview
+    </h1>
+    <center>
+      <b>Specification Version:</b>  2.0
+      <br>
+      <b>Implementation Version:</b>  2.0.4
+      <br>
+    </center>
+    <table class="navbar" cellspacing="0">
+      <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         Mojarra 2.0
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+          <a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+
+</a>
+        </td>
+      </tr>
+    </table>
+    <div class="subnavbar">
+      <ul>
+        <li class="first">
+          <a href="index.html">
+            <span class="active">Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="whatsnew.html">
+            <span>What&#8217;s new</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="releasenotes.html">
+            <span>Release Notes</span>
+          </a>
+        </li>
+        <li>
+          <a href="issuesresolved.html">
+            <span>Issues Resolved</span>
+          </a>
+        </li>
+        <li>
+          <a href="issues.html">
+            <span>Known Issues</span>
+          </a>
+        </li>
+        <li>
+          <a href="migration.html">
+            <span>Migration Guide</span>
+          </a>
+        </li>
+          <!--
+        <li>
+          <a href="changelog.html">
+            <span>Change Log</span>
+          </a>
+        </li>
+        -->
+      </ul>
+    </div> 
+    <p>JavaServer
+      <sup>
+        <font size="-2">TM</font>
+      </sup> Faces technology simplifies building user interfaces for JavaServer applications. Developers of various skill levels can quickly build web applications by:
+      <ul>
+        <li>assembling resuable UI components in a page</li> 
+        <li>connecting these components to an application data source</li> 
+        <li>wiring client-generated events to server-side event handlers</li> 
+        <li>and much more...</li> 
+      </ul> 
+
+
+    <h2>Maven Metadata</h2>
+
+<div class="box">
+<h3>Maven 2 Repository for JSF 2.0 and Later</h3>
+
+<code>
+<pre>
+&lt;repository&gt;
+  &lt;id&gt;java.net&lt;/id&gt;
+  &lt;name&gt;java.net&lt;/name&gt;
+  &lt;url&gt;<a href="http://download.java.net/maven/2">http://download.java.net/maven/2</a>&lt;/url&gt;
+&lt;/repository&gt;
+</pre>
+</code>
+
+<p>The recommend way to use JSF with Maven is to develop on a Java EE
+certified container and declare a <code>&lt;provided&gt;</code> scope
+dependency on the appropriate version of the JavaEE API jar.</p>
+
+<code>
+<pre>
+&lt;dependency&gt;
+  &lt;groupId&gt;javax&lt;/groupId&gt;
+  &lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+  &lt;version&gt;6.0&lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+</code>
+
+<p>If you need to introduce a hard dependency on this particular release
+of Mojarra, you may use the above repository and the following
+metadata</p>
+
+<code>
+<pre>
+&lt;dependency&gt;
+  &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+  &lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+  &lt;version&gt;2.0.4-b09&lt;/version&gt;
+  &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+  &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+  &lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+  &lt;version&gt;2.0.4-b09&lt;/version&gt;
+  &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+</code>
+
+
+
+</div> 
+
+    
+    <h2>Documentation</h2> 
+    <p>Documentation for this release consists of the following:
+      <ul>
+        <li>
+          <a href="releasenotes.html">Release Notes</a> 
+        </li> 
+        <li>
+          <a href="http://javaserverfaces.java.net/nonav/docs/2.0/javadocs/index.html">
+              Javadoc API Documentation
+          </a>
+        </li>
+         <li>
+          <a href="http://javaserverfaces.java.net/nonav/docs/2.0/managed-bean-javadocs/index.html">
+              Managed Bean Javadoc API Documentation
+          </a>
+        </li>
+        <li>
+            <a href="http://javaserverfaces.java.net/nonav/docs/2.0/jsdocs/index.html">
+                JavaScript API Documentation
+            </a>
+        </li>
+        <li>
+          <a href="http://javaserverfaces.java.net/nonav/docs/2.0/pdldocs/jsp/index.html">
+              VDL Tag Library Documentation for JSP
+          </a>
+        </li>
+        <li>
+          <a href="http://javaserverfaces.java.net/nonav/docs/2.0/pdldocs/facelets/index.html">
+              VDL Tag Library Documentation for Facelets2
+          </a>
+        </li>
+        <li>
+          <a href="http://javaserverfaces.java.net/nonav/docs/2.0/renderkitdocs/index.html">
+              Standard HTML Render Kit Documentation
+          </a>
+        </li>
+        <li>
+          <a href="http://wikis.oracle.com/display/GlassFish/JavaServerFacesRI">Mojarra FAQ</a> 
+        </li> 
+      </ul> 
+     
+    <h2>Software Licenses</h2> 
+    <ul>
+      <li>
+        <a href="http://javaserverfaces.java.net/COPYRIGHT">Copyright 2010 Oracle America, Inc. All rights reserved.</a>
+      </li> 
+      <li>The Mojarra 2.0.4 release is covered by the
+        <a href="http://javaserverfaces.java.net/LICENSE.txt">Common Development and Distribution License (CDDL) + GPLv2</a> 
+      </li> 
+      <li>Additional copyright notices and license terms applicable to portions of the software are set forth in the
+        <a href="http://javaserverfaces.java.net/THIRDPARTYLICENSEREADME.txt">Third Party License README</a> 
+      </li> 
+    </ul> 
+    <hr>
+    <div class="footer">
+      <div style="float:right; height: 24px"></div>
+      <footer>$Revision: 1.3 $
+        <br> $Date: 2010-10-15 16:56:53 $
+        <br>  
+      </footer>
+      <div style="clear:both"></div>
+    </div>
+  </BODY>
+</html>

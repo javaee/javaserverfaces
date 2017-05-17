@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/yui/reset-fonts-grids-min.css1"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <style type="text/css">
+        ul, li {
+            list-style: disc inside;
+    </style>
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+
+    <h4>Mojarra 2.0.x Maven 2 Information</h4>
+    <p>
+        If you're developing an application for use with a Java EE 6 compliant
+        application server, your maven project can simply use the following
+        dependency listing:
+    </p>
+    <pre>
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.faces&lt;/groupId&gt;
+            &lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+            &lt;version&gt;2.0&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+    </pre>
+    <p>
+        Note that the classes included in this JAR are merely stubs for
+        compliation purposes only.
+    </p>
+    <p>
+        Otherwise, if you want to include Mojarra's implementation of the
+        JSF specification (both API and implementation) for deployment on another
+        container such as Tomcat or Jetty, use the following dependency listings:
+    </p>
+    <pre>
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+            &lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+            &lt;version&gt;2.0.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+            &lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+            &lt;version&gt;2.0.2&lt;/version&gt;
+        &lt;/dependency&gt;
+    </pre>
+    <p>
+        Snapshots for the 2.0.3 patch release can be obtained using the following
+        dependency listings:
+    </p>
+    <pre>
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+            &lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+            &lt;version&gt;2.0.3-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+            &lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+            &lt;version&gt;2.0.3-SNAPSHOT&lt;/version&gt;
+        &lt;/dependency&gt;
+    </pre>
+</body>
+</html>

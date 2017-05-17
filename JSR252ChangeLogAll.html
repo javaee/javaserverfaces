@@ -1,0 +1,1020 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Change Log for JSR-000252 JavaServer Faces 1.2 Specification</title>
+</head>
+<body>
+<h2>
+<center>Change Log for JSR-000252 JavaServer<sup><font size="-2">TM</font></sup>
+Faces 1.2 Specification
+</center>
+</h2>
+
+<p>This page details the proposed, accepted and deferred changes to JSR
+252, documenting the changes that will go into the next revision, per <a
+href="http://jcp.org/en/procedures/jcp2#4.2">Section 4.2 of the JCP 2.6
+document</a>.</p>
+
+<p>Last updated: 20060914</p>
+
+<p>Each of the following changes is labeled with an id and a category,
+which is either "errata" or "addition".  These terms are defined as
+follows.</p>
+
+<dl>
+
+<dt><p>errata</p></dt>
+
+<dd><p>Specification bug fixes to the currently released specification. 
+These changes should really be few and far between and only be proposed 
+when a bug has a severe negative impact on the intent of the specification 
+and/or portability of applications.  Erratas which impact TCKs and RIs should 
+be avoided if possible, but they do occur in some cases.</p>
+</dd>
+
+<dt><p>addition</p>
+</dt>
+
+<dd><p>Additions and/or modified "backwards compatible changes" to the current 
+spec. These types of changes occur during a maintenance review or in a new JSR. </p>
+</dd>
+
+</dl>
+
+<p><b>The "errata" and "addition" items will be seperated out into
+two seperate change logs.</b></p>
+
+<b>PROPOSED CHANGES</b>
+<table border="1" width="100%">	
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Category</th>
+<th>Description</th>
+
+</thead>
+
+<tbody>
+<tr>
+
+<td>C001</td>
+
+<td>errata
+</td>
+
+<td>
+
+<p>The specification states that the Restore View Phase of the request
+processing lifecycle should derive the view identifier.  It also states
+that the <i>ViewHandler</i> should derive the view identifier.  Clarified that it
+is the <i>ViewHandler</i>'s responsibility to derive the view identifier.  </p>
+
+<p>Updated Sections 2.2.1 and 7.5.2 of the specification
+accordingly.</p>
+
+<p><b>Justification:</b></p>
+<p>The implementation is the intended behavior (the ViewHander should
+derive the view identifier).  The specification document is incorrect.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=162">Issue 162 </a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C002</td>
+
+<td>errata
+</td>
+
+<td><p>Section 5.4.1 of the specification talks (in detail) about the
+<i>@PostConstruct</i> and <i>@PreDestroy</i> annotations that can be used with Managed
+Beans.&nbsp; This section "redundantly" specifies the requirements for
+the method that bears these annotations - this is already described in
+section 2.5 of the Common Annotation specification.  The specification
+redundantly describes the details about annotation rules, already
+described in the annotations specification.  </p>
+
+<p>Removed the redundant verbage in Section 5.4.1.</p>
+
+<p><b>Justification:</b></p>
+<p>The specification document is in error.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=166">Issue 166 </a></p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>C003</td>
+
+<td>errata</td>
+
+<td>
+
+<p> Section 9.2.2 of the specification still mentions <i>&lt;f:verbatim&gt;</i> as a
+requirement.  Specifically, the specification says: "For the current
+version of this specification, any template text (or non-JSF custom
+actions) present in a page that is included with the <i>&lt;jsp:include&gt;</i>
+or <i>&lt;c:import&gt;</i> action, or any other mechanism that uses
+<i>RequestDispatcher.include()</i>, must be enclosed in an <i>&lt;f:verbatim&gt;</i>
+custom action (see Section 9.4.19&nbsp; &lt;f:verbatim&gt; ). This
+restriction may be lifted in future versions of this specification."
+<i>&lt;f:verbatim&gt;</i> is kept in the specification because other view technologies
+find it useful (Facelets, for example). </p>
+
+<p> Removed that paragraph (restriction) from the
+specification.</p>
+
+<p><b>Justification:</b></p>
+<p>It was agreed upon by the EG that as of JSF 1.2 (which went into the platform), this 
+requirement is no longer valid.  The specification document was not updated to reflect 
+this - the document is in error.</p>
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=167">Issue 167</a></p>
+
+</td>
+
+<tr>
+<td>C004</td>
+
+<td>errata
+</td>
+
+
+<td><p> Page 5-34 in Table 5-10 of the specification mentions a
+non-existent <i>ExternalContext</i> method <i>getRequestScope()</i>.</p>
+
+<p>Changed "requestScope -&gt; externalContext.getRequestScope()" to
+"requestScope -&gt; externalContext.getRequestMap()".</p>
+
+<p><b>Justification:</b></p>
+<p>The specification document is in error.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=196">Issue 196</a></p>
+</td>
+
+</tr>
+
+<tr>
+
+<td>C005</td>
+
+<td>errata
+</td>
+
+<td>
+
+<p> Incorrect Reference to Version element: "Sections 9.4 and 9.5 of the
+specification state that the jsp-version element of the TLDs for the
+core and html taglibs must be 2.1. However, in the schema version of the
+TLDs there is no jsp-version element - it's communicated via the version
+attribute on the opening taglib element." </p>
+
+<p>Removed the bullet item in Sections 9.4 / 9.5 stating that you need
+to specify a jsp-version element.</p>
+
+<p><b>Justification:</b></p>
+<p>The specification document is in error.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=203">Issue 203</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C006</td>
+
+<td>errata
+</td>
+
+<td>
+
+<p>Section 3.1.1 of the specification says: "Subsequent characters may
+be letters (as defined by the Character.isLetter() method), digits as
+defined by the Character.isDigit() method, dashes ( - ), and underscores
+( _ )."</p>
+
+<p>Made this an assertion: "Subsequent characters must be...."</p>
+
+<p><b>Justification:</b></p>
+<p>This was an agreed upon assertion by the EG (even prior to JSF 1.2), but was
+overlooked in the specification document.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=185">Issue 185</a></p>
+
+</td>
+
+</td>
+</tr>
+
+<tr>
+<td>C007</td>
+
+<td>errata
+</td>
+
+<td>
+
+<p>Section 2.5.2.1 of the specification talks about the locale attribute
+value, and mentions that the seperator characters may be '-' or '_'.</p>
+
+<p>
+Made this an assertion: "The separators between the segments must be '-'
+or '_'."</p>
+
+<p><b>Justification:</b></p>
+<p>This was an agreed upon assertion by the EG (even prior to JSF 1.2), but was
+overlooked in the specification document.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=192">Issue 192</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C008</td>
+
+<td>errata
+</td>
+
+<td>
+
+<p>Section 3.1.1 of the specification reduntantly specifies the
+requirement that a provided component identifier must be unique within
+the closest NamingContainer parent. Here is the redundancy: </p>
+
+<pre>
+Every component may be named by a component identifier, which (if utilized) 
+<i><b>must be unique among the components that share a common naming container parent 
+in a component tree.</i></b> Component identifiers must conform to the following rules: 
+   - They must start with a letter (as defined by the Character.isLetter() method) or underscore ( _ ). 
+   - Subsequent characters may be letters (as defined by the Character.isLetter() method), 
+      digits as defined by the Character.isDigit() method, dashes ( - ), and underscores ( _ ). 
+To minimize the size of responses generated by JavaServer Faces, it is recommended 
+that component identifiers be as short as possible. If a component has been given an 
+identifier, <i><b>it must be unique in the namespace of the closest ancestor to that component 
+that is a NamingContainer (if any)</i></b>.
+</pre>
+
+<p>Removed the redundancy so the "uniqueness" requirement is specified once in this
+   section:
+<pre>
+Every component may be named by a component identifier that must conform to the following rules:
+    - They must start with a letter (as defined by the Character.isLetter() method) or underscore ( _ ). 
+    - Subsequent characters must be letters (as defined by the Character.isLetter() method), 
+      digits as defined by the Character.isDigit() method, dashes ( - ), or underscores ( _ ). 
+To minimize the size of responses generated by JavaServer Faces, it is recommended 
+that component identifiers be as short as possible. If a component has been given an 
+identifier, <i><b>it must be unique in the namespace of the closest ancestor to that component 
+that is a NamingContainer (if any)</i></b>.
+</pre>
+</p>
+
+<p><b>Justification:</b></p>
+<p>Specification edit (only) to eliminate redundant verbage.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=193">Issue 193</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C009</td>
+
+<td>errata</td>
+
+<td>
+
+<p> Javadoc changes for SelectItem: Removed the mention of a
+NullPointerException being thrown for constructors.  Mention the default
+value of 'true' for the 'escape' constructor argument if it is not
+specified. Code snippet below  is an example of each type of change.</p>
+
+<pre>
+M jsf-api/src/javax/faces/model/SelectItem.java
+
+      * @param value Value to be delivered to the model if this
+      *  item is selected by the user
+      * @param label Label to be rendered for this item in the response
+-     *
+-     * @throws NullPointerException if <code>value</code>
+-     *  or <code>label</code> <code>null</code>
+      */
+     public SelectItem(Object value, String label) {
+--------------------------------------------------------------------------------------
+      * <code>label</code> property will be set to the value (converted to a
+      * String, if necessary), the <code>description</code> property will be
+-     * set to <code>null</code>, and the <code>disabled</code> property will
+-     * be set to <code>false</code>.</p>
++     * set to <code>null</code>, the <code>disabled</code> property will be set to 
++     * <code>false</code>, and the <code>escape</code> property will be set to
++     ( <code>true</code>.
+</pre>
+
+<p><b>Justification:</b></p>
+<p>Here, we removed some javadoc that was not supposed to be there, and we added javadoc 
+that was supposed to be there.  The implementation was correct, but the javadocs were wrong.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=198">Issue 198</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C010</td>
+
+<td>addition</td>
+
+<td>
+
+<p> The Standard HTML Renderkit Documentation is too restrictive for
+&lt;h:commandLink&gt;.  Removed the requirement to render a hidden field
+(during encoding).  Also, this component does rely on javascript, but
+how that is used is now an implementation detail.  The decode behavior
+is simplified to:</p>
+
+<p>Obtain the <i>Map</i> from the "requestParameterMap" property of the
+<i>ExternalContext</i>.  If the value in the <i>Map</i> for the value of 
+the "clientId" property of the component is <i>non-null</i>, create a
+<i>javax.faces.event.ActionEvent</i> around the component, and pass it 
+to the <i>queueEvent()</i> method of the component, which must be an 
+instance of <i>UICommand</i>.
+
+</p>
+
+<pre>
+M jsf-api/doc/standard-html-renderkit-base.xml
+Regenerated standard-html-renderkit.xml</pre>
+
+<p><b>Justification:</b></p>
+<p>This is the removal of a requirement.  There is currently no TCK coverage for the requirement
+that will be removed.  This will be covered in the new TCK.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=199">Issue 199</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C011</td>
+
+<td>addition</td>
+
+<td>
+
+<p> <i>UIComponentBase.encodeChildren</i> has no default behavior if there is
+no renderer associated with the component - the method essentially is a
+"no operation".  </p>
+<pre>
+M jsf-api/src/javax/faces/component/UIComponentBase.java &nbsp;
+
+Associating renderers with components is optional.&nbsp; If there is no
+renderer associated with the component, then the component should take
+responsiblity and perform the action of rendering its own children.
+Made the javadoc change to describe this for
+UIComponentBase.encodeChildren method.  Here are the changes:
+
+--- jsf-api/src/javax/faces/component/UIComponent.java	17 May 2006 19:00:43 -0000	1.146
++++ jsf-api/src/javax/faces/component/UIComponent.java	4 Aug 2006 20:38:34 -0000
+@@ -831,7 +831,10 @@
+      * 
+      * <p>If a {@link Renderer} is associated with this {@link UIComponent}, 
+      * the actual encoding will be delegated to 
+-     * {@link Renderer#encodeChildren(FacesContext, UIComponent)}.</p> 
++     * {@link Renderer#encodeChildren(FacesContext, UIComponent)}.
++     * Otherwise, render the child components of this {@link UIComponent},
++     * following the rules described for <code>encodeBegin()</code> to
++     * acquire the appropriate value to be rendered.</p> 
+      *
+      * @param context {@link FacesContext} for the response we are creating
+      *
+
+--- jsf-api/src/javax/faces/component/UIComponentBase.java	12 Jul 2006 22:51:38 -0000	1.135
++++ jsf-api/src/javax/faces/component/UIComponentBase.java	4 Aug 2006 20:38:35 -0000
+@@ -826,8 +826,13 @@
+         String rendererType = getRendererType();
+         if (rendererType != null) {
+             getRenderer(context).encodeChildren(context, this);
+-        }
+-
++        } else if (getChildCount() > 0) {
++            Iterator<UIComponent> kids = getChildren().iterator();
++            while (kids.hasNext()) {
++                UIComponent kid = kids.next();
++                kid.encodeAll(context);
++            }
++        } 
+</pre>
+
+<p><b>Justification:</b></p>
+<p>Added this missing functionality per EG discussion.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=169">Issue 169</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C012</td>
+
+<td>errata</td>
+
+<td>
+
+<p> There are two parts to this issue:</p>
+<ol>
+<li><i>EnumConverter.getAsObject</i> and <i>EnumConverter.getAsString</i> method
+javadocs incorrectly described the implementation.  The javadocs for the <i>getAsObject()</i> 
+method mentioned using the <i>getEnumConstants()</i> method, while the implementation used 
+the <i>Enum.valueOf()</i> method.  Likewise, the javadocs for the
+<i>getAsString()</i> method mentioned using the <i>getEnumConstants()</i>
+method, while the implementation used the <i>toString()</i> method.
+</li>
+<li>
+The javadoc mentioned throwing a <i>ConverterException</i> if the <i>targetClass</i>
+argument is <i>null</i>.  This functionality was missing from the implementation.
+</li>
+</ol>
+
+<pre>
+M jsf-api/src/javax/faces/convert/EnumConverter.java 
+1. Corrected javadocs to correctly describe implementation. 
+2. Added functionality to implementation to throw a <i>ConverterException</i> if
+   the <i>targetClass</i> argument is null. 
+
+Here are the changes (getAsObject method):
+
+<      * Convert the argument <code>value</code> to one of the enum
+<      * constants of the class provided in our constructor.  If a target
+<      * class argument has been provided to the constructor for this
+<      * instance, call its <code>getEnumConstants()</code> method.  For
+<      * each element in the list of constants, call
+<      * <code>toString()</code> and compare the string with the argument
+<      * <code>value</code>.  If they are equal, return the current
+<      * element as the <code>Object</code> value.  If none of the
+<      * elements yield a match in this manner, or the length of the list
+<      * returned from <code>getEnumConstants()</code> is zero,
+<      * throw a {@link ConverterException} containing the {@link
+<      * #ENUM_ID} message with proper parameters.  If no target class
+<      * argument has been provided to the constructor of this instance,
+<      * throw a <code>ConverterException</code> containing the {@link
+<      * #ENUM_NO_CLASS_ID} message with proper parameters.</p>
+---
+>      * Convert the <code>value</code> argument to one of the enum
+>      * constants of the class provided in our constructor.  If no
+>      * target class argument has been provided to the constructor of
+>      * this instance, throw a <code>ConverterException</code>
+>      * containing the {@link #ENUM_NO_CLASS_ID} message with proper
+>      * parameters.  If the <code>value</code> argument is <code>null</code>
+>      * or it  has a length of zero, return <code>null</code>.
+>      * Otherwise, perform the equivalent of <code>Enum.valueOf</code> using
+>      * target class and <code>value</code> and return the <code>Object</code>.
+>      * If the conversion fails, throw a <code>ConverterException</code>
+>      * containing the {@link #ENUM_ID} message with proper parameters.
+
+Here are the changes (getAsString method):
+
+<      * argument into a String.  If a target class argument has been
+<      * provided to the constructor for this instance, call its
+<      * <code>getEnumConstants()</code> method.  For each element in the
+<      * list of constants, test for equality between the current element
+<      * and the argument <code>value</code>.  If they are equal, call
+<      * <code>toString()</code> on the current element and return it.  If
+<      * none of the elements yield a match in this manner, or the length
+<      * of the list returned from <code>getEnumConstants()</code> is
+<      * zero, simply call <code>toString()</code> on the argument
+<      * <code>value</code> and return it.
+<      *
+---
+>      * argument into a String.  If no target class argument has been
+>      * provided to the constructor of this instance, throw a
+>      * <code>ConverterException</code> containing the
+>      * {@link #ENUM_NO_CLASS_ID} message with proper parameters. If the
+>      * <code>value,/code> argument is <code>null</code>, return <code>null</code>.
+>      * If the value is an instance of the provided target class, return its
+>      * string value (<code>value.toString()</code>).  Otherwise, throw a
+>      * {@link ConverterException} containing the {@link #ENUM_ID} message with
+>      * proper parameters.
+>      *
+</pre>
+
+<p><b>Justification:</b></p>
+<p>For the first part of this issue, the EG agreed that the implementation is correct, and that the
+javadocs should be updated to reflect the implementation.  For the second part of this issue, the 
+EG agreed that the implementation was missing the logic to throw a <i>ConverterException</i> if the
+<i>targetClass</i> argument is <i>null</i>.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=172">Issue 172</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>C013</td>
+
+<td>errata</td>
+
+<td>
+
+<p>TLD attribute type of <i>h:dataTable</i> "var" attribute should not be
+<i>ValueExpression</i> enabled.  </p>
+
+<p>The generated "html_basic" TLD was generating the "var" attribute
+as ValueExpression Enabled, when it should be a String.  The specification
+for the Standard HTML components (the Standard HTML RenderKit Docs) specify
+that this attribute must be of type <code>String</code>.
+
+<pre>
+M jsf-ri/src/com/sun/faces/generate/JspTLD21Generator.java
+     
+- added additional case to TLD generator.  If property isn't a method
+  expression doesn't necessarily mean it will always be a value
+  expression Regenerated the correct tld.</pre>
+
+<p><b>Justification:</b></p>
+<p>A bug was identified in the TLD generator code that produced a type for the
+<i>var</i> attribute that did not match the specification.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=321">Issue 203 [RI]</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C014</td>
+
+<td>addition</td>
+
+<td>
+
+<p>Make use of generics for PhaseId.VALUES variable.  
+
+<pre>
+
+M  jsf-api/src/javax/faces/event/PhaseId.java 
+
+public static final List&lt;PhaseId&gt; VALUES = Collections.unmodifiableList(Arrays.asList(values));</pre>
+
+<p><b>Justification:</b></p>
+<p>Added this change to make use of generics for this variable.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=182">Issue 182</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C015</td>
+
+<td>errata</td>
+
+<td>
+
+<p>Javadocs and method signatures for the core tag <i>setBinding</i> method
+  do not agree.  For example, javadoc says: <i>@throws
+  IllegalArgumentException</i> but the method signature throws <i>JspException</i>.</p>
+
+<pre>
+M jsf-api/src/javax/faces/webapp/UIComponentELTag.java 
+M jsf-ri/src/com/sun/faces/taglib/jsf_core/ActionListenerTag.java 
+M jsf-ri/src/com/sun/faces/taglib/jsf_core/PhaseListenerTag.java
+M jsf-ri/src/com/sun/faces/taglib/jsf_core/ValueChangeListenerTag.java
+
+Made javadocs changes so they correctly coincide with the method
+signatures.
+
+Here are the changes:
+
+--- jsf-api/src/javax/faces/webapp/UIComponentELTag.java	5 Dec 2005 16:43:04 -0000	1.4
++++ jsf-api/src/javax/faces/webapp/UIComponentELTag.java	24 Aug 2006 11:49:19 -0000
+@@ -71,8 +71,7 @@
+      *
+      * @param binding The new value expression
+      *
+-     * @throws IllegalArgumentException if the specified binding is not a
+-     * valid value binding expression.
++     * @throws JspException if an error occurs
+      */
+     public void setBinding(ValueExpression binding) throws JspException {
+
+--- jsf-ri/src/com/sun/faces/taglib/jsf_core/ActionListenerTag.java	10 May 2006 23:26:09 -0000	1.28
++++ jsf-ri/src/com/sun/faces/taglib/jsf_core/ActionListenerTag.java	24 Aug 2006 11:49:20 -0000
+@@ -110,8 +110,6 @@
+      * <p>Set the value binding expression  for this listener.</p>
+      *
+      * @param binding The new value binding expression
+-     *
+-     * @throws JspException if a JSP error occurs
+      */
+     public void setBinding(ValueExpression binding) {
+
+--- jsf-ri/src/com/sun/faces/taglib/jsf_core/PhaseListenerTag.java	29 Mar 2006 23:03:51 -0000	1.7
++++ jsf-ri/src/com/sun/faces/taglib/jsf_core/PhaseListenerTag.java	24 Aug 2006 11:49:20 -0000
+@@ -88,8 +88,6 @@
+      * <p>Set the value binding expression  for this listener.</p>
+      *
+      * @param binding The new value binding expression
+-     *
+-     * @throws JspException if a JSP error occurs
+      */
+     public void setBinding(ValueExpression binding) {
+
+--- jsf-ri/src/com/sun/faces/taglib/jsf_core/ValueChangeListenerTag.java	10 May 2006 23:26:09 -0000	1.22
++++ jsf-ri/src/com/sun/faces/taglib/jsf_core/ValueChangeListenerTag.java	24 Aug 2006 11:49:20 -0000
+@@ -111,8 +111,6 @@
+      * <p>Set the value binding expression  for this listener.</p>
+      *
+      * @param binding The new value binding expression
+-     *
+-     * @throws JspException if a JSP error occurs
+      */
+     public void setBinding(ValueExpression binding) {
+
+</pre>
+
+<p><b>Justification:</b></p>
+<p>The method signatures were correct (as discussed by the EG), but the javadocs were wrong.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=184">Issue 184</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>C016</td>
+
+<td>errata</td>
+
+<td>
+
+<p>The <i>DoubleConverter.CONVERTER_ID</i> constant is defined incorrectly:
+<i>public static final String CONVERTER_ID = "javax.faces.DoubleTime";</i> </p>
+
+<pre>
+M jsf-api/src/javax/faces/convert/DoubleConverter.java 
+
+Corrected this to be: 
+
+public static final String CONVERTER_ID = "javax.faces.Double";
+</pre>
+
+<p><b>Justification:</b></p>
+<p>The implementation was inconsistent with the spec, in a way that caused the 
+implementation to not correctly implement the spec.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=176">Issue 176</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>C017</td>
+
+<td>errata</td>
+
+<td>
+
+<p> The generated TLD <i>&lt;description&gt;</i> element incorrectly specified the <i>value</i>
+attribute to be a <i>UIComponent</i>. As per JSF 1.0/1.1, the correct type is
+<i>SelectItem</i>.  This bug was introduced in JSF 1.2.  </p>
+
+<pre>
+M jsf-ri/conf/share/jsf_core.tld 
+
+Made "value" attibute be SelectItem (not UIComponent).  Regenerate
+tlddocs.
+
+Here are the changes:
+
+--- conf/share/jsf_core.tld    31 May 2006 17:22:29 -0000    1.64
++++ conf/share/jsf_core.tld    29 Jun 2006 21:39:47 -0000
+@@ -709,7 +709,7 @@
+            </description>
+            <name>value</name>
+            <deferred-value>
+-                <type>javax.faces.component.UIComponent</type>
++                <type>javax.faces.model.SelectItem</type>
+            </deferred-value>
+        </attribute>
+
+@@ -756,7 +756,9 @@
+                information for these options.
+            </description>
+            <name>value</name>
+-            <deferred-value/>
++            <deferred-value>
++                <type>java.lang.Object</type>
++            </deferred-value>
+
+</pre>
+
+<p><b>Justification:</b></p>
+<p>The correct type is specified in JSF 1.0/JSF 1.1.  This bug was introduced in JSF 1.2.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=187">Issue 187</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C018</td>
+
+<td>errata</td>
+
+<td>
+
+<p><i>ConverterTag</i> / <i>ConverterELTag doStartTag()</i> methods (javadoc changes):
+Specified that conversion must occur if the local value is a <i>String</i>.  The 
+implementation was in place for this, but we were missing the javadoc to describe this 
+behavior.</p>
+
+<pre>
+M jsf-api/src/javax/faces/webapp/ConverterELTag.java
+M jsf-api/src/javax/faces/webapp/ConverterTag.java
+
+-- added additional javadoc
+
+Here are the changes:
+
+- * $Id: JSR252ChangeLogAll.html,v 1.6 2006-09-27 13:27:59 rogerk Exp $
++ * $Id: JSR252ChangeLogAll.html,v 1.6 2006-09-27 13:27:59 rogerk Exp $
+  */
+  
+ /*
+@@ -137,7 +137,8 @@
+      * class, and register it with the {@link UIComponent} instance associated
+      * with our most immediately surrounding {@link UIComponentTag} instance, if
+      * the {@link UIComponent} instance was created by this execution of the
+-     * containing JSP page.</p>
++     * containing JSP page.  If the <code>localValue</code> of the
++     * {@link UIComponent} is a String, attempt to convert it.</p>
+
+--- ConverterELTag.java 5 Dec 2005 16:43:04 -0000       1.3
++++ ConverterELTag.java 17 Aug 2006 20:32:48 -0000      1.4
+@@ -1,5 +1,5 @@
+ /*
+- * $Id: JSR252ChangeLogAll.html,v 1.6 2006-09-27 13:27:59 rogerk Exp $
++ * $Id: JSR252ChangeLogAll.html,v 1.6 2006-09-27 13:27:59 rogerk Exp $
+  */
+  
+ /*
+@@ -79,7 +79,8 @@
+      * class, and register it with the {@link UIComponent} instance associated
+      * with our most immediately surrounding {@link UIComponentClassicTagBase} instance, if
+      * the {@link UIComponent} instance was created by this execution of the
+-     * containing JSP page.</p>
++     * containing JSP page.  If the <code>localValue</code> of the
++     * {@link UIComponent} is a String, attempt to convert it.</p>
+
+</pre>
+
+<p><b>Justification:</b></p>
+<p>The EG agreed that we need to specify that an implementation must perform conversion
+if the local value is a <i>String</i>.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=344">Issue 344</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C019</td>
+
+<td>addition</td>
+
+<td>
+
+<p>When <i>&lt;f:setPropertyActionListener&gt;,/i> executes, the value of the
+"source" <i>ValueExpression</i> is propogated to the property identified by the
+"target" <i>ValueExpression</i>.&nbsp; Currently, there is no conversion in
+place, and the spec is terribly silent if any sort of exception occurs -
+which will certainly happen if types are different.  </p>
+
+<p>Updated Section
+9.4.12 &lt;f:setPropertyActionListener&gt; section of the specification
+to specifically mention the new behavior when the listener executes.
+Specifically mentioned that conversion happens (using a by-type
+converter for the target expression (property) type, and what must
+happen if a ConverterException occurs.</p>  
+
+<pre>
+M jsf-ri/src/com/sun/faces/taglib/jsf_core/SetPropertyActionListenerTag.java
+
+Updated Javadocs
+
+M conf/share/jsf_core.tld
+
+Updated description of core setPropertyActionListener tag based on spec updates.
+</pre>
+
+<p><b>Justification:</b></p>
+<p>This is additional requested functionality.  This will be covered
+in the new TCK.</p>
+
+<p><a class="external" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=197">Issue 197</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C020</td>
+
+<td>addition</td>
+
+<td>
+
+<p>For input components, specify that me must render the "id" attribute
+if we are rendering the "name" attribute (beneficial for javascript).</p>
+
+<pre>
+M jsf-api/doc/standard-html-renderkit-base.xml 
+Regenerated standard-html-renderkit.xml</pre>
+
+<p><b>Justification:</b></p>
+<p>This is additional requested functionality.  This will be covered
+in the new TCK.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=309">Issue 309</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C021</td>
+
+<td>errata</td>
+
+<td>
+
+<p> The generated TLD <i>&lt;description&gt;</i> element for <i>&lt;f:convertNumber&gt;</i>
+incorrectly specified an invalid type "percentage" when it should have been "percent".
+This bug was introduced in JSF 1.2.</p> 
+
+Here are the changes:
+
+> --- jsf_core.tld        29 Jun 2006 21:58:07 -0000      1.65
+> +++ jsf_core.tld        23 Aug 2006 12:13:51 -0000
+> @@ -401,7 +401,7 @@
+>             <description>
+>                 Specifies how the number string will be formatted
+>                 and parsed.  Valid values are "number", "currency",
+> -                and "percentage".  Default value is "number".
+> +                and "percent".  Default value is "number".
+>             </description>
+>             <name>type</name>
+>             <deferred-value>
+<pre>
+M jsf-ri/conf/share/jsf_core.tld</pre>
+
+<p><b>Justification:</b></p>
+<p>The verbage in the &lt;description&gt; element specifies an incorrect value.
+The implementation has the correct value.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=387">Issue 387</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C022</td>
+
+<td>addition</td>
+
+<td><p>
+
+  The Standard HTML RenderKit Specification for the component-family:
+  javax.faces.Data renderer-type: javax.faces.Table was changed to
+  enhance accessibility per the W3C Web Content Accessibility Guidelines
+  Section 5.2.  Specifically,</p>
+
+<pre>
+
+     Allow col and colgroup to be specified using a "colgroups" facet.
+
+	 Column Groups
+
+	   If the UIData component has a "colgroups" facet,
+	   render its contents.  Consistent with the rules of facets in
+	   general, this facet must have only one child.  In general, this
+	   will be a panel group component that will contain
+	   colgroup and col elements per the HTML
+	   Table specification.  Use of column grouping can improve
+	   accessibility.  This facet must be rendered before the table
+	   header and footer.
+
+    - Specify that th elements have an "id" attribute that is derived from
+      the clientId of the dataTable + NamingContainer.SEPARATOR_CHAR +
+      colIndex, where colIndex is the index of the column.  This rule is
+      true for the top level "header" facet, as well as any "header" facets
+      within any UIColumn children.
+
+    - Specify that the first td in each row of the table body have a
+      "scope" attribute with the value of "row".
+
+    - Specify that each td element in the table body has a "headers"
+      attribute with the proper value if there was a header for that column
+      in the table.
+
+    - Introduce a new attribute "bodyrows" that enables multiple tbody
+      sections to be rendered.
+</pre>
+
+<p><b>Justification:</b></p>
+<p>This is an additional accessiblity requirement.  This will be covered
+in the new TCK.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=341">Issue 341</a></p>
+
+</td>
+
+</tr>
+
+<tr>
+<td>C023</td>
+
+<td>addition</td>
+
+<td>
+<p>Specified (in the javadocs for <i>ConverterTag.doStartTag</i> and
+<i>ConverterELTag.doStartTag</i> methods additional behavior when a
+<i>ConverterException</i> occurs when converting the local value.</p>
+
+<pre>
+M jsf-api/src/javax/faces/webapp/ConverterELTag.java
+M jsf-api/src/javax/faces/webapp/ConverterTag.java
+
+     /**
+      * <p>Create a new instance of the specified {@link Converter}
+      * class, and register it with the {@link UIComponent} instance associated
+      * with our most immediately surrounding {@link UIComponentClassicTagBase} instance, if
+      * the {@link UIComponent} instance was created by this execution of the
+      * containing JSP page.  If the <code>localValue</code> of the
+-     * {@link UIComponent} is a String, attempt to convert it.</p>
++     * {@link UIComponent} is a String, attempt to convert it.
++     * If the conversion fails and the component is an input component,
++     * enqueue an appropriate error message by calling the <code>addMessage()</code>
++     * method on the <code>FacesContext</code>.  In all cases, log an
++     * appropriate error message.</p>
+      *
+      * @throws JspException if a JSP error occurs
+      */
+
+<p><b>Justification:</b></p>
+<p>The EG agreed that this is the correct behavior for handling a <i>ConverterException</i>, and that
+it should be added to the javadocs.</p>
+
+<p><a class="external" href="http://jsf.java.net/issues/show_bug.cgi?id=344">Issue 344</a></p>
+
+</td>
+
+</tr>
+
+  </tbody>
+</table>
+<b>ACCEPTED CHANGES</b>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<b>DEFERRED CHANGES</b>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<to-view-id><to-view-id><to-url><to-view-id><redirect><redirect><redirect></redirect></redirect></redirect></to-view-id></to-url></to-view-id></to-view-id>
+</body>
+</html>

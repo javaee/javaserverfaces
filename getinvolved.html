@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/yui/reset-fonts-grids-min.css"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/yui/assets/example.css"/> 
+    <link rel="stylesheet" type="text/css" href="/yui/assets/tabview.css"/> 
+
+    <!-- optional skin for border tabs --> 
+    <link rel="stylesheet" type="text/css" href="/yui/assets/module_tabs.css"/> 
+    
+    <script type="text/javascript" src="/yui/utilities.js"></script> 
+    <script type="text/javascript" src="/yui/calendar-min.js"></script>
+    
+    <!-- Source file --> 
+    <script type="text/javascript" src="/yui/tabview-min.js"></script>
+    <style type="text/css">
+        .yui-content {
+            min-height: 170px;
+        }
+        
+        /* for Internet Explorer */
+        /*\*/
+        * html .yui-content {
+        height: 170px;
+        }
+        /**/
+        .devtab {
+            display: none;
+            padding-top: 10px;
+        }
+        
+        .biopic {
+        	float: left;
+        }
+    </style>
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+    <!-- begin container table -->
+    <p>There are many ways to become involved in an open source project like the JavaServer
+    Faces Reference Implementation.  Whether your interests lie in testing or documentation,
+    or your inclination is writing code, there's a place on the development team for just 
+    about anybody.  The <a target="_blank" href="http://www.glassfishwiki.org/gfwiki/Wiki.jsp?page=JavaServerFacesRI#section-JavaServerFacesRI-HowCanIContribute">FAQ</a> 
+    details the steps necessary to become involved formally with the
+    development effort, but you are always welcome to hang out on the mailing lists, or, if
+    you prefer, on IRC (##jsf on irc.freenode.net).</p>
+    
+    <p>To help you get to know your development team better, here is a list of all those on
+    the development team, with a short bio of each contributor:</p>
+    
+    <div id="jsfdevs" class="yui-navset"></div>
+    <div id="edburns" class="devtab">
+        <div class="biopic"><img align="left" src="http://weblogs.java.net/images/people/ed_burns.jpg"/></div>
+        <p>Ed Burns is a senior staff engineer at Oracle America. Ed has worked on a wide variety of client and
+        server side web technologies since 1994, including NCSA Mosaic, Mozilla, the Sun Java Plugin, Jakarta Tomcat
+        and, most recently JavaServer Faces. Ed is currently the co-spec lead for JavaServer Faces.</p>
+    </div>
+    <div id="rkitain" class="devtab">
+        <div class="biopic"><img align="left" src="http://weblogs.java.net/images/people/roger_kitain.jpg"/></div>
+        <p>Roger is the JavaServer Faces co-specification lead. Roger has extensively been involved with server side
+        web technologies and products since 1997. He started working on JavaServer Faces in 2001, as a member of the
+        reference implementation team. He has experience with Servlet, JSP technologies, and most recently he has
+        been involved with different rendering technologies for JSF.</p>
+    </div>
+    <div id="rlubke" class="devtab">
+        <div class="biopic"></div>
+        <p>Ryan Lubke is the current maintainer for the JSF Reference Implementation...</p>
+    </div>
+    <div id="jhook" class="devtab">
+        <div class="biopic"><img align="left" src="http://weblogs.java.net/images/people/jacob_hookom.jpg"/></div>
+        <p>Jacob Hookom is a developer with McKesson Medical-Surgical, designing supply management solutions on the
+        web, desktop, and handheld for a multitude of markets. He started consulting at 16 and has since held titles
+        from Information Architect to Product Manager. In his free time, he contributes to Sun's JavaServerFaces RI
+        and Glassfish projects and is an active member of the JavaServerFaces Expert Groups. Recently he started a
+        Java.net project of his own, called 'Facelets', which is a templating framework for JavaServer Faces.</p>
+    </div>
+    <div id="jdlee" class="devtab">
+        <div class="biopic"><img align="left" src="http://wiki.okcjug.org/download/attachments/4/wiki-mug.jpg?version=1"/></div>
+        <p>Jason Lee is a Sun Certified Java Programmer working for International Environment Corporation in Oklahoma
+        City, OK working with web-based technologies such as JavaServer Faces and AJAX, as well as enterprise
+        technologies based on the Glassfish platform. Jason has been writing software professionally since 1997 in a
+        wide variety of languages and environments, including Java, PHP, C/C++, and Delphi on both Linux/Unix and
+        Windows. Jason is currently working in his free time to wrap the Yahoo User Interface JavaScript components
+        as JSF components.  He is currently serving as the vice president of the Oklahoma City Java Users Group, where
+        he is an active member and presenter.</p>
+    </div>
+    <div id="myoungstrom" class="devtab">
+        <div class="biopic"><img align="left" src="https://glassfish.dev.java.net/public/image/michaely.jpg"/></div>
+        <p>Mike Youngstrom is a Software Engineering Consultant for <a href="http://www.stgutah.com">Software Technology 
+        Group</a>.</p>
+        <p>He is currently working as an on site contractor for The Church of Jesus Christ of Latter Day
+        Saints (http://www.lds.org) as a Senior Software Engineer.  Mike has
+        been a fan of Java since 98, has programed professionally in Java
+        since 2001, and has been developing applications with JSF since its
+        release and is currently help backport relevant issues found in JSF 1.2
+        to JSF 1.1.  Mike has a wife, two kids, and calls Lehi, UT his home.</p>
+    </div>
+    <div id="ssilvert" class="devtab">
+        <div class="biopic"><img align="left" src="https://glassfish.dev.java.net/public/image/StanSilvert-100_84px.jpg"/></div>
+        <p>Stan is a Core Developer for JBoss, a division of RedHat.  He resides in Atlanta, GA. </p>
+        <p>Since earning a degree in computer science from Georgia Tech in 1991, he
+        has held many senior development positions, mostly as a Java Architect.
+        Stan has been a committer to the JBoss Application Server and the Apache
+        MyFaces JSF implementation.  He currently works on the Sun JSF
+        implementation which is used in both GlassFish and JBoss AS 5.  Stan
+        also represents JBoss on the JSF expert group (JSR-252).</p>
+    </div>
+    <div id="trobertson" class="devtab">
+        <div class="biopic"></div>
+        <p>TODO: Get Tony's bio</p>
+    </div>
+    <script type="text/javascript">
+        var devTabs = new YAHOO.widget.TabView("jsfdevs", {orientation: 'top'});
+        
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Ed Burns', contentEl: YAHOO.util.Dom.get('edburns'), active: true }));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Roger Kitain', contentEl: YAHOO.util.Dom.get('rkitain')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Ryan Lubke', contentEl: YAHOO.util.Dom.get('rlubke')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Jacob Hookom', contentEl: YAHOO.util.Dom.get('jhook')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Jason Lee', contentEl: YAHOO.util.Dom.get('jdlee')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Mike Youngstrom', contentEl: YAHOO.util.Dom.get('myoungstrom')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Stan Silvert', contentEl: YAHOO.util.Dom.get('ssilvert')}));
+        devTabs.addTab( new YAHOO.widget.Tab({label: 'Tony Roberson', contentEl: YAHOO.util.Dom.get('trobertson')}));
+    
+        devTabs.appendTo(document.body);
+        
+        YAHOO.util.Event.onContentReady('jsfdevs', function() { 
+            var tabs = devTabs.get('tabs'); 
+            var height = devTabs.get('activeTab').get('contentEl').offsetHeight;
+            for (var i = 0, len = tabs.length; i < len; i++) { 
+                if ( tabs[i] == devTabs.get('activeTab') ) { 
+                    continue; 
+                }     tabs[i].set('contentVisible', true); 
+                height = Math.max(tabs[i].get('contentEl').offsetHeight, height); 
+                tabs[i].set('contentVisible', false); 
+            } 
+            devTabs.getElementsByClassName('yui-content')[0].style.height = height + 'px'; 
+        });
+    </script> 
+</body>
+</html>

@@ -1,0 +1,1186 @@
+<html>
+<HEAD>
+    <link rel="stylesheet" href="style/sun.css" type="text/css">
+    <title>JavaServer(TM) Faces Release Notes 1.2_05 FCS -- Change
+        Log</title>
+    <link rel="alternate"
+          href="http://jsf.java.net/servlets/ProjectNewsRSS"
+          type="application/rss+xml">
+</HEAD>
+<style type="text/css">
+    .red {
+        color: red;
+    }
+
+    .purple {
+        color: purple;
+    }
+
+    .blue {
+        color: blue;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .black {
+        color: black;
+    }
+
+    .ra {
+        background-color: lightgray;
+    }
+
+    .rb {
+        background-color: lavender;
+    }
+
+    .ln {
+        color: rgb( 0, 0, 0 );
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .s0 {
+        color: rgb( 0, 0, 128 );
+        font-weight: bold;
+    }
+
+    .s1 {
+    }
+
+    .s2 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s3 {
+        color: rgb( 128, 128, 128 );
+        font-style: italic;
+    }
+
+    .s4 {
+        color: rgb( 128, 128, 128 );
+        font-weight: bold;
+        font-style: italic;
+    }
+</style>
+<BODY>
+<h1>
+    <banner> JavaServer
+        <sup>
+            <font size="-2">TM</font>
+        </sup> Faces Release Notes
+    </banner>
+    <br> Change Log
+</h1>
+<center>
+    <b>Specification Version:</b> 1.2MR1
+    <br>
+    <b>Implementation Version:</b> 1.2_05 FCS
+    <br>
+</center>
+<table class="navbar" cellspacing="0">
+    <tr>
+        <td class="active">
+          <a>
+<div class="roundedcornr_box_574790">
+   <div class="roundedcornr_top_574790"><div></div></div>
+      <div class="roundedcornr_content_574790">
+         JavaServer(TM) Faces 1.2
+      </div>
+</div>
+</a>
+        </td>
+        <td class="inactive">
+<a href="community.html">
+<div class="roundedcornr_box_855753">
+   <div class="roundedcornr_top_855753"><div></div></div>
+      <div class="roundedcornr_content_855753">
+JSF Community
+      </div>
+</div>
+</a>
+        </td>
+    </tr>
+</table>
+<div class="subnavbar">
+    <ul>
+        <li class="first">
+            <a href="index.html">
+                <span>Overview</span>
+            </a>
+        </li>
+        <li>
+            <a href="releasenotes.html">
+                <span>Release Notes</span>
+            </a>
+        </li>
+        <li>
+            <a href="changelog.html">
+                <span class="active">Change Log</span>
+            </a>
+        </li>
+        <li>
+            <a href="issues.html">
+                <span>Known Issues</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<h2>New Features Added In This Release</h2>
+
+<p>
+    This release includes a major rewrite of the configuration and managed bean
+    sub systems.  We've attempted to stream line these areas as much as possible
+    with careful thought on improving feedback for the developer.  That said, because
+    of the signifigant changes to the internal APIs some applications that relied
+    on these internals will probably break.  We apologize for the inconvenience
+    if this is the case.
+</p>
+<p>
+    Another change which may impact applications is that we've merged all
+    ServletContextListeners into one listener.  In 1.2_04, we had three separate
+    listeners.  If a container wasn't compliant in invoking listeners defined
+    in a TLD, the developer had to know all three of these.  It seemed to have
+    been a mistake to have so many.  The only listener to worry about at this
+    point is <code>com.sun.faces.config.ConfigureListener</code>.
+</p>
+<p>
+    A positive side effect of this rewrite is that the RI no longer has any dependencies
+    on Jakarta Commons libraries.  This makes the RI very lightweight and easy
+    to integrate. 
+<p>
+    the JAXP implementation being used will need to be upgraded.  Consult the container
+    documentation on how to handle this task.
+</p>
+<p>
+    Additionally, we've added two four context initialization parameter since the release of
+    1.2_04 P02
+</p>
+<table style="border: 1px solid ; font-size: small;" cellpadding="5"
+       width="100%">
+
+    <tbody>
+        <tr style="background-color: silver;">
+            <th>Paramter Name</th>
+            <th>Description</th>
+            <th>Default Value</th>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.enableLazyBeanValidation</td>
+            <td>
+                If <code>true</code>, managed beans will be scurtinized when
+                first created.  If <code>false</code>, managed beans will be
+                validated when the application is started, at the expense of
+                a slightly slower start time.
+            </td>
+            <td>true</td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.enabledLoadBundle11Compatibility</td>
+            <td>
+                See <a href="http://jsf.java.net/issues/show_bug.cgi?id=577">Issue 577</a> for details.
+                When this flag is true, The <code>f:loadBundle</code> will behave as it did in JSF 1.1.  If you've
+                migrated from 1.1 to 1.2, and haven't had any issues with <code>f:loadBundle</code> it is safe
+                to ignore this option.
+            </td>
+            <td>
+                false
+            </td>
+        </tr>
+        <tr class="rb">
+            <td>com.sun.faces.clientStateTimeout</td>
+            <td>
+                This specifies the maximum time (in seconds) that client state will be considered
+                valid by the default StateManager/ResponseStateManager implementations.  If the time
+                between requests exceeds the configured time, a <code>javax.faces.application.ViewExpiredException</code>.
+                will be thrown.  It is important to note that if this feature is enabled, and client requests
+                are recieved with view state produced from a previous version, the ViewExpiredException will be thrown
+                immediately.
+            </td>
+            <td>none</td>
+        </tr>
+        <tr class="ra">
+            <td>com.sun.faces.serializeServerState</td>
+            <td>
+                If enabled the component state (not the tree) will be serialized before being
+                stored in the session.  This may be desirable for applications that may have issues
+                with view state being sensitive to model changes.
+            </td>
+            <td>
+                false
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h2>Issues Resolved In This Release</h2>
+<table style="font-size:small;border:1px solid; border-width:1px;" width="100%">
+<tr style="background-color:silver">
+    <th>ID</th>
+    <th>Type</th>
+    <th>Pri</th>
+    <th>Plat</th>
+    <th>Owner</th>
+    <th>State</th>
+    <th>Resolution</th>
+    <th>Summary</th>
+</tr>
+<! -- START ISSUES -->
+<tr>
+    <td colspan="8">Issues fixed in 1.2_05 RC1</td>
+</tr>
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=409">409</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+    </td>
+    <td><span class="summary">Review ManagedBeanFactoryImpl - look for ways to improve performance</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=535">535</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">Expose ApplicationAssociate via ThreadLocal</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=539">539</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+    </td>
+    <td><span
+          class="summary">Remove runtime dependency on commons-digester</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=543">543</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Logging level for "ClientAbortException: java.io.IOException</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=551">551</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rogerk</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Datatable has unexpected rendering when footer facets on the</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=554">554</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+
+    </td>
+    <td><span class="summary">Re-implement verifyObjects feature</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=555">555</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+    </td>
+    <td><span class="summary">Re-enable XML validation</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=556">556</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+
+    </td>
+    <td><span class="summary">Update logging code to use FacesLogger enum</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=559">559</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+    </td>
+    <td><span class="summary">Merge WebappLifecycleListener and ReflectionUtils listener f</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=575">575</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">Problem configuring error page</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=577">577</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">edburns</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">JSF 1.2 isn't backwards compatible with respect to 1.1 rende</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=580">580</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">TCCI fails on jsp:include if template text is in top-level n</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=581">581</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">StringIndexOutOfBoundsException in restoreView() method</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=583">583</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">CommandLinks can't handle null value in UIParameter anymore</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=592">592</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">Macintos</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">ManagedBeanELResolver/SessionMap create new sessions</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=595">595</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">SelectMany-Checkbox:missing class attribute for passing a cs</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=596">596</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P4</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">javax.faces.Messages - spelling errors</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=597">597</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">[PORTLET] False positive on iteration detection in UICompone</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=600">600</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">PC</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">coerceToType give strange side effects</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=602">602</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">ViewHandlerResponseWrapper throws IllegalStateException</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=605">605</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIComponentBase.getClientId() does not obey contract of getC</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=606">606</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">selectItem Arrays.asList() causes UnsupportedOperationExcept</span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="8">Issues fixed in 1.2_05 RC2</td>
+</tr>
+
+<tr class="rb">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=610">610</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P4</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Exception raised during application start of javax.faces.CON</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=612">612</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span
+          class="summary">Implement client state timeout</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=613">613</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">youngm</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">RenderKitImpl.createResponseWriter() mis-handles '*/*' case</span>
+    </td>
+</tr>
+
+
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=616">616</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">MenuRenderer.renderOption doesn't check for nulls</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=619">619</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Size of arrays in UIComponentClassicTagBase.addChild and add</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=620">620</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANCEMENT</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">Improvements to Lifecycle implementation</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=621">621</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">OutputLink children doesn't get fully recursively rendered</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=622">622</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">UICommand parent breaks immediate ActionEvents queued by chi</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=626">626</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">VERIFIED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Data written to the response-writer in the after-Render-resp</span>
+    </td>
+</tr>
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=627">627</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">onclick attribute not working in 1.2_05-rc1</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=628">628</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIData.restoreDecendentState() + UIComponentBase.setId() -&gt; </span>
+    </td>
+</tr>
+
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=631">631</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P1</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">&lt;f:converter /&gt; is instanceof "com.sun.faces.taglib.jsf_core</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=632">632</a>
+    </td>
+
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">Server-side state saving sensitive to model changes</span>
+    </td>
+
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=635">635</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span
+          class="summary">render nested 'CDATA' elements bugs</span>
+    </td>
+</tr>
+<tr class="rb">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=638">638</a>
+
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">EntityResolver isn't being set on the DocumentBuilderFactory</span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="8">Issues fixed in 1.2_05 RC2</td>
+</tr>
+
+<tr class="ra">
+    <td><a
+          href="http://jsf.java.net/issues/show_bug.cgi?id=642">642</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+    </td>
+    <td class="red"><span class="summary">UIData.keepSaved() needs to ensure non-null ID is returned f</span>
+    </td>
+</tr>
+<tr class="rb">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=641">641</a>
+    </td>
+    <td class="purple"><span class="issue_type">ENHANC</span>
+    </td>
+    <td class="purple"><span class="priority">P3</span>
+    </td>
+
+    <td class="purple"><span class="platform">All</span>
+    </td>
+    <td class="purple"><span class="owner">rlubke</span>
+    </td>
+    <td class="purple"><span class="status">RESOLVED</span>
+    </td>
+    <td class="purple"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="purple"><span class="summary">Simplify the concrete Validator and DateTimeConverter implem</span>
+    </td>
+</tr>
+<tr class="ra">
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=643">643</a>
+    </td>
+    <td><span class="issue_type">TASK</span>
+
+    </td>
+    <td><span class="priority">P3</span>
+    </td>
+    <td><span class="platform">All</span>
+    </td>
+    <td><span class="owner">rlubke</span>
+    </td>
+
+    <td><span class="status">RESOLVED</span>
+    </td>
+    <td><span class="resolution">FIXED</span>
+    </td>
+    <td><span
+          class="summary">Remove JSFVersionTracker before the 1.2_05 release</span>
+    </td>
+</tr>
+<tr class="rb">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=647">647</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P3</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span class="summary">NPE in javax.faces.components.UIData.keepSaved()</span>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="8">Issues fixed for the FCS release</td>
+</tr>
+
+<tr class="ra">
+
+    <td>
+        <a href="http://jsf.java.net/issues/show_bug.cgi?id=649">649</a>
+    </td>
+    <td class="red"><span class="issue_type">DEFECT</span>
+    </td>
+    <td class="red"><span class="priority">P2</span>
+    </td>
+
+    <td class="red"><span class="platform">All</span>
+    </td>
+    <td class="red"><span class="owner">rlubke</span>
+    </td>
+    <td class="red"><span class="status">RESOLVED</span>
+    </td>
+    <td class="red"><span class="resolution">FIXED</span>
+
+    </td>
+    <td class="red"><span
+          class="summary">adf dynamic id does not work right</span>
+    </td>
+</tr>
+
+
+<!-- END ISSUES -->
+</table>
+<h2>Updated Service Provider Interfaces (SPIs)</h2>
+
+<p>We've deprecated the following SPIs:</p>
+<ul>
+    <li>com.sun.faces.spi.ManagedBeanFactory</li>
+    <li>com.sun.faces.spi.ManagedBeanFactoryWrapper</li>
+</ul>
+
+<hr>
+<div class="footer">
+    <div style="float:right; height: 24px"></div>
+    <footer>$Revision: 1.18 $
+        <br> $Date: 2010-10-15 16:15:57 $
+        <br>
+    </footer>
+    <div style="clear:both"></div>
+</div>
+</BODY>
+</html>

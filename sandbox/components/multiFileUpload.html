@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>JavaServer Faces Community</title>
+</head>
+<body>
+    <div class=app>
+    The multiFile upload component works around a limitation with the HTML "file"
+    input control, namely that the user can only select one file per input field.  The
+    component does this by making use of a Java applet, which uses Swing's <code>JFileChooser</code> 
+    to allow the user to select an arbitrary number of files from a directory.  Depending 
+    on the mode in which the component is rendered, the user can even select files 
+    from multiple directories.
+    
+    <p>A sample invocation of the component might look like this:
+    
+    <textarea name="code" class="xml"><risb:multiFileUpload maxFileSize="10240" fileHolder="#{testBean.fileHolder}"  
+    destinationUrl="#{testBean.destination}" width="750px" height="250px" type="full"  
+    fileFilter="Images|jpg,png,gif"/></textarea>
+        
+    Rendered on the page, it would look like this:
+    
+    <p><img style="padding-left: 5px" src="../images/multiFileUpload_01.png" 
+    	alt="Multi-file upload, full mode"/>
+    	
+    <p>This is the "full" mode (or "type").  This allows the user to select files from 
+    several different locations, verify that the correct files have been selected, then 
+    upload them all at one time.  The component also supports a "button" mode:
+    
+    <textarea name="code" class="xml"><risb:multiFileUpload maxFileSize="10240" fileHolder="#{testBean.fileHolder}"
+    destinationUrl="#{testBean.destination}" width="175px" height="25px" type="button"
+    buttonText="Custom Text!"/></textarea>
+    
+    Which renders to this:
+    
+    <p><img style="padding-left: 5px" src="../images/multiFileUpload_02.gif" 
+    	alt="Multi-file upload, button mode"/>
+    	
+    <p>In this mode, the user clicks the button, selects the desired files, and clicks OK, 
+    at which point the files are uploaded.
+    
+    <p><code>risb:multiFileUpload</code> uses a <code>PhaseListener</code> to handle the file 
+    uploads, which takes each file upload and stores it in the <code>FileHolder</code> 
+    specified in the component markup.  The Sandbox provides a default implementation of the
+    <code>FileHolder</code> interface, <code>om.sun.faces.sandbox.model.FileHolderImpl</code>, 
+    which simply takes the <code>byte[]</code> for each file and stores in in an internal 
+    <code>Collection</code>.  Applications are free to implement their own <code>FileHolder</code>, 
+    for example, to take each file and store it in a database, write it to an app-specific 
+    location on disk, etc.
+    
+    <p>One call the files have been processed, the method referenced by the <code>destionationUrl</code> 
+    EL expression is called to determine the page to which to navigate.  This method can either just 
+    return the view name, or it can process the files uploaded and return different views 
+    depending on any validation done on the uploaded files, allowing the user 
+    to have an error page, for example.
+    
+    <p>NOTE:  This does *NOT* currently resolve a navigation case result string
+    to the mapped view from the Faces configuration.  This assumes that the string
+    in question is the *name* of a view, so "success" will become
+    http://localhost:8080/MyContext/success.jsf, not
+    http://localhost:8080/MyContext/youdidit.jsf that you may have mapped in
+    your Faces config.  This is due to the lack of a portable way of making
+    that resolution.<p>
+    </div>
+<link type="text/css" rel="stylesheet" href="syntaxHighlighter/SyntaxHighlighter.css"></link>
+<script language="javascript" src="syntaxHighlighter/shCore.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushJava.js"></script>
+<script language="javascript" src="syntaxHighlighter/shBrushXml.js"></script>
+<script language="javascript">
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+</body>
+</html>

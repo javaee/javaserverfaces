@@ -1,0 +1,704 @@
+<div class="row">
+<div class="span10 offset1">
+
+
+<h3>Maven Group, Artifact, and Version (GAV)</h3>
+
+<p>All official JSF Specification and Mojarra implementation artifacts
+for JSF 2.0 and later are now published in maven central.  If you want
+to explicitly specify a repository, you may use one of the following.
+Note that these repositories offer a smaller number of official JSF
+specification and Mojarra implementation artifacts than in maven
+central.</p>
+
+<h4>Maven 2 Repository for JSF 2.1 and Later</h4>
+
+<div class="indent1">
+
+<pre><code>&lt;repository&gt;
+  &lt;id&gt;jvnet-nexus-releases&lt;/id&gt;
+  &lt;name&gt;jvnet-nexus-releases&lt;/name&gt;
+  &lt;url&gt;<a href="https://maven.java.net/content/repositories/releases/">https://maven.java.net/content/repositories/releases/</a>&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+
+</div>
+
+
+<h4>Maven 2 SNAPSHOT Repository for JSF 2.2-SNAPSHOT and Later</h4>
+
+<div class="indent1">
+
+<pre><code>&lt;repository&gt;
+  &lt;id&gt;jvnet-nexus-snapshots&lt;/id&gt;
+  &lt;name&gt;jvnet-nexus-snapshots&lt;/name&gt;
+  &lt;url&gt;<a href="https://maven.java.net/content/repositories/snapshots/">https://maven.java.net/content/repositories/snapshots/</a>&lt;/url&gt;
+&lt;/repository&gt;
+</code></pre>
+
+</div>
+
+<h4>The Best Way to Satisfy A Dependency on JSF</h4>
+
+<div class="grayBox">
+
+<p>The recommend way to use JSF with Maven is to develop on a Java EE
+certified container and declare a <code>&lt;provided&gt;</code> scope
+dependency on the appropriate version of the JavaEE API jar.</p>
+
+<dl>
+
+<dt>JSF 2.2 (Bundled in GlassFish 4.0 series releases)</dt>
+
+<dd>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.2&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</dd>
+
+
+
+<dt>JSF 2.1 (Bundled in GlassFish 3.1 series releases)</dt>
+
+<dd>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.1&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</dd>
+
+<dt>Java EE 7 (also satisfies JSF 2.2 compile-time dependencies)</dt>
+<dd>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;7.0&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</dd>
+
+<dt>Java EE 6 (also satisfies JSF 2.0 compile-time dependencies)</dt>
+<dd>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;6.0&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</dd>
+
+<dt>Java EE 5 (also satisfies JSF 1.2 compile-time dependencies)</dt>
+<dd>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javaee&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;5&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+</dd>
+
+</dl>
+
+<p>Depending only on the API jar will increase the chance that your
+application will actually deliver on the promise of <a
+href="http://www.oracle.com/technetwork/java/javaee/faq-140253.html">JavaEE
+portability</a>.</p>
+
+</div>
+
+<h4>Another, Not Nearly as Correct, Way to Satisfy A Dependency on JSF</h4>
+
+<p>If you have no other choice but to introduce a dependency on a
+specific implementation of JSF (namely, Oracle Mojarra JSF), use the
+maven GAV as specified below.
+
+<h3>Nightly Builds of Mojarra</h3>
+
+<div class="grayBox">
+
+<!-- 20130702 edburns: Uncomment when next spec effort commences.
+
+
+<p>Declare the SNAPSHOT repository listed above and the following maven
+GAV.</p>
+
+<div class="indent1">
+
+<code>
+<pre>
+&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.2-SNAPSHOT&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+</code>
+
+</div>
+
+<p>The self-contained implementation of the latest development build may
+be obtained with the following GAV, also in the SNAPSHOT
+repository. This implementation must replace whatever implementation
+your container already has.</p>
+
+<div class="indent1">
+
+<code>
+<pre>
+&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.2.0-SNAPSHOT&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+</code>
+
+</div>
+
+-->
+
+<p>Mojarra 2.2.x and 2.1.X are also being actively developed.  Here are
+the GAV for the nightly 2.2.x and 2.1.X builds.  Replace the X with
+the version number of the latest stable verion below, incremented by 1.
+For example, if the latest stable 2.1 release was 2.1.4, the version for
+the nightly would be 2.1.5-SNAPSHOT.</p>
+
+<div class="indent1">
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.2.X-SNAPSHOT&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt; 
+&lt;/dependency&gt;
+</code></pre>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.1.X-SNAPSHOT&lt;/version&gt;
+&nbsp;&nbsp;&lt;scope&gt;provided&lt;/scope&gt; 
+&lt;/dependency&gt;
+</code></pre>
+
+</div>
+
+
+</div>
+
+<h3>Stable Versions of Mojarra</h3>
+
+    <!--  Local Content -->
+    <h4>Current Release</h4>
+
+<p>The version numbers of the most current release are always on the jsf
+home page at <a
+href="http://jsf.java.net/">http://jsf.java.net/</a>.</p>
+
+    <ul>
+        <li>
+            <font style="font-weight:bold;">2.2.x releases</font>
+            <ul>
+                <li>Download <a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.2.1/javax.faces-2.2.1.jar">https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.2.1/javax.faces-2.2.1.jar</a></li>
+                <li>Release notes page at <a href="https://javaserverfaces.java.net/2.2/releasenotes.html">https://javaserverfaces.java.net/2.2/releasenotes.html</a></li>
+	        <li>Maven GAV 
+<br/>
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.2.x&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+             </li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.1.x releases</font>
+            <ul>
+                <li>Download page at <a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.1.24/javax.faces-2.1.24.jar">https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.1.24/javax.faces-2.1.24.jar</a></li>
+                <li>Release notes page at <a href="https://javaserverfaces.java.net/2.1/releasenotes.html">https://javaserverfaces.java.net/2.1/releasenotes.html</a></li>
+	        <li>Maven GAV <br/>
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.1.x&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.11</font> (02/13/2013)
+            <ul>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.11/javax.faces-2.0.11.jar">2.0.11 binary</a></li>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.11/javax.faces-2.0.11-sources.jar">2.0.11 sources</a></li>
+                <li><a href="https://javaserverfaces.java.net/nonav/rlnotes/2.0.11/index.html">2.0.11 Release Notes</a></li>
+	        <li>Maven GAV <br/>
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.0.11&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+
+        <li>
+            <font style="font-weight:bold;">1.2_16</font> (01/16/2013)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_16/mojarra-1.2_16-binary.zip">1.2_16 binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_16/mojarra-1.2_16-source.zip">1.2_16 source</a></li>
+<!-- PENDING(rogerk): add relnotes for 1.2_16
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_16/index.html">1.2_16 Release Notes</a></li>
+-->
+
+    </ul>
+</ul>
+    <h4>Archived Releases</h4>
+
+<p>For all archived releases you must declare two
+<code>&lt;dependency&gt;</code> elements, both with
+<code>&lt;groupId&gt;com.sun.faces&lt;/groupId&gt;</code>.  For all JSF
+2.0 and later artifacts you may follow the example GAV listed in the
+entry for 2.1.1.  For all JSF 1.2 and earlier artifacts, you may follow
+the example GAV listed in the entry for 1.2_14.</p>
+
+    <ul>
+        <li>
+            <font style="font-weight:bold;">2.1.2 - and beyond</font>
+            <p>
+                See <a href="http://javaserverfaces.java.net/nonav/2.1/download.html">here</a>
+            </p>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.1.1</font> (04/04/2011)
+            <ul>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.1.1-FCS-binary.zip">2.1.1 binary bundle</a></li>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.1.1-FCS-source.zip">2.1.1 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.1.1/index.html">2.1.1 Release Notes</a></li>
+	        <li>Maven GAV<br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.1.1-b04&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;com.sun.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.1.1-b04&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+
+</li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.1.0</font> (03/02/2011)
+            <ul>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.1.0-FCS-binary.zip">2.1.0 binary bundle</a></li>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.1.0-FCS-source.zip">2.1.0 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.1.0/index.html">2.1.0 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.1.0-b11&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+<p></p>
+        <li>
+            <font style="font-weight:bold;">2.0.10</font> (12/18/2012)
+            <ul>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.10/javax.faces-2.0.10.jar">2.0.10 binary</a></li>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.10/javax.faces-2.0.10-sources.jar">2.0.10 sources</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.10/index.html">2.0.10 Release Notes</a></li>
+	        <li>Maven GAV <br/>
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.0.10&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+
+
+        <li>
+            <font style="font-weight:bold;">2.0.9</font> (02/08/2012)
+            <ul>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.9/javax.faces-2.0.9.jar">2.0.9 binary</a></li>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.9/javax.faces-2.0.9-sources.jar">2.0.9 sources</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.9/">2.0.9 Release Notes</a></li>
+	        <li>Maven GAV <br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.0.9&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.8</font> (01/13/2012)
+            <ul>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.8/javax.faces-2.0.8.jar">2.0.8 binary</a></li>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.8/javax.faces-2.0.8-sources.jar">2.0.8 sources</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.8/">2.0.8 Release Notes</a></li>
+	        <li>Maven GAV <br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.0.8&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.7</font> (12/22/2011)
+            <ul>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.7/javax.faces-2.0.7.jar">2.0.7 binary</a></li>
+                <li><a href="https://maven.java.net/content/repositories/releases/org/glassfish/javax.faces/2.0.7/javax.faces-2.0.7-sources.jar">2.0.7 sources</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.7/">2.0.7 Release Notes</a></li>
+	        <li>Maven GAV <br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;org.glassfish&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;javax.faces&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;2.0.7&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+             </li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.6</font> (06/03/2011)
+            <ul>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.6-FCS-binary.zip">2.0.6 binary bundle</a></li>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.6-FCS-source.zip">2.0.6 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.6/index.html">2.0.6 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.6&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.5</font> (05/06/2011)
+            <ul>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.5-FCS-binary.zip">2.0.5 binary bundle</a></li>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.5-FCS-source.zip">2.0.5 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.5/index.html">2.0.5 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.5&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.4</font> (01/13/2011)
+            <ul>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.4-FCS-binary.zip">2.0.4 binary bundle</a></li>
+                <li><a href="http://java.net/projects/javaserverfaces/downloads/download/release%252Fmojarra-2.0.4-FCS-source.zip">2.0.4 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.4/index.html">2.0.4 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.4-b09&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+
+        <li>
+            <font style="font-weight:bold;">1.2_15</font> (09/24/2010)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_15/mojarra-1.2_15-b01-FCS-binary.zip">1.2_15 binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_15/mojarra-1.2_15-b01-FCS-source.zip">1.2_15 source</a></li>
+<!-- PENDING(rogerk): add relnotes for 1.2_15 
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_15/index.html">1.2_15 Release Notes</a></li>
+-->
+	        <li>Maven GAV<br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;1.2_15&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;1.2_15&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+</li>
+            </ul>
+        </li>
+
+        <li>
+            <font style="font-weight:bold;">2.0.3</font> (07/1/2010)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.3/mojarra-2.0.3-FCS-binary.zip">2.0.3 binary bundle</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.3/mojarra-2.0.3-FCS-source.zip">2.0.3 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.3/index.html">2.0.3 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.3-b05&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.2</font> (12/10/209)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.2/mojarra-2.0.2-FCS-binary.zip">2.0.2 binary bundle</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.2/mojarra-2.0.2-FCS-source.zip">2.0.2 source bundle</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.2/index.html">2.0.2 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.2-b10&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.1</font> (10/22/2009)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.1/mojarra-2.0.1-FCS-binary.zip">2.0.1 FCS binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.1/mojarra-2.0.1-FCS-source.zip">2.0.1 FCS source</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.1/index.html">2.0.1 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.1-b02&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">2.0.0</font> (10/19/2009)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.0/mojarra-2.0.0-FCS-binary.zip">2.0.0 FCS binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/2.0.0/mojarra-2.0.0-FCS-source.zip">2.0.0 FCS source</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/2.0.0/index.html">2.0.0 RC2 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;2.0.0-b23&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">1.2_14</font> (12/18/2010)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_14/mojarra-1.2_14-binary.zip">1.2_14 binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_14/mojarra-1.2_14-source.zip">1.2_14 source</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_14/index.html">1.2_14 Release Notes</a></li>
+                <li>Maven GAV<br/>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-api&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;1.2_14&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<pre><code>&lt;dependency&gt;
+&nbsp;&nbsp;&lt;groupId&gt;javax.faces&lt;/groupId&gt;
+&nbsp;&nbsp;&lt;artifactId&gt;jsf-impl&lt;/artifactId&gt;
+&nbsp;&nbsp;&lt;version&gt;1.2_14&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+
+</li>
+
+            </ul>
+        </li>
+        <li>
+            <font style="font-weight:bold;">1.2_13</font> (07/7/2010)
+            <ul>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_13/mojarra-1.2_13-binary.zip">1.2_13 binary</a></li>
+                <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_13/mojarra-1.2_13-source.zip">1.2_13 source</a></li>
+                <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_13/index.html">1.2_13 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_13&lt;/version&gt;</code></li>
+            </ul>
+        </li>
+        <li>
+        <font style="font-weight:bold;">1.2_12</font> (01/16/2010)
+        <ul>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_12/mojarra-1.2_12-binary.zip">1.2_12 binary</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_12/mojarra-1.2_12-source.zip">1.2_12 source</a></li>
+            <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_12/index.html">1.2_12 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_12&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_11</font> (12/19/2008)
+        <ul>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_11/mojarra-1.2_11-b01-FCS-binary.zip">1.2_11 binary</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_11/mojarra-1.2_11-b01-FCS-source.zip">1.2_11 source</a></li>
+            <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_11/index.html">1.2_11 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_11-FCS&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_10</font> (10/31/2008)
+        <ul>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_10/mojarra-1.2_10-b01-FCS-binary.zip">1.2_10 binary</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_10/mojarra-1.2_10-b01-FCS-source.zip">1.2_10 source</a></li>
+            <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_10/index.html">1.2_10 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_10&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_09</font> (07/18/2008)
+        <ul>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_09/mojarra-1.2_09-b02-FCS-binary.zip">1.2_09 binary</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_09/mojarra-1.2_09-b02-FCS-source.zip">1.2_09 source</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_09/mojarra-1.2_09-b02-FCS-glassfish-updater.jar">1.2_09 GlassFish Updater</a></li>
+            <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_09/index.html">1.2_09 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_09-b01&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_08</font> (02/26/2008)
+        <ul>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_08/mojarra-1.2_08-FCS-binary.zip">1.2_08 binary</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_08/mojarra-1.2_08-FCS-source.zip">1.2_08 source</a></li>
+            <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_08/mojarra-1.2_08-FCS-glassfish-updater.jar">1.2_08 GlassFish Updater</a></li>
+            <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_08/index.html">1.2_08 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_08&lt;/version&gt;</code></li>
+        </ul>
+    <li>
+        <font style="font-weight:bold;">1.2_07</font> (12/5/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_07/jsf-1_2_07.zip">1.2_07 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_07/jsf-1_2_07-src.zip">1.2_07 source</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_07/jsf-glassfish-updater-1.2_07-b03-FCS.jar">1.2_07 GlassFish Updater</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_07/index.html">1.2_07 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_07&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_06</font> (11/13/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_06/jsf-1_2_06.zip">1.2_06 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_06/jsf-1_2_06-src.zip">1.2_06 source</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_06/jsf-glassfish-updater-1.2_06-b02-FCS.jar">1.2_06 GlassFish Updater</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_06/index.html">1.2_06 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_06&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_05</font> (10/15/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_05/jsf-1_2_05.zip">1.2_05 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_05/jsf-1_2_05-src.zip">1.2_05 source</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_05/index.html">1.2_05 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_05&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_04 P02</font> (05/23/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P02/jsf-1_2_04-p02.zip">1.2_04 P02 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P02/jsf-1_2_04-p02-src.zip">1.2_04 P02 source</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P02/jsf-glassfish-updater-1.2_04-b16-p02.jar">1.2_04 P02 GlassFish Updater</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_04/index.html">1.2_04 Release Notes</a></li>
+           <li>maven version: <code>&lt;version&gt;1.2_04-p02&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_04 P01</font> (03/20/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P01/jsf-1.2_04-b10-p01.zip">1.2_04 P01 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P01/jsf-1.2_04-b10-p01-src.zip">1.2_04 P01 source</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04%20P01/jsf-glassfish-updater-1.2_04-b10-p01.jar">1.2_04 P01 GlassFish Updater</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_04/index.html">1.2_04 Release Notes</a></li>
+           <li>maven version: <code>&lt;version&gt;1.2_04-p01&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+        <font style="font-weight:bold;">1.2_04</font> (03/5/2007)
+        <ul>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04/jsf-1.2_04-b07-FCS.zip">1.2_04 binary</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04/jsf-1.2_04-b07-FCS-src.zip">1.2_04 source</a></li>
+           <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_04/jsf-glassfish-updater-1.2_04-b07-FCS.jar">1.2_04 GlassFish Updater</a></li>
+           <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_04/index.html">1.2_04 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_04&lt;/version&gt;</code></li>
+        </ul>
+    </li>
+    <li>
+    <font style="font-weight:bold;">1.2_03</font> (12/4/2006)
+    <ul>
+	    <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_03/jsf-1_2_03.zip">1.2_03 binary</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_03/jsf-1_2_03-src.zip">1.2_03 source</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_03/jsf-glassfish-updater-1.2_03-FCS.jar">1.2_03 GlassFish Updater</a></li>
+        <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_03/index.html">1.2_03 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_03&lt;/version&gt;</code></li>
+    </ul>
+    </li>
+    <li>
+     <font style="font-weight:bold;">1.2_02</font> (08/25/2006)
+    <ul>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_02/jsf-1_2_02.zip">1.2_02 binary</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_02/jsf-1_2_02-src.zip">1.2_02 source</a></li>
+        <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_02/index.html">1.2_02 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_02&lt;/version&gt;</code></li>
+    </ul>
+    </li>
+    <li>
+    <font style="font-weight:bold;">1.2_01</font> (07/14/2006)
+    <ul>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_01/jsf-1_2_01.zip">1.2_01 binary</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2_01/jsf-1_2_01-src.zip">1.2_01 source</a></li>
+        <li><a href="http://javaserverfaces.java.net/nonav/rlnotes/1.2_01/index.html">1.2_01 Release Notes</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2_01-B04&lt;/version&gt;</code></li>
+    </ul>
+    </li>
+    <li>
+    <font style="font-weight:bold;">1.2</font> (05/2006)
+    <ul>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2/jsf-1_2.zip">1.2 binary</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.2/jsf-1_2-src.zip">1.2 source</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.2&lt;/version&gt;</code></li>
+    </ul>
+    </li>
+    <li>
+     <font style="font-weight:bold;">1.1_02</font> (04/24/2006)
+    <ul>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.1_02/jsf-1_1_02.zip">1.1_02 binary</a></li>
+        <li><a href="http://java.net/downloads/javaserverfaces/release/1.1_02/jsf-1_1_02-src.zip">1.1_02 source</a></li>
+	        <li>maven version: <code>&lt;version&gt;1.1_02&lt;/version&gt;</code></li>
+    </ul>
+    </li>
+    <li>
+     <font style="font-weight:bold;">1.1_01</font> (09/07/2004)
+    <ul>
+        <li>1.1_01 binary</li>
+        <li>1.1_01 source
+            (java Do -classpath . javaserverfaces_source_20040714 to install.)
+        </li>
+    </ul>
+    </li>
+    <li>
+     <font style="font-weight:bold;">1.1</font> (05/27/2004)
+    <ul>
+        <li>1.1 binary</li>
+        <li>1.1 Source</li>
+    </ul>
+    </li>
+    <li>
+     <font style="font-weight:bold;">1.0</font> (03/03/2004)
+    <ul>
+        <li>1.0 binary</li>
+        <li>1.0 Source</li>
+    </ul>
+    </li>
+    </ul>
+    
+	<!-- original content-->
+    </div></div>

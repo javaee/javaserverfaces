@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+  This file is per-project and controls how the system works
+  for that project.
+-->
+<ACL-CVS>
+  <!--
+    this address receives an e-mail every time a role is
+    granted for someone. You can use this to keep the
+    archive of who requested the access and when.
+  -->
+  <admin>javaserverfowner@javaserverfaces.dev.java.net</admin>
+  
+  <!--
+    private project name to grant access. The access
+    to this project will be granted by the system
+    automatically.
+    
+    Be sure to have the "acl_manager" user as a member
+    of this project.
+  -->
+  <grantTo>javaserverfaces-sources</grantTo>
+  
+  <!--
+    role to grant. The system grants this role in the above
+    project.
+  -->
+  <grantRole>Observer</grantRole>
+  
+  <!--
+    the welcome message to the user.
+    The admin address will receive a BCC of this.
+    
+    The "from" address should be a human's address in case
+    the user has any problem/questions.
+  -->
+
+  <confirmation subject="CVS access to the javaserverfaces project granted"
+                from="javaserverfowner@javaserverfaces.dev.java.net"><![CDATA[
+    Thank you for your interest in the JavaServer(TM) Faces
+    implementation project.  We processed your request just now and have
+    granted the CVS access.
+    
+    We are sending e-mail because you accepted the Common Development and 
+    Distribution License terms (http://www.opensource.org/licenses/cddl1.php).  
+    If you haven't accepted these terms, please contact javaserverfowner@javaserverfaces.dev.java.net
+    as soon as possible to get you removed.
+    
+    To access the CVS, please visit
+    http://javaserverfaces-sources.dev.java.net/ and follow the
+    instructions there.
+    
+    Thank you!
+    
+    - the JavaServer Faces Team
+  ]]></confirmation>
+</ACL-CVS>
