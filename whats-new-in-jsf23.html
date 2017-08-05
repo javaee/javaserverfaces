@@ -1,0 +1,2564 @@
+<!DOCTYPE html>
+
+<html  xml:lang="en" lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Mojarra JavaServer Faces</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta http-equiv="content-language" content="en" />
+		<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/site.css" rel="stylesheet" />
+        <style> a { color: #555555; } </style>
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+		<!-- Syntax highlighting for source code  -->
+		<link href='http://alexgorbatchev.com/pub/sh/current/styles/shCore.css' rel='stylesheet' type='text/css'/>
+		<link href='http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css' rel='stylesheet' type='text/css'/>
+		<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js' type='text/javascript'></script>
+		<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJava.js' type='text/javascript'></script>
+		<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushJScript.js' type='text/javascript'></script>
+		<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushSql.js' type='text/javascript'></script>
+		<script src='http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js' type='text/javascript'></script>
+		<script language='javascript'> 
+		    SyntaxHighlighter.config.bloggerMode = true;
+		    SyntaxHighlighter.config.clipboardSwf = 'http://alexgorbatchev.com/pub/sh/current/scripts/clipboard.swf';
+		    SyntaxHighlighter.all();
+		</script>
+		
+	</head>
+
+	<body class="page-index project-gfmvnsite" data-spy="scroll" data-offset="60" data-target="#toc-scroll-target">
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<div class="brand">
+						<a href="https://javaee.github.io/javaserverfaces-spec">
+							<img src="images/jsf-logo-no-text-32.png"><span style="color:#E88A43;font-size:18px;padding-left:11px;;padding-top:15px;font-weight:bold;">Mojarra JavaServer Faces</span> - <span style="font-size:18px;">Oracle's open source implementation of the JSF standard</span>
+						</a>
+					</div>
+					<div class="nav-collapse">
+						<ul class="nav pull-right">
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Related Projects<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="https://github.com/javaee/glassfish" title="GlassFish">GlassFish</a></li><li><a href="https://jersey.github.io" title="Jersey">Jersey</a></li><li><a href="https://github.com/tyrus-project/tyrus" title="Tyrus">Tyrus</a></li><li><a href="https://javaee.github.io/grizzly" title="Grizzly">Grizzly</a></li><li><a href="https://javaee.github.io/openmq" title="Open MQ">Open MQ</a></li></ul></li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+		
+		<div class="container">
+	
+			<div class="main-body">
+				<br>
+				
+				<h3 class='post-title entry-title'>
+					What's new in JSF 2.3?
+				</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div>
+<p>
+The process of developing JSF 2.3 started late september 2014, which is approximately 1.5 half year after JSF 2.2 was finalized. 
+JSF 2.3 went final in the beginning of 2017.
+
+<p>
+The following text describes the new features of JSF 2.3. Compiled by JSF 2.3 EG member Arjan Tijms.
+
+<a name="new"></a>
+<h3> JSF 2.3 new features </h3>
+<ul>
+ <li> <a href="#cdi">CDI alignment</a>
+            <ul>
+               <li><a href="#1316">Injection and EL resolving of JSF artifacts</a> </li>
+               <li><a href="#1316b">Injection in more JSF artifacts</a> </li>
+               <li><a href="#1417">Native managed beans annotations deprecated</a> </li> 
+               <li><a href="#1418">CDI compatible @ManagedProperty</a> </li> 
+           </ul>
+        </li>
+        <li> <a href="#lifecycle">Lifecycle</a>
+            <ul>
+               <li><a href="#1135">System event published after view rendered</a></li>
+            </ul>
+        </li>
+        <li> <a href="#networking">Networking / AJAX</a>
+            <ul>
+               <li><a href="#1396">WebSocket integration</a></li>
+               <li><a href="#613">Ajax method invocation</a></li>
+               <li><a href="#1412">Execute javascript from server at completion of AJAX response</a></li>
+               <li><a href="#790">Updating multiple forms via AJAX</a></li>
+            </ul>
+        </li>
+        <li> <a href="#conversion-validation">Conversion / Validation</a>
+            <ul>
+               <li><a href="#1">Class level bean validation</a></li>
+               <li><a href="#1370">JDK 8 time support in f:convertDateTime</a></li>
+            </ul>
+        </li>
+        <li> <a href="#java">Java API</a>
+          <ul>
+               <li><a href="#1103">Support for the Iterable interface in UIData and UIRepeat</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1364">Support for the Map interface in UIData and UIRepeat</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1078">Support for custom types in UIData and UIRepeat</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1429">Default getWrapped method for FacesWrapper implementations</a></li>
+          </ul>
+        </li>
+        <li> <a href="#components">Components</a>
+           <ul>
+               <li><a href="#1238">Component Search Expression framework</a></li>
+           </ul>
+           <ul>
+               <li><a href="#329">Freely placeable radio button component</a></li>
+           </ul>
+           <ul>
+               <li><a href="#217">styleClass attribute on h:column</a></li>
+           </ul>
+           <ul>
+               <li><a href="#217_2">rowClass attribute on h:dataTable</a></li>
+           </ul>
+           <ul>
+               <li><a href="#1102">Iteration in UIRepeat without backing model</a></li>
+           </ul>
+           <ul>
+               <li><a href="#1422">Automatic conversion in UISelectMany for Collection</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1424">Importing constants into EL namespace</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1007">Official spec recognition for dynamic component tree manipulation</a></li>
+          </ul>
+        </li>
+        <li> <a href="#resources">Views and Resources</a>
+           <ul>
+               <li><a href="#1260">Basic support for exact mapping (extensionless URLs)</a></li>
+           </ul>
+           <ul>
+               <li><a href="#1435">Obtaining list of all view resources</a></li>
+           </ul>
+           <ul>
+               <li><a href="#1404">Standardised resource rendered tracking</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1423">Resource loading for components dynamically added via ajax</a></li>
+          </ul>
+        </li>
+        <li> <a href="#type-safety">Type-safety</a>
+          <ul>
+               <li><a href="#1382">Generics for ExternalContext#getInitParamterMap</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1355">Generics for Converter and Validator interfaces</a></li>
+          </ul>
+          <ul>
+               <li><a href="#1428">Constants for "jsf.js", "javax.faces" and postback parameters</a></li>
+          </ul>
+        <li> <a href="#configuration">Configuration</a>
+            <ul>
+               <li><a href="#936">Facelets default to non-hot reload in production</a></li>
+            </ul>
+            <ul>
+               <li><a href="#1434">.xhtml added to default mappings</a></li>
+            </ul>
+        </li> 
+</ul>
+
+
+<a name="cdi"></a>
+<h3> CDI </h3>
+
+<p>
+<a name="1316"></a>
+<strong>Injection and EL resolving of JSF artifacts</strong> (<a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1316">spec issue 1316</a>) <small>(partially)</small>
+
+<p>
+JSF has traditionally used static entry methods and chaining to let the user obtain the various artifacts that it provides, such as the FacesContext, session map, external context, etc. The following gives a few examples of this:
+
+<pre class="brush: java;">
+FacesContext facesContext = FacesContext.getCurrentInstance()
+ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+Map&lt;String, Object&gt; cookieMap = FacesContext.getCurrentInstance().getExternalContext().getRequestCookieMap();
+Map&lt;String, Object&gt; viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+// etc
+</pre>
+
+<p>
+Especially the artefacts that have to be obtained by deep chaining can be problematic. Not only makes this the code verbose and hard to read, it can also be unclear to users that the view map has to be obtained via the view root but the cookie map via the external context as shown above.
+
+<p>
+Furthermore, the pattern makes it hard to override what is returned by the runtime. In JSF it IS possible to influence this by providing/setting a custom FacesContext, but especially for the deeper chained artefacts multiple levels or wrapping are then required, which is not always trivial to implement. The problem there is clearly that the abstraction is at the wrong level; providing an alternative view map requires a custom faces context, which provides a wrapped view root, which then finally provides the view map we wanted to provide.
+
+<p>
+A more modern approach in Java EE is to inject artefacts in order to obtain them (essentially flattening the lookup) and to provide alternative producers for those when the need to override them arises.
+
+<p>
+JSF 2.3 will therefore provide default producers for the most important artefacts, which at the moment being:
+
+<table border="1" style="font-size: 100%;">
+
+<tr style="background-color:LightGray;">
+<th>Artefact</th>   <th>EL name</th>  <th>Qualifier</th> <th>Type</th>
+</tr>
+
+<tr>
+<td>Application</td>   <td>#{application}</td>  <td>-</td> <td><small>java.lang.Object (javax.servlet.ServletContext)</small></td>
+</tr>
+
+<tr>
+<td>ApplicationMap</td>   <td>#{applicationScope}</td>  <td>@ApplicationMap</td> <td><small>java.util.Map&lt;String, Object&gt;</small></td>
+</tr>
+
+
+<tr>
+<td>CompositeComponent</td>   <td>#{cc}</td>  <td><small><i>(Not injectable)</i></small></td> <td><small>javax.faces.component.UIComponent</small></td>
+</tr>
+
+
+<tr>
+<td>Component</td>   <td>#{component}</td>  <td><small><i>(Not injectable)</i></small></td> <td><small>javax.faces.component.UIComponent</small></td>
+</tr>
+
+<tr>
+<td>RequestCookieMap</td>   <td>#{cookie}</td>  <td>@RequestCookieMap</td> <td><small>java.util.Map&lt;String, Object&gt;</small></td>
+</tr>
+
+<tr>
+<td>FacesContext</td>   <td>#{facesContext}</td>  <td>-</td> <td><small>javax.faces.context.FacesContext</small></td>
+</tr>
+
+<tr>
+<td>Flash</td>   <td>#{flash}</td>  <td>-</td> <td><small>javax.faces.context.Flash</small></td>
+</tr>
+
+
+<tr>
+<td>FlowMap</td>   <td>#{flowScope}</td>  <td>@FlowMap</td> <td><small>java.util.Map&lt;Object, Object&gt;</small></td>
+</tr>
+
+
+<tr>
+<td>HeaderMap</td>   <td>#{header}</td>  <td>@HeaderMap</td> <td><small>java.util.Map&lt;String, String&gt;</small></td>
+</tr>
+
+
+<tr>
+<td>HeaderValuesMap</td>   <td>#{headerValues}</td>  <td>@HeaderValuesMap</td> <td><small>java.util.Map&lt;String, String[]&gt;</small></td>
+</tr>
+
+<tr>
+<td>InitParameterMap</td>   <td>#{initParam}</td>  <td>@InitParameterMap</td> <td><small>java.util.Map&lt;String, String&gt;</small></td>
+</tr>
+
+<tr>
+<td>RequestParameterMap</td>   <td>#{param}</td>  <td>@RequestParameterMap</td> <td><small>java.util.Map&lt;String, String&gt;</small></td>
+</tr>
+
+<tr>
+<td>RequestParameterValuesMap</td>   <td>#{paramValues}</td>  <td>@RequestParameterValuesMap</td> <td><small>java.util.Map&lt;String, String[]&gt;</small></td>
+</tr>
+
+<tr>
+<td>Request</td>   <td>#{request}</td>  <td><small><i>(Not injectable)</i></small></td> <td><small>java.lang.Object (javax.servlet.http.HttpServletRequest)</small></td>
+</tr>
+
+<tr>
+<td>RequestMap</td>   <td>#{requestScope}</td>  <td>@RequestMap</td> <td><small>java.util.Map&lt;String, Object&gt;</small></td>
+</tr>
+
+<tr>
+<td>ResourceHandler</td> <td>#{"resource"}</td>  <td>-</td> <td><small>javax.faces.application.ResourceHandler</small></td>
+</tr>
+
+<tr>
+<td>Session</td>   <td>#{session}</td>  <td><small><i>(Not injectable)</i></small></td> <td><small>java.lang.Object (javax.servlet.http.HttpSession)</small></td>
+</tr>
+
+<tr>
+<td>SessionMap</td>   <td>#{sessionScope}</td>  <td>@SessionMap</td> <td><small>java.util.Map&lt;String, Object&gt;</small></td>
+</tr>
+
+<tr>
+<td>View</td>   <td>#{view}</td>  <td>-</td> <td><small>javax.faces.component.UIViewRoot</small></td>
+</tr>
+
+<tr>
+<td>ViewMap</td>   <td>#{viewScope}</td>  <td>@ViewMap</td> <td><small>java.util.Map&lt;String, Object&gt;</small></td>
+</tr>
+
+<tr>
+<td>ExternalContext </td>   <td>#{externalContext} (new)</td>  <td>-</td> <td><small>javax.faces.context.ExternalContext</small></td>
+</tr>
+
+</table>
+
+
+<p>
+The general types, in this case the maps, need an extra qualifier to avoid clashing with other producers. The JSF specific types however don't need such qualifier since JSF is the sole owner of these types. 
+
+<p>
+Obtaining the JSF artefacts is therefore as easy as can be; one only needs to know the type of the artefact one wants. For example:
+
+<pre class="brush: java;">
+@Inject
+private ExternalContext context;
+</pre>
+
+<p>
+For the ones that do need a qualifier, this qualifier has to be looked-up of course, but that's essentially a flat lookup. For example:
+
+<pre class="brush: xml;">
+@Inject
+@ApplicationMap
+private Map&lt;String, Object&gt; applicationMap;
+</pre>
+
+Furthermore, somewhat as a side-effect of <a href="#1316b">Injection in more JSF artifacts</a>, user created instances of the following artefacts are also injectable:
+
+<ul>
+  <li> Converter
+  <li> Validator
+  <li> Behavior
+</ul>
+
+This list is somewhat different, as we're not talking about say -the- <em>Converter</em> instance within the current scope, but about a specific named custom converter in the user's application. E.g.
+
+<pre class="brush: java;">
+@Inject
+@FacesConverter(value = "myConverter", managed = true)
+private Converter myConverter;
+</pre>
+
+Note that this particular injection pattern is possible, but not entirely how things are normally done in CDI.
+
+<p>
+As far as the implementation side is concerned, there's a CDI Bean&lt;T&gt; instance (aka "default bean") provided for every artefact. Since the term "bean" already has a meaning in JSF and CDI is not profoundly clear about this term either, the RI implementation code calls them "dynamic producer", or just "producer". Maybe "factory" would be better, but that term has a bit of a history itself and we wanted to avoid using that one.
+
+<p>
+The following shows an example of a Bean&lt;T&gt;/dynamic producer for the HeaderValues artefact:
+
+<pre class="brush: java;">
+public class HeaderValuesMapProducer extends CdiProducer&lt;Map&lt;String, String[]&gt;&gt; {
+    
+    public HeaderValuesMapProducer() {
+        super.name("headerValues")
+             .scope(RequestScoped.class)
+             .qualifiers(new HeaderValuesMapAnnotationLiteral())
+             .types(
+                 new ParameterizedTypeImpl(Map.class, new Type[]{String.class, String[].class}),
+                 Map.class,
+                 Object.class)
+             .beanClass(Map.class)
+             .create(e -&gt; FacesContext.getCurrentInstance().getExternalContext().getRequestHeaderValuesMap());
+    }
+    
+}
+</pre>
+
+<p>
+<br />
+
+
+
+<p>
+<a name="1316b"></a>
+<strong>Injection in more JSF artifacts</strong> (<a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1316">spec issue 1316</a>) <small>(partially)</small>
+
+<p>
+In JSF 2.1 very few JSF artifacts were injection targets. In JSF 2.2 injection was made possible in a <a href="http://arjan-tijms.omnifaces.org/p/jsf-22.html#763" title="Injection in most JSF artifacts" target="_blank">huge amount of additional artefacts</a> but the very ones where injection actually matters most, converters and validators, were mysteriously left in the cold.
+
+<p>
+In JSF 2.3 this has now finally been taken care of as the following artefacts have been added to the list of injection targets:
+
+<ul>
+  <li> javax.faces.convert.Converter
+  <li> javax.faces.validator.Validator
+  <li> javax.faces.component.behavior.Behavior
+</ul>
+
+<p>
+However, in contrast to the artefacts already on this list these new 3 are not automatically injection targets. They will only become so when a new attribute called "managed" on the corresponding annotations <em>@FacesConverter</em>, <em>@FacesValidator</em> and <em>@Behavior</em> is set to true. Furthermore all these 3 annotations have been upgraded to being CDI qualifiers by adding the @Qualified annotation to their definition.
+
+<p>
+The existing attributes of <em>@FacesConverter</em>, <em>@FacesValidator</em> and <em>@Behavior</em> have not been modified, meaning they are all *binding*, as is the new attribute "managed".
+
+<p>
+What happens behind the scenes now is that when JSF needs a converter it simply asks the CDI bean manager for a bean that implements <em>Converter</em> with a qualifier <em>@FacesValidator</em> that has the "managed" attribute set to true and the <em>value</em> (coverterId) or <em>forClass</em> attribute set to the right value (which is why it's important that these attributes are all binding).
+
+<p>
+It then wraps the bean returned by CDI in a delegating converter instance. This wrapper then delegates to the bean returned by CDI. This wrapper can be state-saved, but since the CDI bean is stored in a transient field it won't save&restore that. Instead, it will only save&restore the <em>converterId</em> or <em>forClass</em>. The restored wrapper will then use the JSF Application instance to ask for a converter with said <em>converterId</em> or <em>forClass</em> (which will go to CDI again, and will do the wrapping again, so we have a double wrapped converter at this point).
+
+<p>
+In effect the mechanism is essentially quite like the age old workaround of using <a href="http://balusc.blogspot.com/2011/09/communication-in-jsf-20.html#ConvertingAndValidatingGETRequestParameters" title="Converting and validating GET request parameters" target="_blank">an EL expression pointing to a managed bean</a> for a converter or validator.
+
+<p>
+An example of a JSF 2.3 converter in which injection can take place:
+
+<pre class="brush: java;">
+@FacesConverter(value = "myConverter", managed = true)
+public class MyConverter implements Converter {
+
+    @Inject
+    private MyService service;
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        // Convert string to Object here
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        // Convert Object to String here
+    }
+}
+</pre>
+
+<p>
+Note that this new style converter must have a constructor as defined by CDI (a no-args one here) and the <a href="http://stackoverflow.com/questions/19304827/facesconverter-inject-workaround-constructor-alternative" title="FacesConverter Inject workaround - constructor alternative" target="_blank">alternative constructor</a> is not supported here.
+
+<p>
+<p>
+<br />
+
+<p>
+<a name="1417"></a>
+<strong>Native managed beans annotations deprecated</strong> (<a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1417">spec issue 1417 </a>)
+<p>
+
+With JSF 2.0 <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#configuration-managed-bean-annotations">annotations were introduced</a> for the JSF managed bean facility. These annotations were however <a href="https://community.oracle.com/blogs/cayhorstmann/2009/12/23/javaxfacesbeanmanagedbean-dead-arrival">controversial from the start</a>. At approximately the same time as they were being designed, there was a parallel effort started to provide a universal managed bean specification.
+
+<p>
+Because of that, the package that the JSF managed beans annotations lived in contained the following disclaimer:
+
+<blockquote>
+<i>At the time of this writing, a forthcoming JCP effort is being 
+planned to extract the specification for managed beans from JSF and  
+place it into its own specification.  To account for this effort and to
+avoid introducing classes into JSF 2.0 that would have to be deprecated  
+when this effort is complete, implementations of JSF 2.0 are not  
+required to implement the &#8220;Faces Managed Bean Annotation  
+Specification for Containers Conforming to Servlet 2.5&#8221;.  However,  
+JSF implementations are strongly encouraged to implement this  
+specification, as it provides significant improvements in ease of  
+use.</i>
+</blockquote>
+
+<p>
+Of course we all know the name of this effort now; CDI.
+
+<p>
+Although effectively deprecated from day one, the now called "native" managed beans annotations from JSF had one advantage over their CDI versions and that's that they could use the important view scope (which incidentally was <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#scopes-view">also introduced in JSF 2.0</a>). It would take <a href="http://arjan-tijms.omnifaces.org/p/jsf-22.html#1087">until JSF 2.2</a> for an official CDI version of that scope.
+
+<p>
+With the CDI based view scope introduced in JSF 2.2, JSF's own native bean facility could have been deprecated, but for some reason it wasn't. Now in JSF 2.3 the package containing the annotations for this facility has finally been deprecated.
+
+<p>
+The importance of this is that developers will hopefully be less confused which annotation to use (most IDEs will warn about using a deprecated type), and that JSF can take the next step; propose the entire managed bean facility for pruning. Just as EJB entity beans had no use in EJB anymore with JPA available and thus were actually removed ("pruned"), there's simply no need for JSF anymore to be in the managed bean business. JSF is already a very large spec, so removing(*) a large and now unnecessary part of it may help bringing down its size to somewhat more manageable proportions.
+
+<p>
+<small><i>(* technically the pruned part of the spec will remain in existence and vendors are free to optionally implement it. The RI will always keep implementing it. So pruned does not mean "totally gone".)</i></small>
+
+
+<p>
+<p>
+<br />
+
+<p>
+<a name="1418"></a>
+<strong>CDI compatible @ManagedProperty</strong> (<a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1417">spec issue 1418 </a>)
+<p>
+
+<p>
+With JSF 2.3 <a href="#1417">deprecating</a> the native managed beans annotations in favour of CDI, there was one useful feature left that didn't had a full CDI compatible replacement; <a href="http://docs.oracle.com/javaee/7/api/javax/faces/bean/ManagedProperty.html">@ManagedProperty</a>. 
+
+<p>
+JSF co-spec lead Manfred Riem provided a simple example for a <a href="http://manorrock.com/blog/2013/11/01/jsf_tip_31_migrate_your_managedproperty_annotations.html">String based CDI compatible version</a>, of which JSF 2.3 will incorporate a variant that supports basically all data types. Just like the native version type checking is delayed till runtime.
+
+<p>
+Because of the delayed type checking it not rarely makes more sense to use regular CDI injection (with optionally qualifiers  if needed), but for migrating existing code or for those situations where an EL expression really is more convenient the new <i>@ManagedProperty</i> from the <i>javax.faces.annotation</i> package can be used in CDI beans.
+
+<p>
+The following shows an example:
+
+<pre class="brush: java;">
+import javax.enterprise.context.RequestScoped;
+import javax.faces.annotation.ManagedProperty;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+@Named
+@RequestScoped
+public class MyBean {
+
+    @Inject @ManagedProperty("#{someBean.someProperty}")
+    private Integer injectedInteger1;
+}
+</pre>
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="lifecycle"></a>
+<h3> Lifecycle </h3>
+
+<p>
+<a name="1135"></a>
+<strong>System event published after view rendered</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1135">spec issue 1135</a>)
+
+<p>
+JSF 2 introduced the concept of <a href="http://javaserverfaces.java.net/nonav/docs/2.1/javadocs/javax/faces/event/SystemEvent.html" title="SystemEvent (JavaServer Faces API (2.1))">system events</a>, which are events that can be fired by arbitrary objects at arbitrary points during the request processing lifecycle.
+
+<p>
+In JSF 2.2 there are some 20 events defined, e.g. <em>PostAddToViewEvent</em>, <em>PostConstructViewMapEvent</em>, <em>PreValidateEvent</em>, and specifically <em>PreRenderViewEvent</em>.
+
+<p>
+However, while there's a <em>PreRenderViewEvent</em> that's published right before a view is rendered, there's no event published right after. Such event can be useful for a variety of things, such as per view clean-ups, post rendering view processing, state handling, etc.
+
+<p>
+For these reasons and simply to be more consistent JSF 2.3 will add a new event called the <em>PostRenderViewEvent</em>, which as its name implies is published immediately after a view is rendered.
+
+<pre class="brush: xml;">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"&gt;
+
+    &lt;h:body&gt;
+        &lt;f:event type="postRenderView" listener="#{myBean.doPostProcessing}" /&gt;
+      
+      &lt;!-- Rest of view here --&gt;
+    &lt;/h:body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>
+<br />
+
+
+
+
+<p>
+<a name="networking"></a>
+<h3> Networking / AJAX</h3>
+
+<p>
+<a name="1396"></a>
+<strong>WebSocket integration</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1396">spec issue 1396</a>)
+
+<p>
+WebSocket support for JSF has been talked about <a href="http://slideshare.net/mwessendorf/jsf-meets-websockets">for quite some time</a>, and there are <a href="http://blog.primefaces.org/?p=3066">fairly advanced implementations</a> available by now. 
+
+<p>
+Still, just as with the <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#ajax">AJAX support</a> that was added in JSF 2.0 and was available in proprietary component libraries before that, WebSocket support was seen as fundamental enough to be put directly into the core spec.
+
+<p>
+Therefor JSF 2.3 will provide direct support for WebSockets via the new tag <i><b>&lt;f:websocket&gt;</b></i>.
+
+<p>
+An important detail of the JSF 2.3 implementation of WebSocket support is that it uses the <a href="https://javaee7.zeef.com/arjan.tijms#block_230_java-api-for-websocket-1-0">WebSocket JSR</a> and therefor integrates with the WebSocket support offered by the server on which JSF is running. Proprietary implementations are not rarely based on frameworks such as <a href="https://github.com/Atmosphere">Atmosphere</a>. Both approaches have their own cons and pros, and just as with AJAX support the user can typically choose what to use; the version offered by core JSF, or the one by a component library.
+
+<p>
+The tag supports a number of attributes, of which the primary required attribute is "<b>channel</b>". The value set here can be used to send notifications to, which will then be pushed to all instances of the socket with that channel name. The second required attribute is "<b>onmessage</b>". Here a client-side Javascript event handler can be set that is called whenever a push arrives from the server.
+
+<p>
+The following shows a minimal example of using the tag on a JSF view:
+
+<pre class="brush: xml;">
+&lt;!DOCTYPE html&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+&gt;
+    &lt;h:head&gt;
+        Websocket Example
+    &lt;/h:head&gt;
+    &lt;h:body&gt;
+        &lt;f:websocket channel="myChannel" onmessage="function(message){alert(message)}" /&gt;
+    &lt;/h:body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>
+Receiving messages is one part of the process. The other part is of course to push out a message. This can be done via the new <i><b>javax.faces.push.PushContext</b></i>, which can be injected anywhere where CDI is available. The following shows an example:
+
+<pre class="brush: java;">
+@Named
+@RequestScoped
+public class SomeBean {
+
+    @Inject @Push
+    private PushContext myChannel;
+
+    public void send(){
+        myChannel.send("Hello, from the server by push!");
+    }
+}
+</pre>
+
+<p>
+The injected <i>PushContext</i> is associated with one specific named channel, which by default has the same name as the instance variable in which injection takes place ("myChannel" in the example above).
+
+<p>
+Integration between JSF and WebSocket revealed one spec related problem; the WebSocket spec now assumes that the application has statically defined a so-called <i>EndPoint</i> via java code. In the case of <i>&lt;f:websocket&gt;</i> such required <i>EndPoint</i> has to be created in a more dynamic way, during runtime, or at the very least allow a (CDI) extension to define one. Unfortunately <a href="https://java.net/jira/browse/WEBSOCKET_SPEC-240">neither is possible now</a>, at least not officially (some implementations support it anyway).
+
+<p>
+For those implementations that do not support adding an <i>EndPoint</i> dynamically (at the moment only GlassFish/Tyrus), a fake one has to be defined by the application. This kind of end point server no other function than to activate the container's WebSocket implementation. At the moment this is only known to be needed for GlassFish. On Tomcat and JBoss (WildFly/Undertow) this is not needed.
+
+<p>
+The following is an example of this:
+
+<pre class="brush: java;">
+public class FakeEndpoint extends Endpoint {
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {}
+}
+</pre>
+
+<p>
+We will try to resolve this issue with the WebSocket EG, but due to the Java EE 8 hiatus it's unfortunately profoundly difficult to start a MR or revision for any spec that hasn't started one. As an alternative we may look into defining an SPI that each container that incorporates Mojarra has to implement, and in which WebSocket activation can be done in a proprietary way.
+
+<p>
+
+Due to unfinished work with the CDI integration, the following parameter now has to be set (to avoid clashes with a deprecated but still used switch that looks at the 2.3 version of a faces-config.xml file, if any).
+
+<pre class="brush: xml;">
+&lt;context-param&gt;
+ &lt;param-name&gt;javax.faces.ENABLE_CDI_RESOLVER_CHAIN&lt;/param-name&gt;
+ &lt;param-value&gt;true&lt;/param-value&gt;
+&lt;/context-param&gt;
+</pre>
+
+While the fake end point is used to initialise the container, the actual WebSocket end point needs to be started as well. This can't be done by default, since otherwise there will be an open socket even when WebSocket is never used. Fully dynamically creating the end point whenever an <i>&lt;f:websocket&gt;</i> is encountered is unfortunately even harder. Therefor another setting needs to be used:
+
+<pre class="brush: xml;">
+&lt;context-param&gt;
+&#160;&lt;param-name&gt;javax.faces.ENABLE_WEBSOCKET_ENDPOINT&lt;/param-name&gt;
+&#160;&lt;param-value&gt;true&lt;/param-value&gt;
+&lt;/context-param&gt; 
+</pre>
+
+
+<p>
+Further reading:
+
+<ul>
+<li> <a href="http://omnifaces-fans.org/2016/03/jsf-23-websocket-quickstart.html">JSF 2.3 - The WebSocket Quickstart under Payara</a> </li>
+</ul>
+
+<p>
+<br />
+
+
+<p>
+<a name="613"></a>
+<strong>Ajax method invocation</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-613">spec issue 613</a>)
+
+<p>
+One of many major new features in JSF 2.0 was <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#ajax">core support for Ajax</a>. This effectively standardised what legendary libraries such as A4J had been doing in the years prior to that version.
+
+<p>
+One particular feature that almost every Ajax library supported wasn't standardised though. That feature is the ability to call an arbitrary server side method in a bean via Ajax. JSF 2.3 will address this omission by introducing the new <b>&lt;h:commandScript&gt;</b> component. Though many JSF libraries have <a href="http://primefaces.org/showcase/ui/ajax/remoteCommand.xhtml">something similar to this</a>, &lt;h:commandScript&gt; was most directly based on the <a href="http://showcase.omnifaces.org/components/commandScript">&lt;o:commandScript&gt;</a> component from OmniFaces.
+
+<p>
+Simply said, the component creates a javascript function with a given name that once invoked will invoke on its turns the also given server side method via Ajax. The following shows an example:
+
+<p>
+<pre class="brush: xml;">
+&lt;h:form&gt;
+    &lt;h:commandScript name="myJsClientFunction" action="#{myBean.myJavaServerMethod('bar')}" render=":output" /&gt;
+&lt;/h:form&gt;
+&lt;h:outputText id="output" value="#{myBean.output}" /&gt;
+</pre>
+
+<p>
+In the example above the client side javascript <i>myJsClientFunction</i> will effectively be connected to the server side Java <i>myJavaServerMethod</i> method.
+
+
+<p>
+<p>
+<br/>
+
+
+<p>
+<a name="1412"></a>
+<strong>Execute javascript from server at completion of AJAX response</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1412">spec issue 1412</a>)
+
+<p>
+It's often quite convenient to be able to execute a piece of javascript coming from the server right after an AJAX response has been applied on the client. Various popular component libraries such as PrimeFaces and OmniFaces have their own utilities to let the developer <a href="http://primefaces.org/docs/api/6.0/org/primefaces/context/RequestContext.html#execute-java.lang.String-">do</a> exactly <a href="http://omnifaces.org/docs/javadoc/2.4/org/omnifaces/util/Ajax.html#oncomplete-java.lang.String...-">this</a>.
+
+<p>
+Since AJAX was introduced in JSF there technically has been some level of core support for this. Namely, the <i>&lt;partial-response&gt;</i> payload that JSF sends after an AJAX request has an <i>&lt;eval&gt;</i> section where javascript can be put for execution on the client. The response writer used for writing the partial response even had <a href="http://docs.oracle.com/javaee/7/api/javax/faces/context/PartialResponseWriter.html#startEval--">startEval</a> and <a href="http://docs.oracle.com/javaee/7/api/javax/faces/context/PartialResponseWriter.html#endEval--">endEval</a> methods for these, but mysteriously for about 7 years(!) those methods remained totally unused and were probably largely forgotten.
+
+<p>
+In JSF 2.3 those methods were rediscovered, and a new method was added to the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/context/PartialViewContext.html">PartialViewContect</a>; <i><b>List&lt;String&gt; getEvalScripts()</b></i>.
+
+<p>
+Using this new <i>getEvalScripts()</i> method, a JSF backing bean handling an AJAX request can easily add a piece of javascript to the AJAX response. The following shows an example:
+
+<p>
+Within a form on some view:
+
+<pre class="brush: xml;">
+&lt;h:commandButton value="submit" action="#{someBean.eval}"&gt;
+    &lt;f:ajax /&gt;
+&lt;/h:commandButton&gt;
+</pre>
+
+Backing bean:
+
+<pre class="brush: java;">
+@Named
+@RequestScoped
+public class SomeBean {
+
+    @Inject
+    private FacesContext context;
+
+    public void eval() {
+        context.getPartialViewContext()
+               .getEvalScripts()
+               .add("alert('After response')");
+    }
+}
+</pre>
+
+<p>
+After pushing the button shown above, an alert with the text "After response" in it will be shown. Note that while in the example above the piece of javascript is the only thing in the payload of the response, one would normally combine this with updating data and rerendering one or more parts of the view.
+
+<p>
+<p>
+<br/>
+
+
+
+
+
+<p>
+<a name="790"></a>
+<strong>Updating multiple forms via AJAX</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-790">spec issue 790</a>)
+
+<p>
+Via the AJAX support that was introduced in JSF 2.0 it was made possible to selectively update one or more components and the children of those components. Since the beginning of JSF it has been possible for a view to use multiple (non-nested) forms, and this is in fact a quite common thing in JSF applications.
+
+<p>
+Curiously though, these 2 very common features didn't work at all together as was discovered soon after AJAX support was added to JSF in 2009. What happens is that in JSF each form needs a hidden input field for the view state. This field is normally added in a somewhat non-trivial way, which is e.g. the reason a caching component <a href="https://github.com/omnifaces/omnifaces/blob/2.4/src/main/java/org/omnifaces/component/output/Cache.java#L127">can't directly cache a form</a>. Now the AJAX partial-response from JSF 2.0 didn't take this fact into account at all, and would just contain the markup of the updated form without the view state field (which incidentally is exactly what you would get when using a caching or buffering component on a form).
+
+<p>
+The partial-response did contain the updated view state value, but strangely enough the spec said that this should only be used to update the view state field of the submitting form. This may have been a mistake or an oversight at the time.
+
+<p>
+The result is that after an AJAX update that involves the update of multiple forms (directly or via their parent components), the view is left in a broke state. JSF forms without the view state field present simply don't work. Mojarra provided a limited implementation specific fix where you had to explicitly specify all forms to be updated (even if you were updating a single parent of all those forms), and some libraries like OmniFaces provided <a href="http://showcase.omnifaces.org/scripts/FixViewState">a limited fix</a> as well.
+
+<p>
+Part of the problem why this is a difficult issue to fix is the fact that JSF can also be used in a Portlet environment. In such environment it's not possible to have a javascript just update all JSF forms that it finds, as these may belong to different Portlets (the markup rendered by different Portlets is all part of the same HTML document with very little to no browser enforced isolation between them).
+
+<p>
+Below is an example of this problem. First consider the following view:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"&gt;
+    &lt;h:head/&gt;
+    &lt;h:body&gt;
+        &lt;h:panelGroup id="panel1" layout="block"&gt;
+            &lt;h:form id="form1"&gt;
+                &lt;h:commandButton id="button" value="submit form1 and render panel2"&gt;
+                    &lt;f:ajax execute=":form1" render=":panel2" /&gt;
+                &lt;/h:commandButton&gt;
+            &lt;/h:form&gt;
+        &lt;/h:panelGroup&gt;
+
+        &lt;h:panelGroup id="panel2" layout="block"&gt;
+            &lt;h:form id="form2"&gt;
+                &lt;h:commandButton id="button" value="submit form2 and render panel1"&gt;
+                    &lt;f:ajax execute=":form2" render=":panel1" /&gt;
+                &lt;/h:commandButton&gt;
+            &lt;/h:form&gt;
+        &lt;/h:panelGroup&gt;
+    &lt;/h:body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<p>
+Using Mojarra 2.2.13 (on Payara 4.1.1.162) clicking the first button will result in the following partial response to be send:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;partial-response id="j_id1"&gt;
+    &lt;changes&gt;
+        &lt;update id="panel2"&gt;
+            &lt;![CDATA[
+                &lt;div id="panel2"&gt;
+                    &lt;form id="form2" name="form2" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+                        &lt;input type="hidden" name="form2" value="form2" /&gt;
+                        &lt;input id="form2:button" type="submit" name="form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','form2','panel1');return false" /&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+            ]]&gt;
+        &lt;/update&gt;
+
+        &lt;update id="j_id1:javax.faces.ViewState:0"&gt;
+            &lt;![CDATA[8345405308944877647:7731292386533209235]]&gt;
+        &lt;/update&gt;
+    &lt;/changes&gt;
+&lt;/partial-response&gt;
+</pre>
+</div>
+
+This will result in the HTML document be modified to effectively the HTML shown below:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head id="j_idt3"&gt;
+    &lt;script type="text/javascript" src="/test-javaee8-ajax/javax.faces.resource/jsf.js.xhtml?ln=javax.faces"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id="panel1"&gt;
+        &lt;form id="form1" name="form1" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="form1" value="form1"&gt;
+            &lt;input id="form1:button" type="submit" name="form1:button" value="submit form1 and render panel2" onclick="mojarra.ab(this,event,'action','form1','panel2');return false"&gt;
+            &lt;input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="6782127948134886858:-5613250933960587439" autocomplete="off"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div id="panel2"&gt;
+        &lt;form id="form2" name="form2" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="form2" value="form2"&gt;
+            &lt;input id="form2:button" type="submit" name="form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','form2','panel1');return false"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+As can be seen, the second form misses the input element with name "javax.faces.ViewState", which means when its submitted JSF won't process it.
+
+<p>
+This problem is solved in JSF 2.3 by introducing a "namespaced mode" and a "non namespaced mode", which is the default. 
+
+<p>
+In namespaced mode, which is specifically intended for Portlets but can be used in other environments as well, the partial response is given an <i>id</i> that's taken to be the "naming container id". All predefined postback parameter names (such as "javax.faces.ViewState", "javax.faces.ClientWindow", "javax.faces.RenderKitId", etc) are prefixed with this and the naming separator (default ":"). e.g. javax.faces.ViewState" becomes "myname:javax.faces.ViewState". Namespaced mode is activated when the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/UIViewRoot.html">UIViewRoot</a> instance implements the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/NamingContainer.html">NamingContainer</a> interface. 
+
+<p>
+In non namespaced mode the partial response does not have an <i>id</i> and the "naming container id" is set to be the empty string (""). All predefined postback parameters have their normal name.
+
+<p>
+In both cases, the "jsf.js" script handles a partial response by updating all forms where the <i>method</i> is "post", the <i>id</i> attribute is present and that <i>id</i> attribute starts with the "naming container id". In case of non namespaced mode this will thus match every form with an <i>id</i>.
+
+<p>
+Using Mojarra 2.3-m07 (on Payara 4.1.1.162) and the <b>non namespaced mode</b> clicking the first button on the view shown above will now result in the following partial response to be send:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;partial-response&gt;
+    &lt;changes&gt;
+        &lt;update id="panel2"&gt;
+            &lt;![CDATA[
+                &lt;div id="panel2"&gt;
+                    &lt;form id="form2" name="form2" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+                        &lt;input type="hidden" name="form2" value="form2" /&gt;
+                        &lt;input id="form2:button" type="submit" name="form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','form2','panel1');return false" /&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+            ]]&gt;
+        &lt;/update&gt;
+
+        &lt;update id="j_id1:javax.faces.ViewState:0"&gt;
+            &lt;![CDATA[-8282461998981779774:413768236226206985]]&gt;
+        &lt;/update&gt;
+    &lt;/changes&gt;
+&lt;/partial-response&gt;
+</pre>
+</div>
+
+After the above response has been received and processed by the "jsf.js" script, the HTML document will effectively be as shown below:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head id="j_idt3"&gt;
+    &lt;script type="text/javascript" src="/test-javaee8-ajax/javax.faces.resource/jsf.js.xhtml?ln=javax.faces"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id="panel1"&gt;
+        &lt;form id="form1" name="form1" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="form1" value="form1"&gt;
+            &lt;input id="form1:button" type="submit" name="form1:button" value="submit form1 and render panel2" onclick="mojarra.ab(this,event,'action','form1','panel2');return false"&gt;
+            &lt;input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="2250188649944914411:-7175801439454851104" autocomplete="off"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div id="panel2"&gt;
+        &lt;form id="form2" name="form2" method="post" action="/test-javaee8-ajax/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="form2" value="form2"&gt;
+            &lt;input id="form2:button" type="submit" name="form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','form2','panel1');return false"&gt;
+            &lt;input type="hidden" name="javax.faces.ViewState" value="2250188649944914411:-7175801439454851104"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+As can be seen, both forms have their view state input element now, although the second one did loose its <i>id</i> and <i>autocomplete</i> attributes.
+
+<p>
+In <b>namespaced mode</b> running a similar view as shown above and pressing the button again will yield the following response:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+    &lt;partial-response id="j_id1"&gt;
+        &lt;changes&gt;
+            &lt;update id="j_id1:panel2"&gt;
+                &lt;![CDATA[
+                    &lt;div id="j_id1:panel2"&gt;
+                        &lt;form id="j_id1:form2" name="j_id1:form2" method="post" action="/test-javaee8-namespacedView/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+                            &lt;input type="hidden" name="j_id1:form2" value="j_id1:form2" /&gt;
+                            &lt;input id="j_id1:form2:button" type="submit" name="j_id1:form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','j_id1:form2','j_id1:panel1');return false" /&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                ]]&gt;
+            &lt;/update&gt;
+
+            &lt;update id="j_id1:javax.faces.ViewState:0"&gt;
+                &lt;![CDATA[-8822830692037537003:-3037874094673406621]]&gt;
+            &lt;/update&gt;
+    &lt;/changes&gt;
+&lt;/partial-response&gt;
+</pre>
+</div>
+
+Note that the <i>partial-response</i> tag now has an <i>id</i> attribute that wasn't present in the non namespaced version, and note that the <i>id</i> attributes of the <i>update</i> tags are prefixed with exactly that value.
+
+The HTML document will look effectively like the one below afterwards:
+
+<div style="font-size:75%;">
+<pre class="brush: xml;">
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head id="j_id1:j_idt3"&gt;
+    &lt;script type="text/javascript" src="/test-javaee8-namespacedView/javax.faces.resource/jsf.js.xhtml?ln=javax.faces"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id="j_id1:panel1"&gt;
+        &lt;form id="j_id1:form1" name="j_id1:form1" method="post" action="/test-javaee8-namespacedView/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="j_id1:form1" value="j_id1:form1"&gt;
+            &lt;input id="j_id1:form1:button" type="submit" name="j_id1:form1:button" value="submit form1 and render panel2" onclick="mojarra.ab(this,event,'action','j_id1:form1','j_id1:panel2');return false"&gt;
+            &lt;input type="hidden" name="j_id1:javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="6924255192267784760:-4075825978563358382" autocomplete="off"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div id="j_id1:panel2"&gt;
+        &lt;form id="j_id1:form2" name="j_id1:form2" method="post" action="/test-javaee8-namespacedView/spec790.xhtml" enctype="application/x-www-form-urlencoded"&gt;
+            &lt;input type="hidden" name="j_id1:form2" value="j_id1:form2"&gt;
+            &lt;input id="j_id1:form2:button" type="submit" name="j_id1:form2:button" value="submit form2 and render panel1" onclick="mojarra.ab(this,event,'action','j_id1:form2','j_id1:panel1');return false"&gt;
+            &lt;input type="hidden" name="j_id1:javax.faces.ViewState" value="6924255192267784760:-4075825978563358382"&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+As the <i>UIViewRoot</i> that was used in the above test is a <i>NamingContainer</i>, all rendered element ids are automatically prefixed as can be seen, as are the names of the input elements as shown in the HTML above. 
+
+<p>
+By taking the namespaced ids into account, all forms can now be safely updated in a Portlets environment as well.
+
+
+<p>
+<p>
+<br/>
+
+
+
+
+
+
+
+
+
+<p>
+<a name="conversion-validation"></a>
+<h3> Conversion / Validation </h3>
+
+<p>
+<a name="1"></a>
+<strong>Class level bean validation</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1">spec issue 1</a>)
+
+<p>
+JSF has supported bean validation ever since JSF 2.0 was released. This support was however limited to validating individual properties bound to individual components. E.g. an input component bound to a password property of a backing bean. 
+
+<p>
+Besides validating individual fields or properties, bean validation also has a concept of class level validation. This involves a special constraint validator that receives an instance of the class that has to be validated. This special validator can then do cross-field validations. For instance, check that two password fields are equal.
+
+<p>
+Class level validation does not play well with the JSF validation model though. In JSF the idea is that the model is not touched if validation fails. But to validate a class level constraint, we have to update the model with all values before proceeding. This problem was <a href="http://showcase.omnifaces.org/validators/validateBean">solved in OmniFaces</a> by making a copy of the bean, storing the new values in that bean, and then validating the result.
+
+<p>
+This approach and some of the code have been standardized in JSF 2.3 by means of a new tag: <b>&lt;f:validateWholeBean&gt;</b>
+
+<p>
+Class level bean validation practically speaking most often applies to entities that have their own semantic constraints with associated validation code. Typically such entity is returned fully from a backing bean, but the properties of such entity are then bound to individual components. The <a href="http://showcase.omnifaces.org/validators/validateBean">OmniFaces example</a> of class level bean validation demonstrates exactly this.
+
+<p>
+Another possibility is a more ad-hoc class level validation, for instance done by a backing bean. This can be used as a multi-field validator, where the multiple fields being validated are not necessarily part of a more structural and re-usable constraint. This usecase is in fact the major driver behind the very first JIRA issues for JSF; <a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1">JAVASERVERFACES_SPEC_PUBLIC-1</a> which was filed in 2004!
+
+<p>
+Using class level bean validation for this usecase is slightly verbose and perhaps not a fully ideal match, but it does align well with the current strategy of delegating as much concerns as possible to existing functionality in Java EE instead of introducing native mechanisms that partially overlap with that existing functionality. We show an example of this below.
+
+<p>
+First of all, the new tag must be explicitly enabled in web.xml. If it's not enabled, the tag will do nothing. The following setting will take care of this:
+
+<pre class="brush: xml;">
+&lt;context-param&gt;
+    &lt;param-name&gt;javax.faces.validator.ENABLE_VALIDATE_WHOLE_BEAN&lt;/param-name&gt;
+    &lt;param-value&gt;true&lt;/param-value&gt;
+&lt;/context-param&gt;
+</pre>
+
+<p>
+After this initial nuasance we can create a view with two input fields, and the mentioned &lt;f:validateWholeBean&gt; tag. There are a few things to be aware of here:
+
+<ol>
+<li> At least one input component in the view must have a bean validation group set
+<li> The &lt;f:validateWholeBean&gt; tag must appear AFTER all other input components
+<li> The group for the input component(s) and the &lt;f:validateWholeBean&gt; tag must be the same
+<li> The special default group (<i>javax.validation.groups.Default</i>) does not count, it's explicitly ignored.
+</ol>
+
+<p>
+The following gives an example:
+
+<pre class="brush: xml;">
+&lt;h:form&gt;
+    &lt;h:inputText value="#{indexBean.foo}"&gt;
+        &lt;f:validateBean validationGroups="javax.validation.groups.Default,java.util.RandomAccess"/&gt;
+    &lt;/h:inputText&gt;
+    &lt;h:inputText value="#{indexBean.bar}"&gt;
+        &lt;f:validateBean validationGroups="javax.validation.groups.Default,java.util.RandomAccess"/&gt;
+    &lt;/h:inputText&gt;
+
+    &lt;f:validateWholeBean value="#{indexBean}" validationGroups="java.util.RandomAccess"/&gt;
+
+    &lt;h:commandButton value="submit"/&gt;
+&lt;/h:form&gt;
+</pre>
+
+<p>
+In order to keep the example as small as possible I re-used an existing "random" interface for the group marker. Note that the default group <i>javax.validation.groups.Default</i> is also added to make sure individual fields are still bean validated as well.
+
+<p>
+Next thing is the backing bean itself. In order to use class level bean validation the following has to be done:
+
+<ol>
+<li> An annotation has to be defined that adheres to the bean validation spec for class level constraints
+<li> A constraint validator implementation has to be provided, which takes care of the actual validation
+<li> The backing bean has to be annotated with that annotation
+<li> The annotation's <i>groups</i> attribute has to be set to the same group that was used in the view
+</ol> 
+
+The following gives an example of this:
+
+<pre class="brush: java;">
+@Named
+@RequestScoped
+@ValidIndexBean(groups = java.util.RandomAccess.class)
+public class IndexBean implements ConstraintValidator&lt;ValidIndexBean, IndexBean&gt; {
+
+    @Constraint(validatedBy = IndexBean.class)
+    @Documented
+    @Target(TYPE)
+    @Retention(RUNTIME)
+    public @interface ValidIndexBean {
+        String message() default "Invalid Bean";
+        Class&lt;?&gt;[] groups() default {};
+        Class&lt;? extends Payload&gt;[] payload() default {};
+    }
+
+    @Override
+    public void initialize(ValidIndexBean constraintAnnotation) {
+        //
+    }
+
+    @Override
+    public boolean isValid(IndexBean other, ConstraintValidatorContext context) {
+        return other.getFoo().equals(other.getBar());
+    }
+
+    @NotNull
+    private String foo;
+
+    @NotNull
+    private String bar;
+
+    public String getFoo() {
+        return foo;
+    }
+
+    public void setFoo(String foo) {
+        this.foo = foo;
+    }
+
+    public String getBar() {
+        return bar;
+    }
+
+    public void setBar(String bar) {
+        this.bar = bar;
+    }
+
+}
+</pre>
+
+<p>
+As mentioned this is indeed slightly verbose for a one-off multiple fields validation. Specifically the verbosity of the annotation is hard to reduce in this case. A default annotation for cases like this would probably help a lot, but at the moment there's none (at least not that I know of). The unneeded <i>initialize</i> method could be solved if the bean validation spec used a default method in the interface for this. Unfortunately there's no bean validation spec update or even MR planned at the moment.
+
+<p>
+Note that the <i>other</i> instance that the <i>isValid</i> method receives is a "copy" of the same bean. However, currently it's not really a copy but a new instance. The JSF 2.3 implementation code principally has the same copiers available as the ones for the OmniFaces version, but because of <a href="https://java.net/projects/javaserverfaces-spec-public/lists/jsr372-experts/archive/2015-12/message/16">what seems to be a bug</a> only the so-called <i>NewInstanceCopier</i> actually seems to be used in practice. Unlike in OmniFaces, it's also not currently possible to explicitly select a copier strategy or provide a custom one.
+
+<p>
+Further reading:
+
+<ul>
+<li> <a href="http://omnifaces-fans.org/2015/12/jsf-23-class-level-bean-validation-on.html">JSF 2.3 Class-level bean validation on CDI based backing beans</a> </li>
+</ul>
+
+<p>
+<p>
+<br/>
+
+
+<p>
+<a name="1370"></a>
+<strong>JDK 8 time support in f:convertDateTime</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1370">spec issue 1370</a>)
+
+<p>
+JSF 2.3 will have Java 8 as a minimum dependency. One of the big advantages of this is that it's actively able to support new features in Java 8. One of those features concern the new data and time classes in JDK 8, otherwise known as JSR 310.
+
+<p>
+JSF 2.3 will provide support for these using its existing &lt;f:convertDateTime&gt; converter. In JSF 2.2 and before the <i>type</i> attribute of this converter only supported the values "date", "time" and "both". For JSF 2.3 this has been expanded with various values as shown in the table below:
+
+
+<table border="1" style="font-size: 100%;">
+
+<tr style="background-color:LightGray;">
+<th>Type attribute</th>   <th>Class involved</th>  <th> <small>Default when pattern not specified</small></th>
+</tr>
+
+<tr>
+<td>both </td>   <td>java.util.Date </td>  <td><small>DateFormat.getDateTimeInstance(dateStyle, timeStyle)<small></td>
+</tr>
+
+<tr>
+<td>date </td>   <td>java.util.Date </td>  <td><small>DateFormat.getDateTimeInstance(dateStyle)<small></td>
+</tr>
+
+<tr>
+<td>time </td>   <td>java.util.Date </td> <td><small>DateFormat.getDateTimeInstance(timeStyle)<small></td> 
+</tr>
+
+<tr>
+<td>localDate </td>   <td>java.time.LocalDate </td>  <td><small>DateTimeFormatter.ofLocalizedDate(dateStyle)<small></td>
+</tr>
+
+<tr>
+<td>localTime </td>   <td>java.time.LocalTime </td>  <td><small>DateTimeFormatter.ofLocalizedTime(dateStyle)<small></td>
+</tr>
+
+<tr>
+<td>localDateTime </td>   <td>java.time.LocalDateTime </td>  <td><small>DateTimeFormatter.ofLocalizedDateTime(dateStyle)<small></td>
+</tr>
+
+<tr>
+<td>offsetTime </td>   <td>java.time.OffsetTime </td>  <td><small>DateTimeFormatter.ISO_OFFSET_TIME<small></td>
+</tr>
+
+<tr>
+<td>offsetDateTime </td>   <td>java.time.OffsetDateTime </td>  <td><small>DateTimeFormatter.ISO_OFFSET_DATE_TIME<small></td>
+</tr>
+
+<tr>
+<td>zonedDateTime </td>   <td> java.time.ZonedDateTime</td>  <td><small>DateTimeFormatter.ISO_ZONED_DATE_TIME<small></td>
+</tr>
+
+</table>
+
+<p>
+&nbsp;
+
+<p>
+In addition the <i>pattern</i> attribute has changed as well. In JSF 2.2 when this <i>pattern</i> attribute was set, the other attributes were ignored and <i>java.text.SimpleDateFormat</i> was used exclusively. In JSF 2.3 if the <i>type</i> attribute is set to any of the new JDK 8/JSR 310 values then <i>java.time.format.DateTimeFormatter</i> will be used instead. In all cases the <i>pattern</i> attribute still overrides the <i>timeStyle</i> and <i>dateStyle</i> attributes.
+
+<p>
+Example of usage:
+
+<pre class="brush: xml;">
+&lt;h:inputText value="#{myBean.startTime}"&gt;
+    &lt;f:convertDateTime type="localDateTime" /&gt;
+&lt;/h:inputText&gt;
+
+&lt;h:outputText value="#{myBean.endDate}"&gt;
+    &lt;f:convertDateTime type="localDate" pattern="dd.MM.uu" /&gt;
+&lt;/h:outputText&gt;
+</pre>
+
+<p>
+Further reading:
+
+<ul>
+<li> <a href="http://jj-blogger.blogspot.com/2015/06/utilizing-java-8-date-time-api-with-jsf.html">Utilizing the Java 8 Date-Time API with JSF and Java EE 7</a> </li>
+</ul>
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="java"></a>
+<h3> Java API </h3>
+
+<p>
+<a name="1103"></a>
+<strong>Support for the Iterable interface in UIData and UIRepeat</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1103">spec issue 1103</a>)
+
+<p>
+From the beginning of JSF, the <em>UIData</em> component (known from e.g. <em>&lt;h:dataTable&gt;</em>) and <em>UIRepeat</em> (known from e.g. <em>&lt;ui:repeat&gt;</em>) only realistically supported the List, native array and JSF specific DataModel as input for its value binding. This meant other collection types had to be expressed as one of these types.
+
+<p>
+In JSF 2.2 <em>UIData</em> was extended to support <em>Collection</em> as well, but <em>UIRepeat</em> was mysteriously left out <small>(which is one reason why <em>UIRepeat</em> should really share common functionality with <em>UIData</em>; it happens much more often that both should be updated but only one of them is)</small>
+
+<p>
+The thing is that while <em>Collection</em> support is nice, it's actually just as easy to support <em>Iterable</em>. It's perhaps a small oversight that this was not supported right from the beginning, but in JSF 2.3 this will finally be addressed.
+
+<p>
+Just as with the <em>Collection</em> support in 2.2, Iterable will be added to the bottom of the list of types being checked, so for Iterables that are also a <em>List</em> or <em>Collection</em> (in case of <em>UIData</em>), the existing code will take precedence.
+
+<p>
+The following are now the supported types for <em><strong>UIData</strong></em>:
+<ul>
+<li>null (becomes empty list)</li>
+<li>javax.faces.model.DataModel</li>
+<li>java.util.List</li>
+<li>java.lang.Object[]</li>
+<li>java.sql.ResultSet</li>
+<li>javax.servlet.jsp.jstl.sql.Result</li>
+<li>java.util.Collection</li>
+<li>java.lang.Iterable <em>new!</em></li>
+<li>java.lang.Object (becomes ScalarDataModel)</li>
+</ul>
+
+<p>
+And the following are the supported types for <em><strong>UIRepeat</strong></em>:
+
+<ul>
+<li>null (becomes empty list)</li>
+<li>javax.faces.model.DataModel</li>
+<li>java.util.List</li>
+<li>java.lang.Object[]</li>
+<li>java.sql.ResultSet</li>
+<li>java.lang.Iterable <em>new!</em></li>
+<li>java.lang.Object (becomes ScalarDataModel)</li>
+</ul>
+
+<p>
+Note that both <em>Result</em> and <em>Collection</em> are missing for <em>UIRepeat</em>. The latter will be handled by <em>Iterable</em>, since it's the base class of <em>Collection</em>. <em>Result</em> is actually missing, likely because its JSP specific and UIRepeat was designed specifically for Facelets).
+
+<p>
+<p>
+<br />
+
+<a name="1364"></a>
+<strong>Support for the Map interface in UIData and UIRepeat</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1364">spec issue 1364</a>)
+
+<p>
+Besides <a href="#1103">support for the Iterable interface in UIData and UIRepeat</a>, JSF 2.3 will also add support for maps. The way this is done is closely aligned with how <a href="http://stackoverflow.com/questions/2848332/loop-through-a-map-with-jstl" title="Loop through a Map with JSTL" target="_blank">JSTL has supported maps</a> for many years:
+
+<p>
+<b>Existing JSTL based looping through a map</b>
+<pre class="brush: xml;">
+&lt;c:forEach var="entry" items="${myMap}"&gt;
+  Key: &lt;c:out value="${entry.key}"/&gt;
+  Value: &lt;c:out value="${entry.value}"/&gt;
+&lt;/c:forEach&gt;
+</pre>
+
+<b>New JSF 2.3 based looping through a map using ui:repeat</b>
+<pre class="brush: xml;">
+&lt;ui:repeat var="entry" value="#{myMap}"&gt;
+    Key: #{entry.key}
+    Value: #{entry.value}
+&lt;/ui:repeat&gt;
+</pre>
+
+<b>New JSF 2.3 based looping through a map using h:dataTable</b>
+<pre class="brush: xml;">
+&lt;h:dataTable var="entry" value="#{myMap}"&gt;
+    &lt;h:column&gt;#{entry.key}&lt;/h:column&gt;
+    &lt;h:column&gt;#{entry.value}&lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</pre>
+
+<p>
+Including the Iterable support from the <a href="#1103" target="_blank">previous feature</a> and the Map support discussed here, the following are now the supported types for <em><strong>UIData</strong></em>:
+
+<ul>
+<li>null (becomes empty list)</li>
+<li>javax.faces.model.DataModel</li>
+<li>java.util.List</li>
+<li>java.lang.Object[]</li>
+<li>java.sql.ResultSet</li>
+<li>javax.servlet.jsp.jstl.sql.Result</li>
+<li>java.util.Collection</li>
+<li>java.lang.Iterable <em>new!</em></li>
+<li>java.util.Map <em>new!</em></li>
+<li>java.lang.Object (becomes ScalarDataModel)</li>
+</ul>
+
+<p>
+And the following are the supported types for <em><strong>UIRepeat</strong></em>:
+
+<ul>
+<li>null (becomes empty list)</li>
+<li>javax.faces.model.DataModel</li>
+<li>java.util.List</li>
+<li>java.lang.Object[]</li>
+<li>java.sql.ResultSet</li>
+<li>java.lang.Iterable <em>new!</em></li>
+<li>java.util.Map <em>new!</em></li>
+<li>java.lang.Object (becomes ScalarDataModel)</li>
+</ul>
+
+<p>
+<p>
+<br />
+
+<a name="1078"></a>
+<strong>Support for custom types in UIData and UIRepeat</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1078">spec issue 1078</a>)
+
+<p>
+A third new feature in JSF 2.3 next to <a href="#1103">support for the Iterable interface in UIData and UIRepeat</a>, and <a href="#1364">support for the Map interface in UIData and UIRepeat</a> is support for custom types.
+
+<p>
+This has been requested for a long time, and JSF 2.3 will now (finally) provide this support. The way this is done is by creating a wrapper <i>DataModel</i> for a specific type, just as one may have done years ago when returning data from a backing bean, and then annotating it with the new <i>@FacesDataModel</i> annotation. A &#8220;forClass&#8221; attribute has to be specified on this annotation that designates the type this wrapper is able to handle.
+
+<p>
+The following gives an abbreviated example of this:
+
+<pre class="brush: java;">
+@FacesDataModel(forClass = MyCollection.class)
+public class MyCollectionModel&lt;E> extends DataModel&lt;E> {
+    
+    @Override
+    public E getRowData() {
+        // access MyCollection here
+    }
+
+    @Override
+    public void setWrappedData(Object myCollection) {
+        // likely just store myCollection
+    }
+
+    // Other methods omitted for brevity
+}
+</pre>
+
+<p>
+Note that there are two types involved here. The &#8220;forClass&#8221; attribute is the collection or container type that the <i>DataModel</i> wraps, while the generic parameter <i>E</i> concerns the data this collection contains. E.g. Suppose we have a <i>MyCollection&lt;User&gt;</i>, then &#8220;forClass&#8221; would correspond to <i>MyCollection</i>, and <i>E</i> would correspond to <i>User</i>. If set/getWrappedData was generic the &#8220;forClass&#8221; attribute may not have been needed, as generic parameters can be read from class definitions, but alas.
+
+<p>
+With a class definition as given above present, a backing bean can now return a <i>MyCollection</i> as in the following example:
+
+<pre class="brush: java;">
+@Named
+public class MyBacking {
+    public MyCollection&lt;User> getUsers() {
+        // return myCollection
+    }
+}
+</pre>
+
+h:dataTable will be able to work with this directly, as shown in the example below:
+
+<pre class="brush: xml;">
+&lt;h:dataTable value="#{myBacking.users}" var="user">
+    &lt;h:column>#{user.name}&lt;/h:column>
+&lt;/h:dataTable>
+</pre>
+
+<p>
+Further reading:
+
+<ul>
+<li><a href=" http://arjan-tijms.omnifaces.org/2015/07/jsf-23-new-feature-registrable.html">JSF 2.3 new feature: registrable DataModels</a> </li>
+</ul>
+
+<p>
+<p>
+<br />
+
+<a name="1429"></a>
+<strong>Default getWrapped method for FacesWrapper implementations</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1429">spec issue 1429</a>)
+
+<p>
+JSF has an interface called <a href="https://docs.oracle.com/javaee/7/api/javax/faces/FacesWrapper.html">FacesWrapper</a> that's "implemented" by the more concrete wrappers such as <a href="http://docs.oracle.com/javaee/7/api/javax/faces/application/ApplicationWrapper.html">ApplicationWrapper</a>, <a href="https://docs.oracle.com/javaee/7/api/javax/faces/application/ResourceHandlerWrapper.html">ResourceHandlerWrapper</a>, etc.
+
+<p>
+In JSF 2.2 and before the <i>getWrapped()</i> method from the <i>FacesWrapper</i> wasn't actually implemented though, but this was left open for the actual sub class of these wrappers to do. E.g. they had to add something like shown below for say the <i>ResourceWrapper</i>:
+
+<pre class="brush: java;">
+public class MyResourceWrapper extends ResourceWrapper {
+
+    private Resource wrapped;
+
+    public MyResourceWrapper(Resource wrapped) {
+        this.wrapped = wrapped;
+    }
+
+    @Override
+    public Resource getWrapped() {
+        return wrapped;
+    }
+}
+</pre>
+
+Not only is this a small amount of extra verbosity that needs to be added to every wrapper, it also encourages using the <i>wrapped</i> instance variable directly. This can be quite problematic when the wrapper itself is wrapped, something which is not that uncommon in practice.
+
+<p>
+In JSF 2.3 all standard FacesWrappers will therefor provide a default implementation of the <i>getWrapped()</i> method, and will introduce a new constructor that takes the artefact being wrapped as an argument. The no-args constructor is being deprecated so the IDE or compiler can issue a warning when the new super constructor is not being used by subclasses. All existing code in the RI has been updated to use the <i>getWrapped()</i> method exclusively instead of the instance variable they may have been using before.
+
+<p>
+The following shows an example:
+
+<pre class="brush: java;">
+public class MyResourceWrapper extends ResourceWrapper {
+
+    public MyResourceWrapper(Resource wrapped) {
+        super(wrapped);
+    }
+}
+</pre>
+
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="components"></a>
+<h3> Components </h3>
+
+
+<p>
+<a name="1238"></a>
+<strong>Component Search Expression framework</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1238">spec issue 1238</a>)
+
+<p>
+
+JSF has always had a concept of identifying a particular component in its component tree by using an absolute hierarchical ID, or a relative local ID. Constructing the absolute ID is not always easy, especially not if a page makes extensive use of templates and includes.
+
+<p>
+To somewhat alleviate these difficulties, JSF 2.0 introduced a couple of more abstract search expressions, namely: @this", "@form", "@all", and "@none". Something like "@form" is particularly easier to use, as it just means; target whatever the current form is. If that current form is defined two parent templates up from the page where its referenced, this really makes referencing it much easier.
+
+<p>
+While making things much easier, these keywords were quite limited. Not only are there just 4 of them, they're also not extensible and the default component set only uses them in the <i>f:ajax</i> tag. Using them in Other tags, as well as using them when programmatically searching for components was left out.
+
+<p>
+Therefor in JSF 2.3 a "Component Search Expression framework" is introduced that greatly expands upon those 4 keywords. Summarised what it brings is:
+
+<ul>
+<li>Larger set of default keywords</li>
+<li>Keywords can have arguments</li>
+<li>Keywords are extendible</li>
+<li>Keywords can be chained, forming search expressions</li>
+<li>More default tags support these</li>
+<li>Can be used via a programmatic API</li>
+</ul>
+
+
+<h4> New keywords </h4>
+
+
+<p>
+The following table lists the new keywords:
+
+<table border="1" style="font-size: 100%;">
+
+<tr style="background-color:LightGray;">
+<th>Keyword</th>   <th>Description</th>
+</tr>
+
+<tr>
+<td>@child(n)</td>   <td>The nth child of the base component</td> 
+</tr>
+
+<tr>
+<td>@composite</td>   <td>The closest composite component ancestor of the base component</td> 
+</tr>
+
+<tr>
+<td>@id(id)</td>   <td>All component descendants of the base component with the specified component id</td> 
+</tr>
+
+<tr>
+<td>@namingcontainer</td>   <td>The closest NamingContainer ancestor of the base component</td> 
+</tr>
+
+<tr>
+<td>@next</td>   <td>The next component in the view after the base component</td> 
+</tr>
+
+<tr>
+<td>@parent</td>   <td>The parent of the base component</td> 
+</tr>
+
+<tr>
+<td>@previous</td>   <td>The previous component to the base component</td> 
+</tr>
+
+<tr>
+<td>@root</td>   <td>The UIViewRoot</td> 
+</tr>
+
+</table>
+
+<p>
+&nbsp;
+
+<p>
+For some examples, consider the following page fragment:
+
+<pre class="brush: xml;">
+&lt;h:body id="body">
+    
+  &lt;h:panelGroup id="panelgroup">
+    &lt;h:form id="form">
+      &lt;h:button id="button" outcome="foo2">Button foo&lt;/h:button>
+      &lt;h:commandButton id="commandButton" action="#{configurationBean.foo()}" value="invoke foo"/>
+      &lt;h:outputText id="body" value="body"/>
+    &lt;/h:form>
+  &lt;/h:panelGroup>
+  
+&lt;/h:body>
+</pre>
+
+<p>
+The following table shows what several expressions against the above shown fragment resolve to:
+
+<table border="1" style="font-size: 75%;">
+
+<tr style="background-color:LightGray;">
+<th>Expression</th>   <th>Base component</th> <th>Resolves to:</th> 
+</tr>
+
+<tr>
+<td>@child(0)</td>   <td>:form</td> <td>&lt;h:button id="button" outcome="foo2">Button foo&lt;/h:button></td>
+</tr>
+
+<tr>
+<td>@child(1)</td>   <td>:form</td> <td>&lt;h:commandButton id="commandButton" action="#{configurationBean.foo()}" value="invoke foo"/></td>
+</tr>
+
+<tr>
+<td>@id(body)</td>   <td>:form</td> <td>&lt;h:outputText id="body" value="body"/></td> 
+</tr>
+
+<tr>
+<td>@namingcontainer</td>   <td>:form:commandButton</td> <td>&lt;h:form id="form"></td> 
+</tr>
+
+<tr>
+<td>@next</td>   <td>:form:commandButton</td> <td>:&lt;h:outputText id="body" value="body"/></td> 
+</tr>
+
+<tr>
+<td>@parent</td>   <td>:form</td> <td>&lt;h:panelGroup id="panelgroup"></td>
+</tr>
+
+<tr>
+<td>@previous</td>   <td>:form:commandButton</td> <td>&lt;h:button id="button" outcome="foo2">Button foo&lt;/h:button></td>
+</tr>
+
+<tr>
+<td>@root</td>   <td>:form</td>  <td>[UIViewRoot]</td> 
+</tr>
+
+</table>
+
+<p>
+<h4> Programmatic API </h4>
+
+<p>
+A major new feature of the Component Search Expression framework is that it brings with it a programmatic API. The main elements of this are the <i>SearchExpressionContext</i>, which can be created via the static method <i>SearchExpressionContext#createSearchExpressionContext</i> and the <i>SearchExpressionHandler</i> which can be obtained from the existing JSF <i>Application</i> instance.
+
+<p>
+This API allows us among others to obtain the ID of a component we're searching for, or to execute a method on it in context. Several visit hints are supported as well. The following shows a basic example:
+
+<pre class="brush: java;">
+@Named
+@RequestScoped
+public class ConfigurationBean {
+    
+    @Inject
+    private FacesContext context;
+       
+    public void foo() {
+        
+        SearchExpressionContext searchContext = 
+            createSearchExpressionContext(context, context.getViewRoot());
+        
+        context.getApplication()
+                .getSearchExpressionHandler()
+                .resolveComponent(
+                   searchContext, 
+                   ":form:@parent", 
+                   (context, target) -> out.print(target.getId()));
+    }
+}
+</pre>
+
+The code above first creates the <i>SearchExpressionContext </i>, and then uses the <i>SearchExpressionHandler</i> to obtain the parent of a component with the absolute id "foo" (this demonstrates a chained expression). When this is a found, a lambda is executed against it which just prints its ID.
+
+<p>
+<h4> Extendible API </h4>
+
+<p>
+Another major new feature of the Component Search Expression framework is that keywords are extensible. This works by creating an implementation of <i>SearchKeywordResolver</i> which in its simplest form has 2 important methods to implement: a method that recognises the keyword name and optionally its attributes, and a method that contains the component search logic.
+
+<p>
+A custom <i>SearchKeywordResolver</i> has to be registered with the JSF <i>Application</i> instance before the first request is served (for instance by using a <i>ServletContextListener</i>). A new <i>SearchKeywordResolver</i> will be added <b>before</b> all existing resolvers, so resolvers that are added later override those are added earlier, including the resolvers for the default keywords.
+
+<p>
+The following shows an example:
+
+<p>
+Implementation:
+
+<pre class="brush: java;">
+public class GrandParentKeywordResolver extends SearchKeywordResolver {
+
+    @Override
+    public boolean isResolverForKeyword(SearchExpressionContext searchExpressionContext, String keyword) {
+        return "grandParent".equals(keyword);
+    }
+
+    @Override
+    public void resolve(SearchKeywordContext searchKeywordContext, UIComponent current, String keyword) {
+        UIComponent parent = current.getParent();
+        if (parent != null) {
+            searchKeywordContext.invokeContextCallback(parent.getParent());
+        } else {
+            searchKeywordContext.setKeywordResolved(true);
+        }
+    }
+}
+</pre>
+
+<p>
+Registration:
+
+<pre class="brush: java;">
+@WebListener
+public class WebInit implements ServletContextListener {
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        FacesContext.getCurrentInstance()
+                    .getApplication()
+                    .addSearchKeywordResolver(new GrandParentKeywordResolver());
+        
+    }  
+}
+</pre>
+
+<p>
+The example above causes a new keyword to become available for usage, namely "@grandParent", which attempts to find the parent of the parent of a base component. This is of course just intended as a simple example, but it demonstrates how easy it is to extend the set of search expression keywords.
+
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="329"></a>
+<strong>Freely placeable radio button component</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-329">spec issue 329</a>)
+
+<p>
+An omission in JSF that has been missed by JSF developers since the dawn of time is a simple radio button that's part of a group and can be placed anywhere on a page. Core JSF <a href="https://mkyong.com/jsf2/jsf-2-radio-buttons-example">does support radio buttons</a>, but they are always rendered together in a table. Needless to say this isn't always what is desired.
+
+<p>
+Even before the release of JSF 2.0 in 2009 <a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-329?focusedCommentId=41407&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-41407">quite an amount of external component libraries</a> provided a radio button component that could be placed freely on a page. Granted, core JSF does not aim to be provide a rich set of components (this is left to those external libraries), but it does aim to provide a very basic set that maps fairly directly to the basic HTML elements. Given that a freely placeable radio button is so basic and given that it has been implemented so many times over by different vendors makes it an ideal candidate for standardisation, but for JSF's long life time this just never came to be.
+
+<p>
+But, finally, JSF 2.3 will provide support for this via the introduction of a new <i>group</i> attribute. Using that, radio buttons (<i>h:selectOneRadio</i>) can be rendered individually, while sharing the selection with all other buttons in the same group.
+
+<p>
+The following shows an example where there's only 1 radio button component in the view, but it's physically rendered in a new row for every iteration of the data table:
+
+<pre class="brush: xml;">
+&lt;h:dataTable id="table" value="#{myBean.myValues}" var="val"&gt;
+    &lt;h:column&gt;
+        &lt;h:selectOneRadio id="radio" group="someGroup" value="#{myBean.selectedvalue}"&gt;
+            &lt;f:selectItem itemValue="#{val}" /&gt;
+        &lt;/h:selectOneRadio&gt;
+    &lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</pre>
+
+<p>
+Labels are optionally. The above example didn't use one, but one can be added via the <i>h:outputLabel</i> component: 
+
+<pre class="brush: xml;">
+&lt;h:dataTable id="table" value="#{myBean.myValues}" var="val"&gt;
+    &lt;h:column&gt;
+        &lt;h:outputLabel for="radio" value="#{val.name}" /&gt;
+        &lt;h:selectOneRadio id="radio" group="someGroup" value="#{myBean.selectedvalue}"&gt;
+            &lt;f:selectItem itemValue="#{val}" /&gt;
+        &lt;/h:selectOneRadio&gt;
+    &lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</pre>
+
+In addition to that it's possible to distribute a select items collection over multiple radio button components within the same group:
+
+<pre class="brush: xml;">
+&lt;h:selectOneRadio id="radio0" group="someGroup" value="#{myBean.selectedItem}"&gt;
+    &lt;f:selectItems value="#{myBean.selectItems}" /&gt;
+&lt;/h:selectOneRadio&gt;
+
+&lt;h:selectOneRadio id="radio1" group="someGroup" /&gt;
+&lt;h:selectOneRadio id="radio2" group="someGroup" /&gt;
+</pre>
+
+In this case attention needs to be paid to which position each component has in the group. The order of this is determined by the order in which components are added to the view, which is basically the order in which components appear in the view from top to bottom.
+
+<p>
+This position in the group becomes the index in the select items collection as shown in the example above. I.e. the component with id "radio1" is at position 1 in the group "someGroup" and will thus use the select item at index 1 of the collection returned by <i>#{myBean.selectItems}</i>. It's an error if more radio button components are used than available items in the collection, but radio buttons don't all have to share the same collection. Each button can be given an individual item, from an EL binding or via a static value. The latter is demonstrated below:
+
+<pre class="brush: xml;">
+&lt;h:selectOneRadio id="radio0" group="someGroup" value="#{myBean.selectedItem}"&gt;
+    &lt;f:selectItems value="#{myBean.selectItems}" /&gt;
+&lt;/h:selectOneRadio&gt;
+
+&lt;h:selectOneRadio id="radio1" group="someGroup" itemValue="staticValue" /&gt;
+&lt;h:selectOneRadio id="radio2" group="someGroup" /&gt;
+</pre>
+
+In the example shown above the 2nd element (index 1) of the collection will be overridden by the value "staticValue". If the last buttons are given their own values the collection can be smaller than the total number of buttons in a group. I.e. in the above example, if "radio2" was given a static value the collection returned by <i>#{myBean.selectItems}</i> would only have to have 2 elements.
+
+<p>
+<p>
+<br />
+
+<p>
+<a name="217"></a>
+<strong>styleClass attribute on h:column</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-217">spec issue 217</a>)
+
+<p>
+<a href="#329">Another</a> omission in JSF that has been missed by JSF developers since the dawn of time is somewhat more control over the styling offered by the build-in h:dataTable component. One problem is with the <i>styleClasses</i> attribute that applies a series of styles round robin to the columns it contains, but doesn't make it possible to set a specific style on an individual column. 
+
+<p>
+A large amount of third party tables from component libraries such as RichFaces and Tomahawk filled this void, but for such a simple and basic thing it's curious that the core dataTable component doesn't offer this.
+
+<p>
+Now a little over 10 years after an issue for this was filed, JSF 2.3 finally brings us the <i>styleClasses</i> attribute on an individual dataTable column. The following shows an example of this:
+
+<pre class="brush: xml;">
+&lt;h:dataTable value="#{someBean.somelist}" var="item" &gt;
+  &lt;h:column&gt;#{item}&lt;/h:column&gt;
+  &lt;h:column styleClass="foo"&gt;#{item}&lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</pre>
+
+With <i>someBean.somelist</i> being a <i>List</i> containing the strings "a" and "b", this would be rendered as something like the following:
+
+<pre class="brush: xml;">
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;a&lt;/td&gt;
+      &lt;td class="foo"&gt;a&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;b&lt;/td&gt;
+      &lt;td class="foo"&gt;b&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="217_2"></a>
+<strong>rowClass attribute on h:dataTable</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-217">spec issue 217</a>)
+
+<p>
+The h:dataTable component features a <i>rowClasses</i> attribute that applies a series of styles round robin to the rows that are being rendered. This however does not allow EL access to the current row being rendered.
+
+<p>
+JSF 2.3 therefor introduces a new attribute, aptly named <i>rowClass</i> that does allow access to the current row from EL.
+The following shows an example of this:
+
+<pre class="brush: xml;">
+&lt;h:dataTable value="#{someBean.someList}" var="item" 
+       rowClass="#{item == 'b'? 'foo' : ''}" &gt;
+  &lt;h:column&gt;#{item}&lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+</pre>
+
+With <i>someBean.somelist</i> being a <i>List</i> containing the strings "a" and "b", this would be rendered as something like the following:
+
+<pre class="brush: xml;">
+ &lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr class=""&gt;
+      &lt;td&gt;a&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr class="foo"&gt;
+      &lt;td&gt;b&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="1102"></a>
+<strong>Iteration in UIRepeat without backing model</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1102">spec issue 1102</a>)
+
+<p>
+In JSF there are 2 main constructs for basic iterating; the JSTL derived &lt;c:forEach&gt; tag and the &lt;ui:repeat&gt; component. The main difference is that the first is a build-time component while the latter is  render-time component. This means &lt;c:forEach&gt; is not a component itself but is capable of adding components to the component tree while &lt;ui:repeat&gt; is a single component that iteratively generates its output (e.g HTML).
+
+<p>
+Another difference is that &lt;c:forEach&gt; has a <i>begin</i> and <i>end</i> attribute that can be used for an arbitrary iteration (like in java a regular for loop), while &lt;ui:repeat&gt; only iterates over a collection bound to the value attribute (which is more like an enhanced for loop or stream in java).
+
+<p>
+In JSF 2.2 and before you can thus not trivially do an arbitrary iteration without a backing model (collection) during render-time. JSF 2.3 will therefor introduce support for the &lt;c:forEach&gt; style iteration in &lt;ui:repeat&gt; using attributes of the same name. The following gives an example:
+
+<pre class="brush: xml;">
+&lt;ui:repeat begin="0" end="10" step="2" var="i"&gt;
+    #{i}
+&lt;/ui:repeat&gt;
+</pre>
+
+The above will render the sequence 0, 2, 4, 6, 8 and 10. Note that the <i>begin</i> and <i>end</i> attributes are both inclusive, and the <i>step</i> attribute is optional (it'll default to 1).
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1422"></a>
+<strong>Automatic conversion in UISelectMany for Collection</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1422">spec issue 1422</a>)
+
+<p>
+The <i>UISelectMany</i> component (which backs e.g. the <i>&lt;h:selectManyMenu&gt;</i> tag) has an <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/UISelectMany.html">eleborate algorithm</a> for determining how multiple values that are posted back from an <a href="http://w3schools.com/tags/tag_select.asp">HTML &lt;select&gt;</a> element are converted.
+
+<p>
+The difficulty here is that contrary to converting a single value, the component primarily sees an array or a Collection as the target to store converted values in. Arrays have a non-erased element type in Java, but due to the way generics are implemented it's not always possible and certainly not easy to retrieve the generic type (and thus element type) of a Collection. Because of this, the automatic by-type conversion that JSF normally does in absence of an explicit converter was not supported when the <i>UISelectMany</i> component was bound to a Collection.
+
+<p>
+As the OmniFaces' <a href="http://showcase.omnifaces.org/converters/SelectItemsConverter">SelectItemsConverter</a> has been showing for some time it's possible to do automatic conversion from String to an object in another way. Namely, by first mapping which String value was generated for each object instance, and then using the submitted string value(s) as key to map back. 
+
+<p>
+E.g. suppose we have the collection of objects <i>{Object1, Object2, Object3}</i> generated by select items which are initially converted to String values <i>{"a", "b", "c"}</i>. Each of those then become the value of the <i>value</i> attribute in the HTML &lt;option&gt; element. Now when the user posts back <i>{"a", "c"}</i>, the conversion from object to String is performed again in the same way as during the initial rendering (in absence of an explicit converter this means it will use a by-type converter for each non-nul, non-string object instance), but now also mapped. So, we get a map of <i>{"a" &#8594; Object1, "b" &#8594; Object2, "c" &#8594; Object3}</i>. We can then use this map to automatically convert "a" to Object1, and "c" to Object3.
+
+<p>
+Do note that this does require that the same select items are available before and after the postback, but this is <a href="http://stackoverflow.com/a/9069660/472792">already a requirement in JSF</a> (so that JSF can check that only values are posted back that were also initially rendered).
+
+<p>
+In JSF 2.3 exactly this technique will now be used to automatically convert values that are posted back for a <i>UISelectMany</i> component that's bound to a <i>Collection</i>.
+
+<p>
+<small><i>(Since this type of automatic conversion is also convenient for other situations it's being considered to optionally apply this same technique elsewhere as well)</i></small>
+
+<p>
+The following shows an example:
+
+<p>
+On a view within a form:
+<pre class="brush: xml;">
+&lt;h:selectManyCheckbox value="#{myBean.selectedItems}"&gt;
+    &lt;f:selectItems value="#{myBean.allItems}" /&gt;
+&lt;/h:selectManyCheckbox&gt;
+</pre>
+
+<p>
+Java backing bean:
+<pre class="brush: java;">
+@Model
+public class MyBean {
+
+    public static enum Item {
+        A, B, C;
+    }
+
+    private List&lt;Item&gt; selectedItems;
+
+    public List&lt;Item&gt; getAllItems() {
+        return asList(Item.values());
+    }
+
+    public List&lt;Item&gt; getSelectedItems() {
+        return selectedItems;
+    }
+
+    public void setSelectedItems(List&lt;Item&gt; selectedItems) {
+        this.selectedItems = selectedItems;
+    }
+}
+</pre>
+
+When the &lt;h:selectManyCheckbox&gt; shown above is posted back, <i>selectedItems</i> will contain a list with the enum instances of type <i>Item</i> corresponding to the selection that was made, without requiring the use of an explicit converter.
+
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1424"></a>
+<strong>Importing constants into EL namespace</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1424">spec issue 1424</a>)
+
+<p>
+Using the EL language a view in JSF 2.2 and earlier can make references to <i>@Named</i> beans and to a number of implicit objects. Constants such as enums and final static fields are not that easy to reference; they can't be easily <i>@Named</i> and they typically live in a class of which there's no instance and even if there is doesn't have getters for them.
+
+<p>
+Yet, such constants are often needed on a view for diverse things such as the values of a color or country selector.
+
+<p>
+The typical solution in JSF is then to have some bean return those, either directly or by first converting them into a Map or List of some kind. Because this is a somewhat tedious and often recurring task, utility libraries such as OmniFaces and PrimeFaces extensions have <a href="http://showcase.omnifaces.org/taghandlers/importConstants">provided</a> several <a href="http://primefaces.org/showcase/ui/misc/importEnum.xhtml">solutions</a> for this. EL 3.0 basically supports this too, but actually using it on a view <a href="http://stackoverflow.com/a/3735006">only works in JSP</a>.
+
+<p>
+JSF 2.3 will introduce support for using constants on a Facelets view via the new <i><b>&ltf:importConstants&gt;</b></i> tag which is backed by the <i>UIImportConstants</i> component.
+
+<p>
+Using this tag, all constants of a given fully qualified type will be inserted in the application scope as a <i>Map</i> using the simple name of that type, or optionally a user specified name.
+
+<p>
+For instance consider the class <i>MyClass</i> as given below:
+
+<pre class="brush: java;">
+package mypackage;
+
+public class MyClass 
+    public static final String CONSTANT1 = "constant1"
+    public static final String CONSTANT2 = "constant2"
+}
+</pre>
+
+Importing this via the <i><b>&ltf:importConstants&gt;</b></i> tag will cause a <i>Map</i> to be created with entries {"CONSTANT1" &#8594; "constant1", "CONSTANT2" &#8594; "constant2"}, which will be put in application scope using the name <i>MyClass</i>.
+
+<p>
+Because a <i>Map</i> is made available, there's a simple handle to all values, as well as to an individual constant.
+
+<p>
+The following shows an example of importing the class given above on a Facelet. Note that the tag has to be placed in the metadata section.
+
+<p>
+On a view:
+<pre class="brush: xml;">
+&lt;f:metadata&gt;
+    &lt;f:importConstants type="mypackage.MyClass" /&gt;
+&lt;/f:metadata&gt;
+</pre>
+
+After this import declaration, an individual constant can be accessed as follows:
+
+<pre class="brush: java;">
+#{MyClass.CONSTANT1}
+</pre>
+
+The above will print "constant1" (without the quotes).
+
+<p>
+Iterating over all constants can be done as follows:
+
+<pre class="brush: xml;">
+&lt;ui:repeat var="entry" value="#{MyClass}"&gt;
+    Key: #{entry.key}
+    Value: #{entry.value}
+&lt;/ui:repeat&gt;
+</pre>
+
+The above will print "Key: CONSTANT1 Value: constant1 Key: CONSTANT2 Value: constant2" (without the quotes).
+
+<p>
+Besides the class shown above, importing also works for interfaces and enums, and for the static inner class versions of those.
+
+<p>
+<p>
+<br />
+
+
+
+
+<p>
+<a name="1007"></a>
+<strong>Official spec recognition for dynamic component tree manipulation</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1007">spec issue 1007</a>)
+
+<p>
+JSF has supported the concept of dynamic component tree manipulation for <a href="http://balusc.omnifaces.org/2006/06/using-datatables.html#PopulateDynamicDatatable">a long time</a>. Dynamic component tree manipulation here means that the component tree as it's created by the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/view/ViewDeclarationLanguage.html">ViewDeclaratioLanguage</a> is afterwards manipulated via (typically) application code.
+
+<p>
+Such tree manipulation is quite comparable to manipulating a browser's DOM via e.g. JavaScript. 
+
+<p>
+While modifying the DOM is quite popular and generally well documented, the JSF version is by far not as well known and remains a somewhat obscure technique. Part of the reason this is the case is that few manuals or books mention it and the spec in fact doesn't mention it at all. It therefor took a considerable amount of time for the community to truly <a href="http://blog.kennardconsulting.com/2010/10/safely-manipulating-component-tree-with.html">discover what the best place is</a> in JSF from which to do this manipulation. A few libraries such as OmniFaces build on this somewhat implicit support that JSF provides with <a href="http://showcase.omnifaces.org/components/moveComponent">higher level utilities</a>.
+
+<p>
+JSF 2.3 will officially recognise the existence of dynamic component tree manipulation and demand implementations to support it by means of the following text that was added to <a href="http://docs.oracle.com/javaee/7/api/javax/faces/component/UIComponent.html">UIComponent</a>:
+
+<blockquote>
+Dynamically modifying the component tree can 
+happen at any time, during and after restoring the view, but not during 
+state saving and needs to function properly with respect to rendering and 
+state saving
+</blockquote>
+
+<p>
+No API or implementation changes were made for this issue.
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="resources"></a>
+<h3>Views and Resources </h3>
+
+
+
+<p>
+<a name="1260"></a>
+<strong>Basic support for exact mapping (extensionless URLs)</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1260">spec issue 1260</a>)
+
+<p>
+As an <a href="http://stackoverflow.com/a/10114158/472792">MVC framework</a> JSF provides a controller that loads views based on the URL with which it is invoked. This is implemented by using a Servlet for the controller (the FacesServlet) that is either prefix or suffix (extension) mapped. The right view route is then obtained by removing the mapping parts from the URL, which is then used as a base name that the view declaration language (VDL, aka templating engine) can use to load the actual physical view. 
+
+<p>
+For instance, if the FacesServlet is mapped to <i>/faces/*</i> and <i>*.jsf</i>, then a URL like "https://example.com/view.jsf", "https://example.com/faces/view.xhtml" or "https://example.com/faces/view" yields the base name "view", which the Facelets VDL can then use to load the file "view.xhtml".
+
+<p>
+In all cases however there's a certain amount of clutter in the URL, which for some time has been deemed as <a href="http://arjan-tijms.omnifaces.org/2013/03/easy-extensionless-urls-in-jsf-with.html">unwanted</a>. Third party libraries like PrettyFaces and <a href="http://showcase.omnifaces.org/facesviews/ExtensionlessURLs">OmniFaces</a> have been providing support for removing this unwanted clutter and allow to have simple SEO friendly URLs in JSF like "https://example.com/view".
+
+<p>
+Both these libraries need a fair amount of non-trivial code to achieve this, which stems from the fact JSF is natively only aware of prefix and suffix mapping, and thus has to be tricked in thinking either one of these two mappings is used.
+
+<p>
+In JSF 2.3 this has been partially addressed by adding support for so-called exact mapping to the existing prefix and suffix mapping options. "Partially" here means that unfortunately no out of the box high level support for extensionless URLs has been added, but that JSF has awareness of exact mapping now. This in turn should make it much easier for third party code to implement fully featured extensionless support, but also makes it possible to have basic extensionless URLs in JSF by manually exact mapping the <i>FacesServlet</i> in <i>web.xml</i> one or more times.
+
+<p>
+The following shows an example of this:
+
+<pre class="brush: xml;">
+&lt;servlet&gt;
+  &lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;javax.faces.webapp.FacesServlet&lt;/servlet-class&gt;
+  &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+  &lt;!-- Suffix/extension mapping --&gt;
+  &lt;url-pattern&gt;*.jsf&lt;/url-pattern&gt;
+  
+  &lt;!-- Prefix mapping --&gt;
+  &lt;url-pattern&gt;/faces/*&lt;/url-pattern&gt;
+  
+  &lt;!-- Exact mapping, new for JSF 2.3 --&gt;
+  &lt;url-pattern&gt;/foo&lt;/url-pattern&gt;
+  &lt;url-pattern&gt;/bar&lt;/url-pattern&gt;
+  &lt;url-pattern&gt;/some/kaz&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</pre>
+
+With these mappings in place, and when using the default Facelets VDL, and with files <i>foo.xhtml</i>, <i>bar.xhtml</i>, and <i>some/kaz.xhtml</i> in the root of a .war, and assuming the .war is deployed to the root of a server listening to port 8080 for http traffic, the following URLs can be used to load these 3 different views:
+<p>
+<ul>
+<li>http://localhost:8080/foo</li>
+<li>http://localhost:8080/bar</li>
+<li>http://localhost:8080/some/kaz</li>
+</ul>
+
+Note that at least one prefix or suffix mapping is typically still needed in order to load resources (such as <i>jsf.js</i>) which are loaded via the FacesServlet as well. It's possible, but practically hard, to add exact mappings for all resources used by the application.
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="1435"></a>
+<strong>Obtaining list of all view resources</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1435">spec issue 1435</a>)
+
+<p>
+In JSF view resources, which are the files that contain the source code for a view, are abstracted behind the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/application/ViewHandler.html">ViewHandler</a>. This <i>ViewHandler</i> interacts with one or more <a href="http://docs.oracle.com/javaee/7/api/javax/faces/view/ViewDeclarationLanguage.html">ViewDeclarationLanguage</a> instances, which each represent a specific templating engine (such as Facelets, or JSP). A <i>ViewDeclarationLanguage</i> on its turn may (but doesn't have to) use the <a href="https://docs.oracle.com/javaee/7/api/javax/faces/application/ResourceHandler.html">ResourceHandler</a> to load the physical file containing the view's source.
+
+<p>
+This abstraction allows for views to be transparently loaded from multiple locations, such as the filesystem, a jar on the filesystem, a database, from memory, etc without the core JSF runtime having the know about them. Users can add locations by replacing or decorating each of the above mentioned artefacts.
+
+<p>
+Because of the abstraction it's not really possible to obtain a list of all views, since there's no method on each of those abstracting artefacts that returns such list. By contrast, <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html">ServletContext</a> which also represents a small abstraction over loading resources does have <a href="http://docs.oracle.com/javaee/7/api/javax/servlet/ServletContext.html#getResourcePaths-java.lang.String-">such a method</a>.
+
+<p>
+Therefor JSF 2.3 introduces a series of methods on all these 3 artefacts that does allow one to obtain that list. These methods are roughly modelled after JDK 8's <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#walk-java.nio.file.Path-int-java.nio.file.FileVisitOption...-">Files#walk</a>, and thus return a <i>Stream</i> that's lazily populated.
+
+<p>
+The following new methods were added:
+
+<table border="1" style="font-size: 80%;">
+
+<tr style="background-color:LightGray;">
+<th>Class</th>   <th>Method</th>
+</tr>
+
+<tr>
+<td>ViewHandler</td>   <td>Stream&lt;String> getViews(FacesContext facesContext, String path, ViewVisitOption... options)</td>
+</tr>
+
+<tr>
+<td>ViewHandler</td>   <td>Stream&lt;String> getViews(FacesContext facesContext, String path, int maxDepth, ViewVisitOption... options)</td>
+</tr>
+
+<tr>
+<td>ViewDeclarationLanguage</td>   <td>Stream&lt;String> getViews(FacesContext facesContext, String path, ViewVisitOption... options)</td>
+</tr>
+
+<tr>
+<td>ViewDeclarationLanguage</td>   <td>Stream&lt;String> getViews(FacesContext facesContext, String path, int maxDepth, ViewVisitOption... options)</td>
+</tr>
+
+<tr>
+<td>ResourceHandler</td>   <td>Stream&lt;String> getViewResources(FacesContext facesContext, String path, ResourceVisitOption... options)</td>
+</tr>
+
+<tr>
+<td>ResourceHandler</td>   <td>Stream&lt;String> getViewResources(FacesContext facesContext, String path, int maxDepth, ResourceVisitOption... options)
+</td>
+</tr>
+
+</table>
+
+<p>
+&nbsp;
+
+<p>
+As can be seen, there's the optional <i>ViewVisitOption</i> for the <i>ViewHandler</i> and <i>ViewDeclarationLanguage</i> methods, and the <i>ResourceVisitOption</i> for the <i>ResourceHandler</i> methods. 
+
+<p>
+<i>ViewVisitOption</i> currently has only one value and that's the somewhat lengthy "RETURN_AS_MINIMAL_IMPLICIT_OUTCOME", which causes views to be returned in their most minimal form such that they can be used as the implicit outcome for e.g. action methods or the <i>outcome</i> attribute of various component tags. In most cases this will be identical to the extensionless form. E.g. "/somepath/foo" instead of "/somepath/foo.xhtml".
+
+<p>
+<i>ResourceVisitOption</i> only has one value as well and that's "TOP_LEVEL_VIEWS_ONLY", which when provided causes only views to be returned that can be used to serve requests. Without this option views that can be used for e.g. includes will be returned as well.
+
+<p>
+The following shows an example:
+
+<pre class="brush: java;">
+@Inject
+private FacesContext context;
+
+[...]
+
+// Views from all VDLs
+Stream&lt;String> allViews = 
+    context.getApplication()
+           .getViewHandler()
+           .getViews(context, "/");
+
+// Views from just the Facelet VDL
+Stream&lt;String> faceletsViews = 
+    context.getApplication()
+           .getViewHandler()
+           .getViewDeclarationLanguage(context, "/foo.xhtml")
+           .getViews(context, "/");
+</pre>
+
+
+<p>
+<p>
+<br />
+
+
+
+
+<p>
+<a name="1404"></a>
+<strong>Standardised resource rendered tracking</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1404">spec issue 1404 </a>)
+
+<p>
+JSF 2.0 introduced the <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#resource-loading">resource handler API</a>, which is a framework facility for serving up resources like JavaScript files, style sheets, images and other files in support of components that need them. Before the introduction of this API most component libraries bundled their own solution, like e.g. a Servlet or a Filter.
+
+<p>
+While JSF 2.0 standardised an API for this, it did not standardise in this API methods to track if a given resource reference (say a link to "jsf.js" from the "javax.faces" library) has already been rendered before and to set that it has been. The two JSF implementations (Mojarra and MyFaces) both do this tracking, but in JSF 2.2 and before they had their own private implementation for this. Being a private implementation means third party libraries like PrimeFaces, OmniFaces, etc could not take advantage of this tracking, and thus could not easily extend this part of the resource API.
+
+<p>
+In JSF 2.3 tracking whether resource references have been rendered will be standardised via the introduction of two new methods for the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/application/ResourceHandler.html">ResourceHandler</a>:
+
+<ul>
+<li> boolean isResourceRendered(FacesContext context, String resourceName, String libraryName) </li>
+<li> void markResourceRendered(FacesContext context, String resourceName, String libraryName) </li>
+</ul>
+
+<p>
+The two methods are connected to each other in the fact that <i>isResourceRendered</i> for a given resource can only return true when <i>markResourceRendered</i> has been called for that same resource. In other words, implementations *must* call <i>markResourceRendered</i> and *must* check <i>isResourceRendered</i>. 
+
+<p>
+External libraries can therefor safely wrap the <i>ResourceHandler</i> and provide their custom behaviour. Alternatively they can call <i>markResourceRendered</i> on the default <i>ResourceHandler</i> to prevent a given resource reference to be rendered by the framework, i.e. so they can render that resource reference themselves in a custom way (e.g. as part of combining multiple resources into a single one).
+
+<p>
+<i>(This is a rather advanced feature that the average JSF application developer will not likely come in contact with.)</i>
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1423"></a>
+<strong>Resource loading for components dynamically added via ajax</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1423">spec issue 1423 </a>)
+
+<p>
+Since JSF 2.0 components can declare a <a href="http://docs.oracle.com/javaee/7/api/javax/faces/application/ResourceDependency.html">resource dependency</a>, which will cause the JSF runtime to make sure this resource is provided to the client when the view containing that component is loaded. This happens via the <a href="https://andyschwartz.wordpress.com/2009/07/31/whats-new-in-jsf-2/#resource-loading">resource handler API</a> by e.g. rendering a link in the head element.
+
+<p>
+Since the initial versions of JSF it has also been possible to do <a href="http://blog.kennardconsulting.com/2010/10/safely-manipulating-component-tree-with.html">dynamic component tree manipulation</a>, which basically means programmatically adding a component to the component tree by application code after that tree has been created by the JSF runtime. 
+
+<p>
+Then there's the somewhat related concept of <a href="https://theholyjava.wordpress.com/2011/10/28/jsf-beware-the-difference-between-build-time-and-render-time-tags-in-facelets">build-time tags</a> in JSP and Facelets based views, which can cause different component trees to be created depending on certain variables. E.g. with the <i>c:if</i> tag a component can be completely eliminated from the tree, which is technically quite different from setting its <i>rendered</i> attribute to false (although the effect on the final rendered output can be quite identical). Includes with a dynamic (EL based) <i>src</i> attribute are also in this category.
+
+<p>
+Finally, JSF 2.0 added support for AJAX where a partial response is send back by the server that contains directives to only update certain parts of the client side HTML/DOM tree.
+
+<p>
+As it appeared the combination of these four factors mentioned above didn't play out well; a JSF component with a resource dependency that is dynamically added via either a build-time tag or via dynamic component tree manipulation during an AJAX request (other than for the <i>@all</i> target) failed to have its resource provided. In other words, a component depending on a javascript would not have that javascript added after an ajax request and so would most likely fail.
+
+<p>
+In JSF 2.3 this problem has been addressed by specifying a simple but effective algorithm that JSF implementations must adhere to. No new API methods were needed for this. That algorithm in simplified wording is:
+
+<ol>
+<li> After restore state has been done for an AJAX request, all component resources are marked as already rendered (as an AJAX request comes from an existing rendered view that already has al its resources) </li> 
+<li> In render response if the AJAX request is not for updating <i>@all</i>, all component resources that are NOT marked as already rendered (which thus must be the newly added components) are put in the <i>update</i> section of the <i>partial-response</i> that's send to the client with a new identifier <i>javax.faces.Resource</i></li>
+<li> The "jsf.js" script has to append every element from the update section with this new <i>javax.faces.Resource</i> identifier to the head of the HTML document, if that element is not already there</li>
+</ol>
+
+<p>
+Note that via the condition "if that element is not already there" in the above algorithm the "jsf.js" script now takes upon it a part of deduplicating resource references, a task that was previously done solely server side.
+
+<p>
+<p>
+<br />
+
+
+
+
+
+<p>
+<a name="type-safety"></a>
+<h3> Type-safety </h3>
+
+<p>
+<a name="1382"></a>
+<strong>Generics for ExternalContext#getInitParamterMap</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1382">spec issue 1382</a>)
+
+<p>
+Quite a number of types in JSF originate from before generics were available in Java. In subsequent releases Java 5 was targeted and existing types and methods were extended with generic parameters. 
+
+<p>
+One of the methods that was missed before is <a href="http://docs.oracle.com/javaee/7/api/javax/faces/context/ExternalContext.html#getInitParameterMap--">ExternalContext#getInitParamterMap</a>, which returns a raw <i>Map</i> in JSF 2.2 and earlier.
+
+<p>
+In JSF 2.3 this has been corrected and <i>ExternalContext.html#getInitParameterMap</i> now returns a Map&lt;String, String&gt;.
+
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1355"></a>
+<strong>Generics for Converter and Validator interfaces</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1355">spec issue 1355</a>)
+
+<p>
+Both the <a href="https://docs.oracle.com/javaee/7/api/javax/faces/convert/Converter.html">Converter</a> and <a href="http://docs.oracle.com/javaee/7/api/javax/faces/validator/Validator.html">Validator</a> interfaces in JSF take an <i>Object</i> as their input value. Implementations then <a href="https://docs.oracle.com/javaee/7/api/javax/faces/convert/EnumConverter.html#getAsString-javax.faces.context.FacesContext-javax.faces.component.UIComponent-java.lang.Object-">typically</a> demand that this <i>Object</i> is of a specific type and that otherwise an exception should be thrown.
+
+<p>
+This contract predates generics and instead of demanding such type constraint via JavaDoc one can far better express this via a generic parameter. In JSF 2.3 both interfaces have now been parameterized and implementations can concisely define the exact input type, and in case of the Converter interface additionally the exact return type. 
+
+<p>
+This updated interfaces are shown below:
+
+<pre class="brush: java;">
+public interface Converter&lt;T&gt; {
+  T getAsObject(FacesContext context, UIComponent component, String value);
+  String getAsString(FacesContext context, UIComponent component, T value);
+}
+</pre>
+
+<pre class="brush: java;">
+public interface Validator&lt;T&gt; {
+  void validate(FacesContext context, UIComponent component, T value);
+}
+</pre>
+
+<p>
+Note that the myriad of existing <i>Converter</i> and <i>Validator</i> implementations in JSF have not been parameterized and are raw types. The reason for this is backwards compatibility. 
+
+<p>
+E.g. in some obscure but possible cases code could actually depend on passing an <i>Object</i> to some <i>Converter</i> implementation. Even when such Object could only be of say type <i>Foo</i>, then actually typing the constructor as accepting only <i>Foo</i> will not compile anymore. A variety of other even more obscure but theoretical possible incompatibilities were discovered as well. One could ask how generics can ever have been introduced in the JDK itself for existing types, but even there some compromises were made (like the infamous <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html#get-java.lang.Object-">Map#get</a> taking an <i>Object</i> as input instead of the generic parameter for the key).
+
+<p>
+New converters and validators can of course take advantage of the new generic parameters, but existing ones in JSF have been frozen in time and can never change.
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1428"></a>
+<strong>Constants for "jsf.js", "javax.faces" and postback parameters</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1428">spec issue 1428</a>)
+
+<p>
+The JSF spec defines a javascript with the name "jsf.js" which is served by JSF implementations and contains functions such as the ajax handler. The spec also defines this script is in the "javax.faces" library.
+
+<p>
+Despite these two names being effectively spec mandated constants, there wasn't an actual constant in code defined for those, and both the RI implementation as well as various libraries were using the non type-safe strings everywhere.
+
+<p>
+Likewise, a <a href="https://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1427">couple of spec defined request parameter names</a> for postback parameters did not have any constants for them defined either.
+
+<p>
+JSF 2.3 will therefor introduce several new constants as shown in the table below:
+
+
+<div style="font-size:75%;">
+<table border="1">
+<caption>New constants in JSF 2.3</caption>
+<tr style="background-color:LightGray">
+    <th>Fully qualified name</th>
+    <th>Value</th>
+    <th>Description</th>
+</tr>
+ <tr>
+   <td><small><b><i>javax.faces.application.ResourceHandler.JSF_SCRIPT_RESOURCE_NAME</i></b></small></td>
+  <td>"jsf.js"</td>
+  <td>Resource name of JSF script resource</td>
+<tr>
+ <tr>
+   <td><small><b><i>javax.faces.application.ResourceHandler.JSF_SCRIPT_LIBRARY_NAME</i></b></small></td>
+   <td>"javax.faces"</td>
+   <td>Library name of JSF script resource</td>
+ <tr>
+<tr>
+   <td><small><b><i>javax.faces.component.behavior.ClientBehaviorContext.BEHAVIOR_SOURCE_PARAM_NAME</i></b></small></td>
+   <td>"javax.faces.source"</td>
+   <td>The request parameter name whose request parameter value identifies the source component of behavior event</td>
+ <tr>
+<tr>
+   <td><small><b><i>javax.faces.component.behavior.ClientBehaviorContext.BEHAVIOR_EVENT_PARAM_NAME</i></b></small></td>
+   <td>"javax.faces.behavior.event"</td>
+   <td>The request parameter name whose request parameter value identifies the type of behavior event</td>
+ <tr>
+<tr>
+   <td><small><b><i>javax.faces.context.PartialViewContext.PARTIAL_EVENT_PARAM_NAME</i></b></small></td>
+   <td>"javax.faces.partial.event"</td>
+   <td>The request parameter name whose request parameter value identifies the type of partial event</td>
+ <tr>
+</table>
+</div>
+
+
+<p>
+The RI implementation has been updated to use these new constants.
+
+
+<p>
+<p>
+<br />
+
+
+
+<p>
+<a name="configuration"></a>
+<h3> Configuration </h3>
+
+<p>
+<a name="936"></a>
+<strong>Facelets default to non-hot reload in production</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-936">spec issue 936</a>)
+
+<p>
+JSF has the ability to cache Facelets. Caching here means that the result of the XML parsing and compilation step is kept in memory, e.g. Facelets will not read the XML from disk at every request and will not reparse that XML either. <em>(it will however still do the composition of includes and templates at every request)</em>
+
+<p>
+While the default is not specified, the RI (Mojarra) uses a default of 2 seconds before it looks on disk again if the source file has changed or not. There is a setting to control this default, namely the <em>javax.faces.FACELETS_REFRESH_PERIOD</em> context parameter in web.xml. For example, the following sets a timeout of 10 seconds:
+
+<pre class="brush: xml;">
+&lt;context-param&gt;
+    &lt;param-name&gt;javax.faces.FACELETS_REFRESH_PERIOD&lt;/param-name&gt;
+    &lt;param-value&gt;10&lt;/param-value&gt; &lt;!-- Cache for 10 seconds --&gt;
+&lt;/context-param&gt;
+</pre>
+
+<p>
+There are two special values; <em>-1</em> means no refresh (cache indefinitely), while <em>0</em> means no caching at all (always hot reload).
+
+<p>
+For production usage there really is only 1 sensible value, and that's <em>-1</em>, as the Facelets source files will of course not change during production.
+
+<p>
+<a href="https://blogs.oracle.com/rlubke/entry/jsf_2_0_new_feature2" title="JSF 2.0 New Feature Preview Series (Part 1): ProjectStage" target="_blank">JSF 2.0 introduced a setting</a> to indicate the <a href="http://docs.oracle.com/javaee/7/api/javax/faces/application/ProjectStage.html" target="_blank">stage</a> its in, which includes the <em>Production</em> stage.
+
+<p>
+JSF 2.3 now finally adds one and one together and defines that when the project stage is <em>Production</em> (which incidentally is the default stage) the Facelets refresh period is <em>-1</em> (no refresh).
+
+<p>
+<p>
+<br />
+
+
+<p>
+<a name="1434"></a>
+<strong>.xhtml added to default mappings</strong> (<a href="http://java.net/jira/browse/JAVASERVERFACES_SPEC_PUBLIC-1434">spec issue 1434</a>)
+
+<p>
+It's customary in JSF to map the so-called <i>FacesServlet</i>, which acts as the default controller, explicitly to some pattern in <i>web.xml</i>, e.g.
+
+<pre class="brush: xml;">
+&lt;servlet&gt;
+  &lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+  &lt;servlet-class&gt;javax.faces.webapp.FacesServlet&lt;/servlet-class&gt;
+  &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+  &lt;servlet-name&gt;Faces Servlet&lt;/servlet-name&gt;
+  &lt;url-pattern&gt;*.xhtml&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</pre>
+
+<p>
+JSF is however also capable of automatically mapping the <i>FacesServlet</i>, which happens when either a <i>WEB-INF/faces-config.xml</i> is found, or if the application contains a class annotated with- or using any of a number of JSF specific types (such as the new <i>@FacesConfig</i> or previously <i>@ManagedBean</i>). 
+
+<p>
+Unfortunately, when automatically mapped, the mapping is only to <i>/faces/*</i>, <i>*.jsf</i> and <i>*.faces</i>. Since Facelets is overwhelmingly used as the default and only VDL in JSF applications, and those happen to default to the <i>.xhtml</i> extension, a mapping to <i>*.xhtml</i> is in practice the much preferred mapping (apart from an extensionless mapping, which is another story). A <i>.xhtml</i> to <i>.xhtml</i> mapping not only makes it initially easier to understand which file is used for handling a request, but more importantly it also makes an application more secure. Without such mapping in place and without any other measures (like some security constraint), it's possible to request the source of the Facelets file. Depending on how the application is build, and perhaps depending on any comments in the file, this could be a serious risk.
+
+<p>
+Therefor, JSF 2.3 will add <i>*.xhtml</i> to the list of automatic mappings. Note that this will *only* be used when no explicit mapping in e.g. <i>web.xml</i> is present. When such mapping is present and no <i>*.xhtml</i> mapping is done manually, the application may still be vulnerable.
+
+<p>
+The new mapping can be disabled using a context parameter in <i>web.xml</i> as follows:
+
+<pre class="brush: xml;">
+&lt;context-param&gt;
+    &lt;param-name&gt;javax.faces.DISABLE_FACESSERVLET_TO_XHTML&lt;/param-name&gt;
+    &lt;param-value&gt;true&lt;/param-name&gt;
+&lt;/context-param&gt;
+</pre>
+
+<p>
+<p>
+<br />
+
+ 
+<hr>
+				
+					<!-----------------end of core content --------------------->
+				
+					
+				    <!-- ========================================== -->
+			</div>
+		</div>
+	</div>
+					
+					<footer class="well">
+						<div class="container">
+						<div class="row-fluid" id="bottom-info">
+							<!--div class="span6 pagination-centered" id="social"-->
+							<div class="span4" id="social">			
+								<a href="http://blogs.oracle.com/theaquarium/"><img src="images/icons/TheAquarium.png"></a>
+								<a href="https://twitter.com/jsf_spec"><img src="images/icons/twitter.png"></a>
+								<a href="https://plus.google.com/communities/106098646151660933759"><img src="images/icons/google.png"></a>
+								<a href="http://www.linkedin.com/groups/GlassFish-Users-106819/about"><img src="images/icons/linkedin.png"></a>
+								<a href="http://www.youtube.com/user/GlassFishVideos"><img src="images/icons/youtube.png"></a>
+								<a href="https://www.facebook.com/GlassFish"><img src="images/icons/facebook.png"></a>
+							</div>
+							<div class="span8" id="copyright">Project sponsored by <img src="images/logo_oracle.png" id="orcl"/><br/>
+							Copyright &copy; 2014 Oracle Corporation and/or its affiliates. <span class="publishDate">Last updated: 4/7/14 10:10 AM PT</span></div>
+						</div>
+					
+					<div class="row"></div>
+						</div>
+					</footer>
+						
+					<!-- ================================================== -->
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+					<script type="text/javascript">
+						if (typeof jQuery == 'undefined')
+						{
+							document.write(unescape("%3Cscript src='./js/jquery-1.8.3.min.js' type='text/javascript'%3E%3C/script%3E")); 
+						}
+					</script>
+					<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+					<script type="text/javascript">
+				    $(document).ready(function() {
+				        $('.carousel').carousel({
+				            interval: 4500,
+				            cycle: true
+				        });
+				    });
+					</script>	
+					<!--  Begin SiteCatalyst code  -->
+					<script language="JavaScript" src="https://www.java.net/images/s_code_remote.js"></script>
+				  	<!--  End SiteCatalyst code  -->
+	</body>
+</html>
+	
+	
