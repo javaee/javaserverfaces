@@ -10,34 +10,34 @@
 		      <div style="z-index: 11;" id="qm0" class="qmmc">
 			<a id="regions-leadin">&nbsp;</a>
 			<a id="" class="qmparent" href="https://blogs.oracle.com/theaquarium/">Aquarium</a>
-			<a id="current-region" class="qmparent" href="https://glassfish.java.net/">Core</a>
+			<a id="current-region" class="qmparent" href="https://javaee.github.io/glassfish/">Core</a>
 		        <div style="z-index: 21;" id="">
-			  <a id="" href="https://glassfish.java.net/">GlassFish</a>
+			  <a id="" href="https://javaee.github.io/glassfish/">GlassFish</a>
 			  <a id="" href="https://glassfish-samples.java.net/">Samples</a>
-			  <a id="" href="https://grizzly.java.net/">Grizzly</a>
-			  <a id="" href="https://jersey.java.net/">Jersey</a>
-			  <a id="" href="https://mq.java.net/">OpenMQ</a>
+			  <a id="" href="https://javaee.github.io/grizzly/">Grizzly</a>
+			  <a id="" href="https://jersey.github.io/">Jersey</a>
+			  <a id="" href="https://javaee.github.io/openmq/">OpenMQ</a>
 			  <a id="" href="https://sailfin.java.net/">SailFin</a>
 			  <a id="" href="https://shoal.java.net/">Shoal</a>
 			  <a id="" href="https://hk2.java.net/">HK2</a>
 			  <a id="" href="https://wikis.oracle.com/display/GlassFish/GlassFishWiki">Wiki</a>
 			</div>
-			<a id="" class="qmparent" href="https://glassfish.java.net/javaee5/webtier/webtierhome.html">Webtier</a>
+			<a id="" class="qmparent" href="https://javaee.github.io/glassfish/javaee5/webtier/webtierhome.html">Webtier</a>
 			<div style="z-index: 21;" id="">
 			  <a id="" href="https://jsp.java.net/">JSP</a>
 			  <a id="" href="https://uel.java.net/">EL</a>
 			  <a id="" href="https://jstl.java.net/">JSTL</a>
-			  <a id="" href="https://javaserverfaces.java.net/">JSF</a>
+			  <a id="" href="https://javaserverfaces.github.io">JSF</a>
 			  <a id="" href="https://jsftemplating.java.net/">JSFTemplating</a>
 			  <a id="" href="https://woodstock.java.net/">Woodstock</a>
-			  <a id="" href="https://jersey.java.net/">Jersey</a>
+			  <a id="" href="https://jersey.github.io/">Jersey</a>
 			  <a id="" href="https://phobos.java.net/">Phobos</a>
 			  <a id="" href="https://wadl.java.net/">WADL</a>
 			  <a id="" href="https://lrwpinjava.java.net/">LRWPinJava</a>
 			</div>
 			<a id="" class="qmparent" href="https://metro.java.net/">WS/XML</a>
 			<div style="z-index: 21;" id="">
-			  <a id="" href="https://jersey.java.net/">Jersey</a>
+			  <a id="" href="https://jersey.github.io/">Jersey</a>
 			  <a id="" href="https://metro.java.net/">Metro</a>
 			  <a id="" href="https://jax-ws.java.net/">JAX-WS</a>
 			  <a id="" href="https://wsit.java.net/">WSIT</a>
@@ -45,7 +45,7 @@
 			  <a id="" href="https://jaxp.java.net/">JAXP</a>
 			  <a id="" href="https://wiseman.java.net/">Wiseman</a>
 			</div>
-			<a id="" class="qmparent" href="https://glassfish.java.net/">Tools</a>
+			<a id="" class="qmparent" href="https://javaee.github.io/glassfish/">Tools</a>
 			<div style="z-index: 21;" id="">
 			  <a id="" href="https://hudson.java.net/">Hudson</a>
 			  <a id="" href="https://japex.java.net/">Japex</a>
@@ -108,7 +108,7 @@
 
     <script>
 
-if(window.location.href.indexOf("https://glassfish.java.net/ja/")==0) {
+if(window.location.href.indexOf("https://javaee.github.io/glassfish/ja/")==0) {
   document.getElementById("main-menubar").style.display = "none";
   document.getElementById("ja-menubar").style.display = "";
 }

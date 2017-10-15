@@ -1,19 +1,19 @@
     <script>
         var info = {
 	title: "Oracle Mojarra JavaServer Faces",
-	logo: "https://javaserverfaces.java.net/images/glassfish_logo.gif"
+	logo: "https://javaserverfaces.github.io/images/glassfish_logo.gif"
         }
     </script>
 
 	  <div id="navcol">
 	    <dl id="projecttools" class="navgroup" style="text-align: left;">
 	      <dt id="current-zone" class="depth0">
-		<a href="https://glassfish.java.net/">GlassFish Community</a>
+		<a href="https://javaee.github.io/glassfish/">GlassFish Community</a>
 	      </dt>
 	      <dd class="depth0 parent parent" id="menubar">
 <ul id="main-menubar">
     <li>
-	<a href="https://javaserverfaces.java.net/download.html">Downloads</a>
+	<a href="https://javaserverfaces.github.io/download.html">Downloads</a>
     <li>
       <a href="https://java.net/projects/javaserverfaces/lists">Mailing lists</a>
     <li>
@@ -29,13 +29,13 @@
     <li>
         <a href="https://java.net/jira/browse/JAVASERVERFACES/">IssueTracker</a>
     <li>
-	<a href="https://javaserverfaces-spec-public.java.net">JSF Specification</a>
+	<a href="https://javaee.github.io/javaserverfaces-spec">JSF Specification</a>
 </ul>
 
 <script>
 var info = {
 	title: "Oracle Mojarra JavaServer Faces",
-	logo: "https://javaserverfaces.java.net/images/glassfish_logo.gif"
+	logo: "https://javaserverfaces.github.io/images/glassfish_logo.gif"
 }
 </script>
 <script src="https://glassfish-theming.java.net/zone-webtier.js"></script>
