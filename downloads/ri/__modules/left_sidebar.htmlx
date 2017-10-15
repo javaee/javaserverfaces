@@ -8,7 +8,7 @@
 	  <div id="navcol">
 	    <dl id="projecttools" class="navgroup" style="text-align: left;">
 	      <dt id="current-zone" class="depth0">
-		<a href="http://glassfish.java.net/">GlassFish Community</a>
+		<a href="http://javaee.github.io/glassfish/">GlassFish Community</a>
 	      </dt>
 	      <dd class="depth0 parent parent" id="menubar">
 <ul id="main-menubar">
@@ -29,7 +29,7 @@
     <li>
         <a href="http://java.net/jira/browse/JAVASERVERFACES/">IssueTracker</a>
     <li>
-	<a href="http://javaserverfaces-spec-public.java.net">JSF Specification</a>
+	<a href="http://javaee.github.io/javaserverfaces-spec">JSF Specification</a>
 </ul>
 
 <script>
